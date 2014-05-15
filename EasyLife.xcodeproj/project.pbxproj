@@ -164,9 +164,6 @@
 				50C40413192510880099FAFD /* Controllers */,
 				50C40412192510820099FAFD /* Views */,
 				50C40411192510790099FAFD /* Models */,
-				50C403F119250FA00099FAFD /* EasyLifeAppDelegate.h */,
-				50C403F219250FA00099FAFD /* EasyLifeAppDelegate.m */,
-				50C40436192511C50099FAFD /* DatabaseAvailability.h */,
 				50C403F419250FA00099FAFD /* Images.xcassets */,
 				50C403E919250FA00099FAFD /* Supporting Files */,
 			);
@@ -176,6 +173,9 @@
 		50C403E919250FA00099FAFD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				50C403F119250FA00099FAFD /* EasyLifeAppDelegate.h */,
+				50C403F219250FA00099FAFD /* EasyLifeAppDelegate.m */,
+				50C40436192511C50099FAFD /* DatabaseAvailability.h */,
 				50C403EA19250FA00099FAFD /* EasyLife-Info.plist */,
 				50C403EB19250FA00099FAFD /* InfoPlist.strings */,
 				50C403EE19250FA00099FAFD /* main.m */,
@@ -289,6 +289,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Albert;
 				TargetAttributes = {
+					50C403DE19250FA00099FAFD = {
+						DevelopmentTeam = 84TB9682NH;
+					};
 					50C403F919250FA00099FAFD = {
 						TestTargetID = 50C403DE19250FA00099FAFD;
 					};
@@ -470,6 +473,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -478,6 +483,7 @@
 				GCC_PREFIX_HEADER = "EasyLife/EasyLife-Prefix.pch";
 				INFOPLIST_FILE = "EasyLife/EasyLife-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -487,6 +493,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -495,6 +503,7 @@
 				GCC_PREFIX_HEADER = "EasyLife/EasyLife-Prefix.pch";
 				INFOPLIST_FILE = "EasyLife/EasyLife-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -558,6 +567,7 @@
 				50C4040D19250FA00099FAFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		50C4040E19250FA00099FAFD /* Build configuration list for PBXNativeTarget "EasyLifeTests" */ = {
 			isa = XCConfigurationList;
@@ -566,6 +576,7 @@
 				50C4041019250FA00099FAFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

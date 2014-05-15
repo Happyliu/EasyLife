@@ -27,7 +27,6 @@
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     NSString *title = [dateFormatter stringFromDate:self.date];
     return title;
-    
 }
 
 - (NSString *)subtitle

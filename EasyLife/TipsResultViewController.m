@@ -175,12 +175,7 @@
     float tips18 = self.totalAmount * 1.18;
     float tips20 = self.totalAmount * 1.2;
     if (!_tipsResults) {
-        _tipsResults = [[NSMutableArray alloc]  initWithObjects:[NSNumber numberWithFloat:self.totalAmount], [NSNumber numberWithFloat:tips15], [NSNumber numberWithFloat:tips18], [NSNumber numberWithFloat:tips20], nil];
-    } else {
-        self.tipsResults[0] = [NSNumber numberWithFloat:self.totalAmount];
-        self.tipsResults[1] = [NSNumber numberWithFloat:tips15];
-        self.tipsResults[2] = [NSNumber numberWithFloat:tips18];
-        self.tipsResults[3] = [NSNumber numberWithFloat:tips20];
+        _tipsResults = [[NSMutableArray alloc]  initWithObjects:[NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", self.totalAmount].floatValue], [NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", tips15].floatValue], [NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", tips18].floatValue], [NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", tips20].floatValue], nil];
     }
 }
 

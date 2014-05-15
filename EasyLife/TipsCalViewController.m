@@ -67,7 +67,6 @@
     
     for (UIButton *numberButton in self.numberButtons) {
         [numberButton.layer setBorderWidth:0.5];
-        
         [numberButton setBackgroundImage:self.normalButtonBackgroundImage forState:UIControlStateNormal];
         [numberButton.layer setBackgroundColor:[self.appTintColor CGColor]];
         [numberButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
@@ -89,12 +88,6 @@
     tesseract = nil; //deallocate and free all memory
     
 }
-
-//- (BOOL)shouldCancelImageRecognitionForTesseract:(Tesseract*)tesseract
-//{
-//    NSLog(@"progress: %d", tesseract.progress);
-//    return NO;  // return YES, if you need to interrupt tesseract before it finishes
-//}
 
 - (void)viewWillAppear:(BOOL)animated
 {

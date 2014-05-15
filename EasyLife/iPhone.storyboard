@@ -17,11 +17,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="To-Do List" image="list" id="T53-v0-6Md"/>
+                    <tabBarItem key="tabBarItem" title="To-Do List" id="T53-v0-6Md"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TP4-KK-5lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1225" y="-562"/>
+            <point key="canvasLocation" x="1313" y="-1020"/>
         </scene>
         <!--Tips Cal View Controller - Calculate Tips-->
         <scene sceneID="T6y-rH-0hN">
@@ -256,7 +256,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXp-ga-UPT" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1751" y="111"/>
+            <point key="canvasLocation" x="1799" y="523"/>
         </scene>
         <!--Single Record Map View Controller-->
         <scene sceneID="W7k-Gm-6hZ">
@@ -289,7 +289,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MYP-K1-Poj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2943" y="-837"/>
+            <point key="canvasLocation" x="2911" y="-353"/>
         </scene>
         <!--Record Map View Controller-->
         <scene sceneID="ugS-Hi-kFx">
@@ -339,7 +339,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rdp-oa-KPO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2943" y="-147"/>
+            <point key="canvasLocation" x="2911" y="403"/>
         </scene>
         <!--Record View Controller-->
         <scene sceneID="U1a-Mx-Feu">
@@ -436,7 +436,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryU-ed-fYy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2289" y="-147"/>
+            <point key="canvasLocation" x="2357" y="53"/>
         </scene>
         <!--Tips Result View Controller - Tips Result-->
         <scene sceneID="Yn9-uu-p0X">
@@ -514,7 +514,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bu5-nc-8b7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Gz6-zD-fSk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2289" y="567"/>
+            <point key="canvasLocation" x="2357" y="1077"/>
         </scene>
         <!--Shared Result View Controller - Go Dutch-->
         <scene sceneID="MZG-Py-AQn">
@@ -569,7 +569,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Exi-gu-1Vg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2943" y="567"/>
+            <point key="canvasLocation" x="2911" y="1077"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="nZN-GM-X9f">
@@ -607,12 +607,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n8n-hS-EQa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1225" y="111"/>
+            <point key="canvasLocation" x="1313" y="523"/>
         </scene>
     </scenes>
     <resources>
         <image name="eagle" width="60" height="60"/>
-        <image name="list" width="60" height="60"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

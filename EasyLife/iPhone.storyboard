@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kpf-gb-vsj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kpf-gb-vsj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -451,7 +451,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="U8P-0U-sS6">
-                                <rect key="frame" x="0.0" y="64" width="320" height="400"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="464"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
@@ -470,8 +470,8 @@
                                 <rect key="frame" x="0.0" y="464" width="160" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="A4X-Hi-ITG"/>
-                                    <constraint firstAttribute="width" constant="160" id="Bh4-vV-BnA"/>
+                                    <constraint firstAttribute="height" constant="55" id="LkA-T8-UrZ"/>
+                                    <constraint firstAttribute="width" constant="160" id="XrB-HS-00x"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Go Dutch !"/>
@@ -480,7 +480,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hve-UL-KRO">
-                                <rect key="frame" x="160" y="464" width="160" height="55"/>
+                                <rect key="frame" x="159" y="464" width="161" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Done"/>
@@ -491,16 +491,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="U8P-0U-sS6" firstAttribute="top" secondItem="FPr-ht-p86" secondAttribute="bottom" id="2pl-nQ-L3f"/>
-                            <constraint firstItem="pgA-mT-WZc" firstAttribute="top" secondItem="hve-UL-KRO" secondAttribute="bottom" id="3aA-I5-rVf"/>
-                            <constraint firstItem="hve-UL-KRO" firstAttribute="top" secondItem="U8P-0U-sS6" secondAttribute="bottom" id="4YZ-C8-4lR"/>
-                            <constraint firstItem="l4J-vK-o4S" firstAttribute="leading" secondItem="ZOS-d1-IWa" secondAttribute="leading" id="56n-b0-Xic"/>
-                            <constraint firstItem="l4J-vK-o4S" firstAttribute="bottom" secondItem="hve-UL-KRO" secondAttribute="bottom" id="RNf-Aj-S51"/>
-                            <constraint firstAttribute="trailing" secondItem="hve-UL-KRO" secondAttribute="trailing" id="Vjt-c7-81Z"/>
-                            <constraint firstItem="hve-UL-KRO" firstAttribute="top" secondItem="l4J-vK-o4S" secondAttribute="top" id="grb-I2-xLF"/>
-                            <constraint firstItem="hve-UL-KRO" firstAttribute="leading" secondItem="l4J-vK-o4S" secondAttribute="trailing" id="jAl-kn-jKU"/>
-                            <constraint firstItem="hve-UL-KRO" firstAttribute="trailing" secondItem="U8P-0U-sS6" secondAttribute="trailing" id="jG7-d0-Ojx"/>
-                            <constraint firstItem="U8P-0U-sS6" firstAttribute="leading" secondItem="l4J-vK-o4S" secondAttribute="leading" id="zHI-97-h4S"/>
+                            <constraint firstAttribute="trailing" secondItem="hve-UL-KRO" secondAttribute="trailing" id="1ER-Zv-4EP"/>
+                            <constraint firstItem="l4J-vK-o4S" firstAttribute="width" secondItem="hve-UL-KRO" secondAttribute="width" id="4T4-sk-87y"/>
+                            <constraint firstItem="U8P-0U-sS6" firstAttribute="top" secondItem="ZOS-d1-IWa" secondAttribute="top" id="HP6-FC-WUd"/>
+                            <constraint firstItem="U8P-0U-sS6" firstAttribute="leading" secondItem="ZOS-d1-IWa" secondAttribute="leading" id="HRi-aE-uT9"/>
+                            <constraint firstItem="l4J-vK-o4S" firstAttribute="height" secondItem="hve-UL-KRO" secondAttribute="height" id="e4a-vC-Itk"/>
+                            <constraint firstItem="l4J-vK-o4S" firstAttribute="top" secondItem="U8P-0U-sS6" secondAttribute="bottom" id="f2p-Si-AC4"/>
+                            <constraint firstItem="l4J-vK-o4S" firstAttribute="leading" secondItem="ZOS-d1-IWa" secondAttribute="leading" id="g8p-eP-8j9"/>
+                            <constraint firstAttribute="trailing" secondItem="U8P-0U-sS6" secondAttribute="trailing" id="hVN-83-mG8"/>
+                            <constraint firstItem="pgA-mT-WZc" firstAttribute="top" secondItem="l4J-vK-o4S" secondAttribute="bottom" id="iFb-Wq-Llf"/>
+                            <constraint firstItem="l4J-vK-o4S" firstAttribute="centerY" secondItem="hve-UL-KRO" secondAttribute="centerY" id="p4t-Jz-RIn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Tips Result" id="VHg-8D-Lrl"/>

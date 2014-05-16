@@ -1,6 +1,6 @@
 //
 //  TipsResultTableViewController.m
-//  BuBuCal
+//  EasyLife
 //
 //  Created by 张 子豪 on 4/18/14.
 //  Copyright (c) 2014 张 子豪. All rights reserved.
@@ -27,15 +27,17 @@
 
 @implementation TipsResultViewController
 
+#pragma mark - ViewLifeCycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self calculateTips];
     
     self.tableView.delegate = self; // set the delegate of the table view to be self controller
     self.tableView.dataSource = self; // set the data source of the table view to be self controller
     
-    [self.view addSubview:self.tableView]; // add the table view to super view
     [self.tableView setSeparatorColor:self.appTintColor];
     
     /* set the style of buttons */
@@ -70,7 +72,7 @@
 
 #pragma mark - LocationManager
 
-- (CLLocationManager *)locationManager // initialize the location manager
+- (CLLocationManager *)locationManager // lazy initialize the location manager
 {
     if (!_locationManager) {
         CLLocationManager *locationManager = [[CLLocationManager alloc] init];
@@ -264,6 +266,8 @@
             record.date = currentTime;
             
             self.addedRecord = record;
+            
+            self.tipsResults = nil;
         }
     }
 }

@@ -31,7 +31,6 @@
 		50C4043C192514E40099FAFD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C4043B192514E40099FAFD /* MapKit.framework */; };
 		50C4043E192514EA0099FAFD /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C4043D192514EA0099FAFD /* libstdc++.6.0.9.dylib */; };
 		50C4043F192518520099FAFD /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C40414192510B00099FAFD /* iPhone.storyboard */; };
-		50C40440192518790099FAFD /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50C40437192514280099FAFD /* test.jpg */; };
 		50C40441192518810099FAFD /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 50C4041E192511400099FAFD /* tessdata */; };
 		50C40442192518890099FAFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C403F419250FA00099FAFD /* Images.xcassets */; };
 		50C404431925188F0099FAFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50C403EB19250FA00099FAFD /* InfoPlist.strings */; };
@@ -86,7 +85,6 @@
 		50C40432192511A40099FAFD /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = "<group>"; };
 		50C40434192511AC0099FAFD /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		50C40436192511C50099FAFD /* DatabaseAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseAvailability.h; sourceTree = "<group>"; };
-		50C40437192514280099FAFD /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		50C40439192514C40099FAFD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		50C4043B192514E40099FAFD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		50C4043D192514EA0099FAFD /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
@@ -159,7 +157,6 @@
 		50C403E819250FA00099FAFD /* EasyLife */ = {
 			isa = PBXGroup;
 			children = (
-				50C40437192514280099FAFD /* test.jpg */,
 				50C4041E192511400099FAFD /* tessdata */,
 				50C40413192510880099FAFD /* Controllers */,
 				50C40412192510820099FAFD /* Views */,
@@ -323,7 +320,6 @@
 				50C404431925188F0099FAFD /* InfoPlist.strings in Resources */,
 				50C40442192518890099FAFD /* Images.xcassets in Resources */,
 				50C40441192518810099FAFD /* tessdata in Resources */,
-				50C40440192518790099FAFD /* test.jpg in Resources */,
 				50C4043F192518520099FAFD /* iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

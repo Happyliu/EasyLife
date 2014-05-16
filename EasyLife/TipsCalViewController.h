@@ -1,6 +1,6 @@
 //
 //  TipsCalViewController.h
-//  BuBuCal
+//  EasyLife
 //
 //  Created by 张 子豪 on 4/18/14.
 //  Copyright (c) 2014 张 子豪. All rights reserved.

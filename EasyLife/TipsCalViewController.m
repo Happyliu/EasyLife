@@ -1,6 +1,6 @@
 //
 //  TipsCalViewController.m
-//  BuBuCal
+//  EasyLife
 //
 //  Created by 张 子豪 on 4/18/14.
 //  Copyright (c) 2014 张 子豪. All rights reserved.
@@ -13,7 +13,6 @@
 #import "DatabaseAvailability.h"
 #import "RecordViewController.h"
 
-
 @interface TipsCalViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *numberButtons;
@@ -22,16 +21,21 @@
 @property (strong, nonatomic) NSMutableString *currentDisplayResult;
 @property BOOL isDoted;
 @property float currentResult;
-@property (strong, nonatomic)UIImage *resetButtonBackgroundImage, *normalButtonBackgroundImage, *calculateButtonBackgroundImage;
-@property (strong, nonatomic)UIColor *appTintColor, *appSecondColor, *appBlackColor;
-@property (strong, nonatomic)UIImagePickerController *picker;
-@property (strong, nonatomic)NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) UIImage *resetButtonBackgroundImage, *normalButtonBackgroundImage, *calculateButtonBackgroundImage;
+@property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appBlackColor;
+@property (strong, nonatomic) UIImagePickerController *picker;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSString *detectedResult;
 @end
 
 @implementation TipsCalViewController
 
+#pragma mark - ViewLifeCycle
+
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
+    
     // listen to the notification center to update the database context
     [[NSNotificationCenter defaultCenter] addObserverForName:DatabaseAvailabilityNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         self.managedObjectContext = note.userInfo[DatabaseAvailabilityContext];
@@ -63,40 +67,30 @@
     [self.calculateButton setBackgroundImage:self.calculateButtonBackgroundImage forState:UIControlStateNormal];
     [self.calculateButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
     
-    
-    
-    for (UIButton *numberButton in self.numberButtons) {
+    for (UIButton *numberButton in self.numberButtons) { // set the style of each number button
         [numberButton.layer setBorderWidth:0.5];
         [numberButton setBackgroundImage:self.normalButtonBackgroundImage forState:UIControlStateNormal];
         [numberButton.layer setBackgroundColor:[self.appTintColor CGColor]];
         [numberButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
         [numberButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
     }
-    
-    Tesseract* tesseract = [[Tesseract alloc] initWithLanguage:@"eng"];
-    tesseract.delegate = self;
-    
-    [tesseract setVariableValue:@"0123456789." forKey:@"tessedit_char_whitelist"]; //limit search
-    [tesseract setImage:[UIImage imageNamed:@"test.jpg"]]; //image to check
-    [tesseract recognize];
-    
-    
-    
-    NSLog(@"%@", [tesseract recognizedText]);
-    self.displayLabel.text = [tesseract recognizedText];
-    self.currentResult = [self.displayLabel.text floatValue];
-    tesseract = nil; //deallocate and free all memory
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    // reset the current display each time
     [super viewWillAppear:animated];
-    self.currentResult = 0;
-    self.displayLabel.text = @"0";
-    [self.currentDisplayResult setString:@""];
-    self.isDoted = NO;
+    
+    if (self.detectedResult) { // display the tesseractORC result to user
+        [self.currentDisplayResult setString:self.detectedResult];
+        self.displayLabel.text = [self.currentDisplayResult copy];
+        self.currentResult = [self.detectedResult floatValue];
+        self.detectedResult = nil;
+    } else { // reset the current display each time
+        [self.currentDisplayResult setString:@""];
+        self.displayLabel.text = @"0";
+        self.currentResult = 0;
+        self.isDoted = NO;
+    }
 }
 
 #pragma mark - ButtonBackgroundImage
@@ -189,12 +183,13 @@
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        self.picker.allowsEditing = NO;
+        self.picker.allowsEditing = YES;
         self.picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         self.picker.delegate = self;
-        [self presentViewController:self.picker animated:YES completion:nil];
+        [self presentViewController:self.picker animated:YES completion:NULL];
     } else {
         [self fatalAlert:@"Your device doesn't support camera."];
+        self.picker = nil;
     }
     
 }
@@ -211,7 +206,7 @@
 
 - (IBAction)resetButtonIsPressed {
     self.currentResult = 0;
-    self.displayLabel.text = [NSString stringWithFormat:@"%.0f",self.currentResult];
+    self.displayLabel.text = @"0";
     [self.currentDisplayResult setString:@""];
     self.isDoted = NO;
 }
@@ -240,23 +235,7 @@
     }
 }
 
-- (IBAction)addedPhoto:(UIStoryboardSegue *)segue
-{
-    if ([segue.sourceViewController isKindOfClass:[UIImagePickerController class]]) {
-        Tesseract* tesseract = [[Tesseract alloc] initWithLanguage:@"eng"];
-        tesseract.delegate = self;
-        
-        [tesseract setVariableValue:@"0123456789." forKey:@"tessedit_char_whitelist"]; //limit search
-        [tesseract setImage:[UIImage imageNamed:@"test.jpg"]]; //image to check
-        [tesseract recognize];
-        
-        
-        
-        NSLog(@"%@", [tesseract recognizedText]);
-        
-        tesseract = nil; //deallocate and free all memory
-    }
-}
+#pragma mark - Alert
 
 - (void)alert:(NSString *)message
 {
@@ -266,6 +245,32 @@
 - (void)fatalAlert:(NSString *)message
 {
     [[[UIAlertView alloc] initWithTitle:@"Sorry" message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = info[UIImagePickerControllerEditedImage]; // the image that image picker controller returns back
+    Tesseract* tesseract = [[Tesseract alloc] initWithLanguage:@"eng"];
+    tesseract.delegate = self;
+    
+    [tesseract setVariableValue:@"0123456789." forKey:@"tessedit_char_whitelist"]; //limit search
+    [tesseract setImage:image]; //image to check
+    [tesseract recognize];
+    
+    self.detectedResult = [NSString stringWithFormat:@"%.2f", [[tesseract recognizedText] floatValue]];
+    
+    NSLog(@"%@", self.detectedResult);
+    tesseract = nil; //deallocate and free all memory
+    image = nil;
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - Navigation

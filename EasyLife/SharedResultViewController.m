@@ -13,10 +13,26 @@
 @property (weak, nonatomic) IBOutlet UITableView *sharedResultDisplayTableView;
 @property (weak, nonatomic) IBOutlet UIPickerView *peopleAmountPickerView;
 @property long numberOfPeopleToShare;
-@property (strong, nonatomic) UIColor *appTintColor;
+@property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @end
 
 @implementation SharedResultViewController
+
+#pragma mark - ViewLifeCycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.sharedResultDisplayTableView.delegate = self;
+    self.sharedResultDisplayTableView.dataSource = self;
+    [self.sharedResultDisplayTableView setSeparatorColor:self.appTintColor];
+    self.peopleAmountPickerView.delegate = self;
+    self.peopleAmountPickerView.dataSource = self;
+    self.numberOfPeopleToShare = 2;
+}
+
+#pragma mark - InitializeAppColors
 
 - (UIColor *)appTintColor
 {
@@ -27,15 +43,31 @@
     return _appTintColor;
 }
 
-- (void)viewDidLoad
+- (UIColor *)appSecondColor
 {
-    [super viewDidLoad];
-    self.sharedResultDisplayTableView.delegate = self;
-    self.sharedResultDisplayTableView.dataSource = self;
-    [self.sharedResultDisplayTableView setSeparatorColor:self.appTintColor];
-    self.peopleAmountPickerView.delegate = self;
-    self.peopleAmountPickerView.dataSource = self;
-    self.numberOfPeopleToShare = 2;
+    if (!_appSecondColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appSecondColor = appDelegate.appSecondColor;
+    }
+    return _appSecondColor;
+}
+
+- (UIColor *)appThirdColor
+{
+    if (!_appThirdColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appThirdColor = appDelegate.appThirdColor;
+    }
+    return _appThirdColor;
+}
+
+- (UIColor *)appBlackColor
+{
+    if (!_appBlackColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appBlackColor = appDelegate.appBlackColor;
+    }
+    return _appBlackColor;
 }
 
 #pragma mark - TableViewDataSource
@@ -76,7 +108,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 40;
+    return 35;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

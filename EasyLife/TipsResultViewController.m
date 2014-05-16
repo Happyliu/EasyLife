@@ -67,6 +67,17 @@
     [super viewWillDisappear:animated];
     if ([self hasGPS]) {
         [self.locationManager stopUpdatingLocation]; // deregister for the location manager
+        self.location = nil;
+    }
+}
+
+- (void)calculateTips
+{
+    float tips15 = self.totalAmount * 1.15;
+    float tips18 = self.totalAmount * 1.18;
+    float tips20 = self.totalAmount * 1.2;
+    if (!_tipsResults) {
+        _tipsResults = [[NSMutableArray alloc]  initWithObjects:[NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", self.totalAmount].floatValue], [NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", tips15].floatValue], [NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", tips18].floatValue], [NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", tips20].floatValue], nil];
     }
 }
 
@@ -169,16 +180,6 @@
         UIGraphicsEndImageContext();
     }
     return _doneButtonBackgroundImage;
-}
-
-- (void)calculateTips
-{
-    float tips15 = self.totalAmount * 1.15;
-    float tips18 = self.totalAmount * 1.18;
-    float tips20 = self.totalAmount * 1.2;
-    if (!_tipsResults) {
-        _tipsResults = [[NSMutableArray alloc]  initWithObjects:[NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", self.totalAmount].floatValue], [NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", tips15].floatValue], [NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", tips18].floatValue], [NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", tips20].floatValue], nil];
-    }
 }
 
 #pragma mark - UITableViewDelegate

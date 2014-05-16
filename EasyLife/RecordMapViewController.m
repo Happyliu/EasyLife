@@ -17,8 +17,11 @@
 
 @implementation RecordMapViewController
 
+#pragma mark - ViewLifeCycle
+
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     // set the style of map view
     self.mapView.showsPointsOfInterest = YES;
     self.mapView.showsBuildings = YES;
@@ -60,7 +63,6 @@
             backDate = [NSDate dateWithTimeIntervalSinceNow:-60*60*24*90]; // 90 days before
         } else if (self.segements.selectedSegmentIndex == 1) {
             backDate = [NSDate dateWithTimeIntervalSinceNow:-60*60*24*30]; // 30 days before
-            
         } else {
             backDate = [NSDate dateWithTimeIntervalSinceNow:-60*60*24*7]; // 7 days before
         }
@@ -80,19 +82,18 @@
     static NSString *reuseId = @"RecordMapViewController"; // annotation reuse id
     MKPinAnnotationView *view = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
     if (!view) {
-        view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
-                                               reuseIdentifier:reuseId];
+        view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
         view.canShowCallout = YES; // little white box
-        view.animatesDrop = YES;
+        view.animatesDrop = YES; // drops the pin every time
     }
-    
     view.annotation = annotation;
     return view;
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    NSLog(@"test");
+#warning should show record detail here
+    NSLog(@"Should show detail here");
 }
 
 - (IBAction)segmentIsPressed:(UISegmentedControl *)sender {

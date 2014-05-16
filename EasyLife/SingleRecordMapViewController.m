@@ -16,8 +16,11 @@
 
 @implementation SingleRecordMapViewController
 
+#pragma mark - ViewLifeCycle
+
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     // set the style of map view
     self.mapView.showsPointsOfInterest = YES;
     self.mapView.showsBuildings = YES;
@@ -42,4 +45,5 @@
     [self.mapView addAnnotation:self.displayRecord];
     [self.mapView showAnnotations:self.mapView.annotations animated:YES];
 }
+
 @end

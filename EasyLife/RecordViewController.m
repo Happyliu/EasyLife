@@ -24,8 +24,12 @@
 
 @implementation RecordViewController
 
+#pragma mark - ViewLifeCycle
+
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     [self.tableView setSeparatorColor:self.appTintColor];
     self.tableView.delegate = self;
@@ -43,6 +47,16 @@
     [self.mapButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
     [self.mapButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+}
+
+
+#pragma mark - ButtonBackgroundImage
 
 - (UIImage *)backButtonBackgroundImage
 {
@@ -74,11 +88,7 @@
     return _mapButtonBackgroundImage;
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-}
+#pragma mark - VariableInit
 
 - (void)setManagedObjectContextForViewController:(RecordMapViewController *)rmvc withManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -96,7 +106,6 @@
         if (!error) {
             _records = [matches mutableCopy];
         }
-        
     }
     return _records;
 }
@@ -142,7 +151,6 @@
 #pragma mark - IBAction
 
 - (IBAction)backIsPressed {
-    
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -157,7 +165,7 @@
     return 70;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath { // delete a record
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.tableView beginUpdates];
         NSArray *deleteIndexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
@@ -189,8 +197,6 @@
     cell.textLabel.text = [NSString stringWithFormat:@"$%@", [((Record *)self.records[position]).amount stringValue]];
     cell.detailTextLabel.text = subTitle;
 
-
-
     return cell;
 }
 
@@ -198,7 +204,6 @@
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
 
 #pragma mark - UITableViewDataSource
 
@@ -236,6 +241,5 @@
         }
     }
 }
-
 
 @end

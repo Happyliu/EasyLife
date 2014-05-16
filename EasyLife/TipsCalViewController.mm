@@ -181,8 +181,16 @@
 
 - (IBAction)cameraButtonIsPressed:(UIBarButtonItem *)sender {
     
+    CGPoint center = CGPointMake(CGRectGetMidX(self.view.bounds),
+                                      CGRectGetMidY(self.view.bounds));
+    CGRect viewFrame = CGRectMake(center.x-10, center.y-10, 10, 10);
+    UIView *view = [[UIView alloc] initWithFrame:viewFrame];
+    view.backgroundColor = [UIColor redColor];
+
+    
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        self.picker.cameraOverlayView = view;
         self.picker.allowsEditing = YES;
         self.picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         self.picker.delegate = self;
@@ -191,7 +199,6 @@
         [self fatalAlert:@"Your device doesn't support camera."];
         self.picker = nil;
     }
-    
 }
 
 - (IBAction)numbeButtonIsPressed:(UIButton *)sender {
@@ -297,7 +304,6 @@
             [self setManagedObjectContextForViewController:segue.destinationViewController withManagedObjectContext:self.managedObjectContext];
         }
     }
-
 }
 
 @end

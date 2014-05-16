@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50C1A6A019267C3400525552 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */; };
 		50C403E319250FA00099FAFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E219250FA00099FAFD /* Foundation.framework */; };
 		50C403E519250FA00099FAFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E419250FA00099FAFD /* CoreGraphics.framework */; };
 		50C403E719250FA00099FAFD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E619250FA00099FAFD /* UIKit.framework */; };
@@ -19,7 +20,7 @@
 		50C4041B192511210099FAFD /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C40417192511210099FAFD /* Record.m */; };
 		50C4041C192511210099FAFD /* Record+Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C40419192511210099FAFD /* Record+Annotation.m */; };
 		50C4041D192511210099FAFD /* Xpence.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 50C4041A192511210099FAFD /* Xpence.xcdatamodel */; };
-		50C4042C192511540099FAFD /* TipsCalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C40421192511540099FAFD /* TipsCalViewController.m */; };
+		50C4042C192511540099FAFD /* TipsCalViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50C40421192511540099FAFD /* TipsCalViewController.mm */; };
 		50C4042D192511540099FAFD /* TipsResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C40423192511540099FAFD /* TipsResultViewController.m */; };
 		50C4042E192511540099FAFD /* SharedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C40425192511540099FAFD /* SharedResultViewController.m */; };
 		50C4042F192511540099FAFD /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C40427192511540099FAFD /* RecordViewController.m */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		50C1A69E19267C3400525552 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
+		50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		50C403DF19250FA00099FAFD /* EasyLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C403E219250FA00099FAFD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		50C403E419250FA00099FAFD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -71,7 +74,7 @@
 		50C4041A192511210099FAFD /* Xpence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Xpence.xcdatamodel; sourceTree = "<group>"; };
 		50C4041E192511400099FAFD /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		50C40420192511540099FAFD /* TipsCalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsCalViewController.h; sourceTree = "<group>"; };
-		50C40421192511540099FAFD /* TipsCalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsCalViewController.m; sourceTree = "<group>"; };
+		50C40421192511540099FAFD /* TipsCalViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TipsCalViewController.mm; sourceTree = "<group>"; };
 		50C40422192511540099FAFD /* TipsResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsResultViewController.h; sourceTree = "<group>"; };
 		50C40423192511540099FAFD /* TipsResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsResultViewController.m; sourceTree = "<group>"; };
 		50C40424192511540099FAFD /* SharedResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedResultViewController.h; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 		50C40411192510790099FAFD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				50C1A69E19267C3400525552 /* UIImage+OpenCV.h */,
+				50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */,
 				50C40416192511210099FAFD /* Record.h */,
 				50C40417192511210099FAFD /* Record.m */,
 				50C40418192511210099FAFD /* Record+Annotation.h */,
@@ -223,7 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				50C40420192511540099FAFD /* TipsCalViewController.h */,
-				50C40421192511540099FAFD /* TipsCalViewController.m */,
+				50C40421192511540099FAFD /* TipsCalViewController.mm */,
 				50C40422192511540099FAFD /* TipsResultViewController.h */,
 				50C40423192511540099FAFD /* TipsResultViewController.m */,
 				50C40424192511540099FAFD /* SharedResultViewController.h */,
@@ -339,7 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50C403F319250FA00099FAFD /* EasyLifeAppDelegate.m in Sources */,
-				50C4042C192511540099FAFD /* TipsCalViewController.m in Sources */,
+				50C4042C192511540099FAFD /* TipsCalViewController.mm in Sources */,
 				50C4042D192511540099FAFD /* TipsResultViewController.m in Sources */,
 				50C4041B192511210099FAFD /* Record.m in Sources */,
 				50C40431192511540099FAFD /* RecordMapViewController.m in Sources */,
@@ -348,6 +353,7 @@
 				50C4042F192511540099FAFD /* RecordViewController.m in Sources */,
 				50C4041C192511210099FAFD /* Record+Annotation.m in Sources */,
 				50C40430192511540099FAFD /* SingleRecordMapViewController.m in Sources */,
+				50C1A6A019267C3400525552 /* UIImage+OpenCV.mm in Sources */,
 				50C4041D192511210099FAFD /* Xpence.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

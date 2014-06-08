@@ -183,9 +183,10 @@
     
     CGPoint center = CGPointMake(CGRectGetMidX(self.view.bounds),
                                       CGRectGetMidY(self.view.bounds));
-    CGRect viewFrame = CGRectMake(center.x-10, center.y-10, 10, 10);
+    CGRect viewFrame = CGRectMake(center.x-50, center.y-50, 50, 50);
     UIView *view = [[UIView alloc] initWithFrame:viewFrame];
     view.backgroundColor = [UIColor redColor];
+    
 
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {

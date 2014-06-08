@@ -67,7 +67,6 @@
     [super viewWillDisappear:animated];
     if ([self hasGPS]) {
         [self.locationManager stopUpdatingLocation]; // deregister for the location manager
-        self.location = nil;
     }
 }
 

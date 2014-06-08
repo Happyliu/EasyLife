@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B2C65C8A-415D-4409-A1BB-22C113D5D4C2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>EasyLife</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>151303A6-4B63-40E4-8E29-2441E64E1548</key>
+		<string>ssh://github.com/ZhangZihao/EasyLife.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>EasyLife.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>151303A6-4B63-40E4-8E29-2441E64E1548</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/ZhangZihao/EasyLife.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>151303A6-4B63-40E4-8E29-2441E64E1548</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>151303A6-4B63-40E4-8E29-2441E64E1548</string>
+			<key>IDESourceControlWCCName</key>
+			<string>EasyLife</string>
+		</dict>
+	</array>
+</dict>
+</plist>

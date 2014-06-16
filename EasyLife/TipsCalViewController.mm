@@ -45,7 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     /* initialize the UIImagePickerController */
     self.navigationItem.rightBarButtonItem.enabled = false; // disable the button before initialized
     self.picker = [[UIImagePickerController alloc] init];
@@ -53,10 +53,12 @@
 
     self.navigationController.navigationBar.barTintColor = self.appTintColor;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor]; // color of the back button
+    self.navigationController.navigationBar.translucent = NO;
 
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.tabBarController.tabBar.barTintColor = self.appTintColor;
     self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
+    self.tabBarController.tabBar.translucent = NO;
     
     [self.resetButton.layer setBorderWidth:0.5];
     [self.resetButton setBackgroundImage:self.resetButtonBackgroundImage forState:UIControlStateNormal];
@@ -169,6 +171,12 @@
     return _appBlackColor;
 }
 
+- (UIColor *)transColor {
+    UIColor *transColor = [UIColor colorWithRed:20/255.0 green:20/255.0 blue:20/255.0 alpha:0.3];
+
+    return transColor;
+}
+
 - (NSMutableString *)currentDisplayResult
 {
     if (!_currentDisplayResult) {
@@ -183,16 +191,14 @@
     
     CGPoint center = CGPointMake(CGRectGetMidX(self.view.bounds),
                                       CGRectGetMidY(self.view.bounds));
-    CGRect viewFrame = CGRectMake(center.x-50, center.y-50, 50, 50);
+    CGRect viewFrame = CGRectMake(center.x-100, center.y-50, 200, 100);
     UIView *view = [[UIView alloc] initWithFrame:viewFrame];
-    view.backgroundColor = [UIColor redColor];
-    
-
+    view.backgroundColor = [self transColor];
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         self.picker.cameraOverlayView = view;
-        self.picker.allowsEditing = YES;
+        //self.picker.allowsEditing = YES;
         self.picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         self.picker.delegate = self;
         [self presentViewController:self.picker animated:YES completion:NULL];

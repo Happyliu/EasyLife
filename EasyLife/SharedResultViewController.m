@@ -12,7 +12,9 @@
 @interface SharedResultViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *sharedResultDisplayTableView;
 @property (weak, nonatomic) IBOutlet UIPickerView *peopleAmountPickerView;
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property long numberOfPeopleToShare;
+@property (strong, nonatomic) UIImage *doneButtonBackgroundImage;
 @property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @end
 
@@ -30,6 +32,27 @@
     self.peopleAmountPickerView.delegate = self;
     self.peopleAmountPickerView.dataSource = self;
     self.numberOfPeopleToShare = 2;
+
+    [self.doneButton setBackgroundImage:self.doneButtonBackgroundImage forState:UIControlStateNormal];
+    [self.doneButton setBackgroundColor:[UIColor whiteColor]];
+    [self.doneButton.layer setBorderWidth:0.5];
+    [self.doneButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
+    [self.doneButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
+}
+
+- (UIImage *)doneButtonBackgroundImage
+{
+    if (!_doneButtonBackgroundImage) {
+        UIColor *color = self.appThirdColor;
+        CGRect rect = CGRectMake(0, 0, 1, 1);
+        UIGraphicsBeginImageContext(rect.size);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetFillColorWithColor(context, [color CGColor]);
+        CGContextFillRect(context, rect);
+        _doneButtonBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+    return _doneButtonBackgroundImage;
 }
 
 #pragma mark - InitializeAppColors
@@ -108,7 +131,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 35;
+    return 40;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -132,7 +155,7 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [NSString stringWithFormat:@"%ld",row + 2];
+    return [NSString stringWithFormat:@"%d",row + 2];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component

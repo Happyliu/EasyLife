@@ -8,14 +8,57 @@
 
 #import "RecordMapViewController.h"
 #import <MapKit/MapKit.h>
+#import "EasyLifeAppDelegate.h"
 
 @interface RecordMapViewController () <MKMapViewDelegate>
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segements;
 @property (strong, nonatomic) NSArray *records;
+@property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalLabel;
+@property float totalAmount;
+@property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @end
 
 @implementation RecordMapViewController
+
+#pragma mark - Initialize app colors
+
+- (UIColor *)appTintColor
+{
+    if (!_appTintColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appTintColor = appDelegate.appTintColor;
+    }
+    return _appTintColor;
+}
+
+- (UIColor *)appSecondColor
+{
+    if (!_appSecondColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appSecondColor = appDelegate.appSecondColor;
+    }
+    return _appSecondColor;
+}
+
+- (UIColor *)appThirdColor
+{
+    if (!_appThirdColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appThirdColor = appDelegate.appThirdColor;
+    }
+    return _appThirdColor;
+}
+
+- (UIColor *)appBlackColor
+{
+    if (!_appBlackColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appBlackColor = appDelegate.appBlackColor;
+    }
+    return _appBlackColor;
+}
 
 #pragma mark - ViewLifeCycle
 
@@ -26,6 +69,11 @@
     self.mapView.showsPointsOfInterest = YES;
     self.mapView.showsBuildings = YES;
     self.segements.selectedSegmentIndex = 0;
+    self.totalAmountLabel.text = [NSString stringWithFormat:@"$%.2f", self.totalAmount];
+    self.totalLabel.backgroundColor = self.appTintColor;
+    self.totalLabel.textColor = [UIColor whiteColor];
+    self.totalAmountLabel.backgroundColor = self.appTintColor;
+    self.totalAmountLabel.textColor = [UIColor whiteColor];
 }
 
 - (void)setMapView:(MKMapView *)mapView
@@ -47,6 +95,11 @@
     [self.mapView removeAnnotations:self.mapView.annotations];
     [self.mapView addAnnotations:self.records];
     [self.mapView showAnnotations:self.records animated:YES];
+    self.totalAmount = 0;
+    for (Record *record in self.records) {
+        self.totalAmount += [record.amount floatValue];
+    }
+    self.totalAmountLabel.text = [NSString stringWithFormat:@"$%.2f", self.totalAmount];
     self.records = nil;
 }
 

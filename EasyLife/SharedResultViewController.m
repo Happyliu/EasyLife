@@ -21,6 +21,8 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong,nonatomic) CLLocation *location;
 @property (nonatomic) NSInteger locationErrorCode;
+@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
+
 @end
 
 @implementation SharedResultViewController
@@ -43,6 +45,8 @@
     [self.doneButton.layer setBorderWidth:0.5];
     [self.doneButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
     [self.doneButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
+    self.numberLabel.backgroundColor = self.appSecondColor;
+    self.numberLabel.textColor = [UIColor whiteColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated

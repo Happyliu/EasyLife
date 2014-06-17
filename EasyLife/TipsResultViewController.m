@@ -88,6 +88,7 @@
         CLLocationManager *locationManager = [[CLLocationManager alloc] init];
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        locationManager.distanceFilter = 10.0;
         _locationManager = locationManager;
     }
     return _locationManager;

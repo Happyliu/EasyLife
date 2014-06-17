@@ -293,10 +293,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Lbn-Z8-Dhi">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="461"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="440"/>
                             </mapView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KCT-vg-dLA">
-                                <rect key="frame" x="20" y="480" width="280" height="29"/>
+                                <rect key="frame" x="20" y="460" width="280" height="29"/>
                                 <segments>
                                     <segment title="Last 3 Months"/>
                                     <segment title="Last Month"/>
@@ -306,22 +306,44 @@
                                     <action selector="segmentIsPressed:" destination="lLE-IB-Gup" eventType="valueChanged" id="P1Y-cb-OKA"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:        " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxB-Ll-lMb">
+                                <rect key="frame" x="0.0" y="508" width="160" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAT-BN-yc3">
+                                <rect key="frame" x="160" y="508" width="160" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Lbn-Z8-Dhi" secondAttribute="trailing" id="NFO-0P-3td"/>
+                            <constraint firstAttribute="bottom" secondItem="mxB-Ll-lMb" secondAttribute="bottom" id="P9f-VP-itL"/>
+                            <constraint firstItem="mxB-Ll-lMb" firstAttribute="leading" secondItem="Lbn-Z8-Dhi" secondAttribute="leading" id="PYC-Km-ZBk"/>
                             <constraint firstAttribute="trailing" secondItem="KCT-vg-dLA" secondAttribute="trailing" constant="20" symbolic="YES" id="RSI-dE-sPl"/>
+                            <constraint firstItem="mxB-Ll-lMb" firstAttribute="top" secondItem="KCT-vg-dLA" secondAttribute="bottom" constant="20" id="RyI-Wt-ba5"/>
                             <constraint firstItem="KCT-vg-dLA" firstAttribute="leading" secondItem="vTC-2Q-7uo" secondAttribute="leading" constant="20" symbolic="YES" id="S90-9f-fpv"/>
-                            <constraint firstItem="KCT-vg-dLA" firstAttribute="top" secondItem="Lbn-Z8-Dhi" secondAttribute="bottom" constant="19" id="lQb-ze-R6n"/>
+                            <constraint firstItem="KCT-vg-dLA" firstAttribute="top" secondItem="Lbn-Z8-Dhi" secondAttribute="bottom" constant="20" id="lQb-ze-R6n"/>
                             <constraint firstItem="Lbn-Z8-Dhi" firstAttribute="leading" secondItem="vTC-2Q-7uo" secondAttribute="leading" id="msT-5o-naY"/>
-                            <constraint firstAttribute="bottom" secondItem="KCT-vg-dLA" secondAttribute="bottom" constant="60" id="oT7-JZ-TIg"/>
+                            <constraint firstAttribute="bottom" secondItem="KCT-vg-dLA" secondAttribute="bottom" constant="80" id="oT7-JZ-TIg"/>
                             <constraint firstItem="Lbn-Z8-Dhi" firstAttribute="top" secondItem="vTC-2Q-7uo" secondAttribute="top" id="ppT-e5-g0s"/>
+                            <constraint firstItem="XAT-BN-yc3" firstAttribute="top" secondItem="KCT-vg-dLA" secondAttribute="bottom" constant="20" id="qtY-PL-E4v"/>
+                            <constraint firstItem="XAT-BN-yc3" firstAttribute="trailing" secondItem="Lbn-Z8-Dhi" secondAttribute="trailing" id="uVS-aL-OSW"/>
+                            <constraint firstItem="mxB-Ll-lMb" firstAttribute="width" secondItem="XAT-BN-yc3" secondAttribute="width" id="y4b-Hy-KAt"/>
+                            <constraint firstItem="XAT-BN-yc3" firstAttribute="leading" secondItem="mxB-Ll-lMb" secondAttribute="trailing" id="yG3-We-cDY"/>
+                            <constraint firstItem="eRJ-tC-uyN" firstAttribute="top" secondItem="XAT-BN-yc3" secondAttribute="bottom" id="yS2-aH-NCQ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="Lbn-Z8-Dhi" id="FQD-os-cGi"/>
                         <outlet property="segements" destination="KCT-vg-dLA" id="FSm-E2-G0t"/>
+                        <outlet property="totalAmountLabel" destination="XAT-BN-yc3" id="XAW-aM-hIg"/>
+                        <outlet property="totalLabel" destination="mxB-Ll-lMb" id="SPF-nL-EMf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rdp-oa-KPO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -510,14 +532,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="tP4-1l-r9D">
-                                <rect key="frame" x="0.0" y="302" width="320" height="162"/>
+                                <rect key="frame" x="0.0" y="234" width="320" height="216"/>
                             </pickerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="d8D-dk-uPm">
-                                <rect key="frame" x="0.0" y="64" width="320" height="130"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="120"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="BJN-vc-3SD"/>
-                                    <constraint firstAttribute="height" constant="130" id="NKI-sH-1ft"/>
+                                    <constraint firstAttribute="height" constant="120" id="NKI-sH-1ft"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="price" id="fCx-19-k4T">
@@ -542,24 +564,38 @@
                                     <segue destination="1Xm-Pb-jGs" kind="unwind" identifier="Do Added Record" unwindAction="addedRecord:" id="2vL-Ig-mHg"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="   Number of People:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVB-ud-N79">
+                                <rect key="frame" x="0.0" y="184" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ink-13-EKS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="tP4-1l-r9D" firstAttribute="top" relation="greaterThanOrEqual" secondItem="d8D-dk-uPm" secondAttribute="bottom" priority="999" id="CFf-Xt-sTy"/>
+                            <constraint firstAttribute="trailing" secondItem="TVB-ud-N79" secondAttribute="trailing" id="4G4-g8-gEm"/>
+                            <constraint firstItem="tP4-1l-r9D" firstAttribute="top" secondItem="TVB-ud-N79" secondAttribute="bottom" id="DLs-c1-sLU"/>
                             <constraint firstItem="kLt-kg-CoK" firstAttribute="top" secondItem="tP4-1l-r9D" secondAttribute="bottom" id="GQ9-je-1tC"/>
                             <constraint firstAttribute="trailing" secondItem="tP4-1l-r9D" secondAttribute="trailing" id="JX9-r4-0Tf"/>
                             <constraint firstItem="tP4-1l-r9D" firstAttribute="leading" secondItem="MVf-hg-OuI" secondAttribute="leading" id="MIa-ry-Wjq"/>
                             <constraint firstItem="lxp-6b-Djh" firstAttribute="top" secondItem="kLt-kg-CoK" secondAttribute="bottom" id="esp-3V-gAp"/>
                             <constraint firstItem="d8D-dk-uPm" firstAttribute="top" secondItem="BHc-ok-fq3" secondAttribute="bottom" id="g0D-A3-1cR"/>
                             <constraint firstAttribute="centerX" secondItem="d8D-dk-uPm" secondAttribute="centerX" id="g1P-5G-bRe"/>
+                            <constraint firstItem="TVB-ud-N79" firstAttribute="top" secondItem="d8D-dk-uPm" secondAttribute="bottom" id="gju-Pp-xYq"/>
                             <constraint firstAttribute="trailing" secondItem="kLt-kg-CoK" secondAttribute="trailing" id="iRI-mS-0j2"/>
                             <constraint firstItem="kLt-kg-CoK" firstAttribute="leading" secondItem="MVf-hg-OuI" secondAttribute="leading" id="ihi-aQ-gpw"/>
+                            <constraint firstItem="TVB-ud-N79" firstAttribute="leading" secondItem="MVf-hg-OuI" secondAttribute="leading" id="kLo-PJ-vVc"/>
                             <constraint firstAttribute="centerX" secondItem="tP4-1l-r9D" secondAttribute="centerX" id="rPz-Ny-sNN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Go Dutch" id="MjY-P7-h7Z"/>
                     <connections>
                         <outlet property="doneButton" destination="kLt-kg-CoK" id="K4e-hm-dk7"/>
+                        <outlet property="numberLabel" destination="TVB-ud-N79" id="Ij8-IJ-I5D"/>
                         <outlet property="peopleAmountPickerView" destination="tP4-1l-r9D" id="JKO-jL-xUO"/>
                         <outlet property="sharedResultDisplayTableView" destination="d8D-dk-uPm" id="pdo-Vh-qZB"/>
                     </connections>

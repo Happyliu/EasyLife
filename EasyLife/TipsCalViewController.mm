@@ -8,6 +8,7 @@
 
 #import "TipsCalViewController.h"
 #import "TipsResultViewController.h"
+#import "SharedResultViewController.h"
 #import "EasyLifeAppDelegate.h"
 #import "Record.h"
 #import "DatabaseAvailability.h"
@@ -236,11 +237,19 @@
     }
 }
 
-- (IBAction)addedRecord:(UIStoryboardSegue *)segue // unwind segue from TipsResultViewController
+- (IBAction)addedRecord:(UIStoryboardSegue *)segue // unwind segue from TipsResultViewController and SharedResultViewController
 {
     if ([segue.sourceViewController isKindOfClass:[TipsResultViewController class]]) {
         TipsResultViewController *trvc = (TipsResultViewController *)segue.sourceViewController;
         Record *addedRecord = trvc.addedRecord;
+        if (addedRecord) {
+            [self alert:@"Success"];
+        } else {
+            [self alert:@"Fail"];
+        }
+    } else if ([segue.sourceViewController isKindOfClass:[SharedResultViewController class]]) {
+        SharedResultViewController *srvc = (SharedResultViewController *)segue.sourceViewController;
+        Record *addedRecord = srvc.addedRecord;
         if (addedRecord) {
             [self alert:@"Success"];
         } else {

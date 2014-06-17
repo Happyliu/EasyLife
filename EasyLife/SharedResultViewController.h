@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Record.h"
 
 @interface SharedResultViewController : UIViewController
+//in
 @property float totalSharedAmount;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+//out
+@property (nonatomic, readonly) Record *addedRecord;
 @end

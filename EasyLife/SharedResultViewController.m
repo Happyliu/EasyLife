@@ -8,14 +8,19 @@
 
 #import "SharedResultViewController.h"
 #import "EasyLifeAppDelegate.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface SharedResultViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface SharedResultViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *sharedResultDisplayTableView;
 @property (weak, nonatomic) IBOutlet UIPickerView *peopleAmountPickerView;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
-@property long numberOfPeopleToShare;
+@property float numberOfPeopleToShare;
 @property (strong, nonatomic) UIImage *doneButtonBackgroundImage;
 @property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
+@property (strong, readwrite) Record *addedRecord;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong,nonatomic) CLLocation *location;
+@property (nonatomic) NSInteger locationErrorCode;
 @end
 
 @implementation SharedResultViewController
@@ -39,6 +44,54 @@
     [self.doneButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
     [self.doneButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if ([self hasGPS]) { // test whether the device could use location manager
+        [self.locationManager startUpdatingLocation]; // register for the location manager
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if ([self hasGPS]) {
+        [self.locationManager stopUpdatingLocation]; // deregister for the location manager
+    }
+}
+
+#pragma mark - LocationManager
+
+- (CLLocationManager *)locationManager // lazy initialize the location manager
+{
+    if (!_locationManager) {
+        CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        _locationManager = locationManager;
+    }
+    return _locationManager;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    self.location = [locations lastObject];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    self.locationErrorCode = error.code;
+}
+
+- (BOOL)hasGPS
+{
+    if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusRestricted)
+        return YES;
+    else
+        return NO;
+}
+
 
 - (UIImage *)doneButtonBackgroundImage
 {
@@ -97,7 +150,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -108,10 +161,7 @@
 #pragma mark - TableViewDelegate
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 0)
-        return @"Total Amount Including Tips";
-    else
-        return @"Money for each people";
+    return @"Money for each people";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -121,10 +171,7 @@
     NSInteger position = [indexPath row];
     cell.textLabel.textAlignment = NSTextAlignmentRight;
     if (position == 0) {
-        if (indexPath.section == 0)
-            cell.textLabel.text = [NSString stringWithFormat:@"$%.2f", self.totalSharedAmount];
-        if (indexPath.section == 1)
-            cell.textLabel.text = [NSString stringWithFormat:@"$%.2f", self.totalSharedAmount / self.numberOfPeopleToShare];
+        cell.textLabel.text = [NSString stringWithFormat:@"$%.2f", self.totalSharedAmount / self.numberOfPeopleToShare];
     }
     return cell;
 }
@@ -155,7 +202,7 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [NSString stringWithFormat:@"%d",row + 2];
+    return [NSString stringWithFormat:@"%ld",row + 2];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
@@ -163,6 +210,29 @@
     self.numberOfPeopleToShare = row + 2;
     [self.sharedResultDisplayTableView reloadData];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Do Added Record"]) {
+        
+        NSManagedObjectContext *context = self.managedObjectContext;
+        if (context) {
+            Record *record = [NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:context];
+            record.amount = [NSNumber numberWithFloat:[[NSString stringWithFormat:@"%.2f",self.totalSharedAmount / self.numberOfPeopleToShare] floatValue]];
+            record.latitude = @(self.location.coordinate.latitude);
+            record.longitude = @(self.location.coordinate.longitude);
+            
+            NSDate *date = [NSDate date];
+            NSTimeZone *zone = [NSTimeZone systemTimeZone];
+            NSInteger interval = [zone secondsFromGMT];
+            NSDate *currentTime = [date dateByAddingTimeInterval:interval];
+            record.date = currentTime;
+            
+            self.addedRecord = record;
+        }
+    }
+}
+
 /*
 #pragma mark - Navigation
 

@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Divider-->
+        <!--Divider View Controller - Expence Divider-->
         <scene sceneID="uCZ-li-mPg">
             <objects>
-                <viewController id="GBg-Ng-o8A" sceneMemberID="viewController">
+                <viewController id="GBg-Ng-o8A" customClass="DividerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3kQ-Sa-WcI"/>
                         <viewControllerLayoutGuide type="bottom" id="9Oh-gG-Hec"/>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Divider" id="lMQ-7g-MbR"/>
+                    <navigationItem key="navigationItem" title="Expence Divider" id="lMQ-7g-MbR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TP4-KK-5lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -629,7 +629,7 @@
         <scene sceneID="ZwX-mc-CAj">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="azn-11-dnR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="Tips" image="eagle" id="ZF5-Th-NfW"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Tips" image="Eagle" id="ZF5-Th-NfW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="diP-LU-aa8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -644,11 +644,11 @@
             </objects>
             <point key="canvasLocation" x="1313" y="523"/>
         </scene>
-        <!--Navigation Controller - Expance Divider-->
+        <!--Navigation Controller - Divider-->
         <scene sceneID="MZT-3X-mYR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8bX-sy-BND" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Expance Divider" id="T53-v0-6Md"/>
+                    <tabBarItem key="tabBarItem" title="Divider" image="Pie" id="T53-v0-6Md"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IXl-a2-mTG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -665,7 +665,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="eagle" width="60" height="60"/>
+        <image name="Eagle" width="60" height="60"/>
+        <image name="Pie" width="60" height="60"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

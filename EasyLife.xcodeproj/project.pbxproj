@@ -35,6 +35,7 @@
 		50C40441192518810099FAFD /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 50C4041E192511400099FAFD /* tessdata */; };
 		50C40442192518890099FAFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C403F419250FA00099FAFD /* Images.xcassets */; };
 		50C404431925188F0099FAFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50C403EB19250FA00099FAFD /* InfoPlist.strings */; };
+		50EB007F1952EEA7009C346D /* DividerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB007E1952EEA7009C346D /* DividerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		50C40439192514C40099FAFD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		50C4043B192514E40099FAFD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		50C4043D192514EA0099FAFD /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		50EB007D1952EEA7009C346D /* DividerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DividerViewController.h; sourceTree = "<group>"; };
+		50EB007E1952EEA7009C346D /* DividerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DividerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +242,8 @@
 				50C40429192511540099FAFD /* SingleRecordMapViewController.m */,
 				50C4042A192511540099FAFD /* RecordMapViewController.h */,
 				50C4042B192511540099FAFD /* RecordMapViewController.m */,
+				50EB007D1952EEA7009C346D /* DividerViewController.h */,
+				50EB007E1952EEA7009C346D /* DividerViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 			files = (
 				50C403F319250FA00099FAFD /* EasyLifeAppDelegate.m in Sources */,
 				50C4042C192511540099FAFD /* TipsCalViewController.mm in Sources */,
+				50EB007F1952EEA7009C346D /* DividerViewController.m in Sources */,
 				50C4042D192511540099FAFD /* TipsResultViewController.m in Sources */,
 				50C4041B192511210099FAFD /* Record.m in Sources */,
 				50C40431192511540099FAFD /* RecordMapViewController.m in Sources */,

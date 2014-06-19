@@ -47,6 +47,8 @@
     [self.doneButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
     self.numberLabel.backgroundColor = self.appSecondColor;
     self.numberLabel.textColor = [UIColor whiteColor];
+    self.numberLabel.layer.borderColor = self.appTintColor.CGColor;
+    self.numberLabel.layer.borderWidth = 0.5;
 }
 
 - (void)viewWillAppear:(BOOL)animated

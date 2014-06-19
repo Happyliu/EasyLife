@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Expance Divider-->
+        <!--View Controller - Divider-->
         <scene sceneID="uCZ-li-mPg">
             <objects>
                 <viewController id="GBg-Ng-o8A" sceneMemberID="viewController">
@@ -17,11 +17,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Expance Divider" id="T53-v0-6Md"/>
+                    <navigationItem key="navigationItem" title="Divider" id="lMQ-7g-MbR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TP4-KK-5lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1313" y="-1020"/>
+            <point key="canvasLocation" x="1839" y="-1020"/>
         </scene>
         <!--Tips Cal View Controller - Calculate Tips-->
         <scene sceneID="T6y-rH-0hN">
@@ -618,7 +618,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="azn-11-dnR" kind="relationship" relationship="viewControllers" id="cAl-D7-Ro6"/>
-                        <segue destination="GBg-Ng-o8A" kind="relationship" relationship="viewControllers" id="MFA-nW-aTH"/>
+                        <segue destination="8bX-sy-BND" kind="relationship" relationship="viewControllers" id="MFA-nW-aTH"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8SL-5f-QOa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -643,6 +643,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n8n-hS-EQa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1313" y="523"/>
+        </scene>
+        <!--Navigation Controller - Expance Divider-->
+        <scene sceneID="MZT-3X-mYR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8bX-sy-BND" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Expance Divider" id="T53-v0-6Md"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IXl-a2-mTG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GBg-Ng-o8A" kind="relationship" relationship="rootViewController" id="vOA-Bg-A9y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pwr-MB-si8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1313" y="-1020"/>
         </scene>
     </scenes>
     <resources>

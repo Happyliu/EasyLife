@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		50183B12195587190012E0B2 /* RecognitionCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B11195587190012E0B2 /* RecognitionCameraOverlayView.m */; };
 		50183B1519559C7A0012E0B2 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B1419559C7A0012E0B2 /* Record.m */; };
+		50183B1A19559FA50012E0B2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50183B1919559FA50012E0B2 /* CoreData.framework */; };
 		50C1A6A019267C3400525552 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */; };
 		50C403E319250FA00099FAFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E219250FA00099FAFD /* Foundation.framework */; };
 		50C403E519250FA00099FAFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E419250FA00099FAFD /* CoreGraphics.framework */; };
@@ -62,6 +63,7 @@
 		50183B11195587190012E0B2 /* RecognitionCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecognitionCameraOverlayView.m; sourceTree = "<group>"; };
 		50183B1319559C7A0012E0B2 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
 		50183B1419559C7A0012E0B2 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
+		50183B1919559FA50012E0B2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		50C1A69E19267C3400525552 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
 		50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		50C403DF19250FA00099FAFD /* EasyLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50183B1A19559FA50012E0B2 /* CoreData.framework in Frameworks */,
 				50C403E519250FA00099FAFD /* CoreGraphics.framework in Frameworks */,
 				50C4043E192514EA0099FAFD /* libstdc++.6.0.9.dylib in Frameworks */,
 				50C4043C192514E40099FAFD /* MapKit.framework in Frameworks */,
@@ -144,6 +147,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		50183B1619559D450012E0B2 /* FlatColors */ = {
+			isa = PBXGroup;
+			children = (
+				50EB008319555FFE009C346D /* UIColor+MLPFlatColors.h */,
+				50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */,
+			);
+			name = FlatColors;
+			sourceTree = "<group>";
+		};
+		50183B1719559D570012E0B2 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				50C40418192511210099FAFD /* Record+Annotation.h */,
+				50C40419192511210099FAFD /* Record+Annotation.m */,
+				50183B1319559C7A0012E0B2 /* Record.h */,
+				50183B1419559C7A0012E0B2 /* Record.m */,
+				50C4041A192511210099FAFD /* Xpence.xcdatamodel */,
+			);
+			name = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		50183B1819559D6C0012E0B2 /* OpenCVForUIImage */ = {
+			isa = PBXGroup;
+			children = (
+				50C1A69E19267C3400525552 /* UIImage+OpenCV.h */,
+				50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */,
+			);
+			name = OpenCVForUIImage;
+			sourceTree = "<group>";
+		};
 		50C403D619250FA00099FAFD = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +199,7 @@
 		50C403E119250FA00099FAFD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50183B1919559FA50012E0B2 /* CoreData.framework */,
 				50C4043D192514EA0099FAFD /* libstdc++.6.0.9.dylib */,
 				50C4043B192514E40099FAFD /* MapKit.framework */,
 				50C40439192514C40099FAFD /* CoreLocation.framework */,
@@ -227,16 +261,10 @@
 		50C40411192510790099FAFD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				50183B1819559D6C0012E0B2 /* OpenCVForUIImage */,
+				50183B1719559D570012E0B2 /* CoreDataModel */,
+				50183B1619559D450012E0B2 /* FlatColors */,
 				50EB009E19556D52009C346D /* BlurryModalSegue */,
-				50EB008319555FFE009C346D /* UIColor+MLPFlatColors.h */,
-				50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */,
-				50C1A69E19267C3400525552 /* UIImage+OpenCV.h */,
-				50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */,
-				50C40418192511210099FAFD /* Record+Annotation.h */,
-				50C40419192511210099FAFD /* Record+Annotation.m */,
-				50183B1319559C7A0012E0B2 /* Record.h */,
-				50183B1419559C7A0012E0B2 /* Record.m */,
-				50C4041A192511210099FAFD /* Xpence.xcdatamodel */,
 			);
 			name = Models;
 			sourceTree = "<group>";

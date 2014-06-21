@@ -87,7 +87,6 @@
     if (self.document.documentState == UIDocumentStateNormal) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.databaseContext = self.document.managedObjectContext;
-            
         });
     }
 }
@@ -98,7 +97,6 @@
     NSDictionary *userInfo = self.databaseContext ? @{DatabaseAvailabilityContext : self.databaseContext} : nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:DatabaseAvailabilityNotification object:self userInfo:userInfo];
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

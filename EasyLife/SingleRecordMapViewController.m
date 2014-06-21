@@ -26,6 +26,12 @@
     self.mapView.showsBuildings = YES;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+}
+
 - (void)setDisplayRecord:(Record *)displayRecord
 {
     _displayRecord = displayRecord;

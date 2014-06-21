@@ -38,6 +38,12 @@
 		50EB008219541F7D009C346D /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008119541F7D009C346D /* Record.m */; };
 		50EB008519555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */; };
 		50EB008619555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */; };
+		50EB009019556BF0009C346D /* BlurryModalSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008F19556BF0009C346D /* BlurryModalSegue.m */; };
+		50EB009119556BF0009C346D /* BlurryModalSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008F19556BF0009C346D /* BlurryModalSegue.m */; };
+		50EB009819556C79009C346D /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB009719556C79009C346D /* UIImage+ImageEffects.m */; };
+		50EB009919556C79009C346D /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB009719556C79009C346D /* UIImage+ImageEffects.m */; };
+		50EB009C19556D23009C346D /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB009B19556D23009C346D /* MZAppearance.m */; };
+		50EB009D19556D23009C346D /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB009B19556D23009C346D /* MZAppearance.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +104,12 @@
 		50EB008119541F7D009C346D /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		50EB008319555FFE009C346D /* UIColor+MLPFlatColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MLPFlatColors.h"; sourceTree = "<group>"; };
 		50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MLPFlatColors.m"; sourceTree = "<group>"; };
+		50EB008E19556BF0009C346D /* BlurryModalSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurryModalSegue.h; sourceTree = "<group>"; };
+		50EB008F19556BF0009C346D /* BlurryModalSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurryModalSegue.m; sourceTree = "<group>"; };
+		50EB009619556C79009C346D /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		50EB009719556C79009C346D /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		50EB009A19556D23009C346D /* MZAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZAppearance.h; sourceTree = "<group>"; };
+		50EB009B19556D23009C346D /* MZAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZAppearance.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +224,7 @@
 		50C40411192510790099FAFD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				50EB009E19556D52009C346D /* BlurryModalSegue */,
 				50EB008319555FFE009C346D /* UIColor+MLPFlatColors.h */,
 				50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */,
 				50C1A69E19267C3400525552 /* UIImage+OpenCV.h */,
@@ -252,6 +265,19 @@
 				50EB007E1952EEA7009C346D /* DividerViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		50EB009E19556D52009C346D /* BlurryModalSegue */ = {
+			isa = PBXGroup;
+			children = (
+				50EB009619556C79009C346D /* UIImage+ImageEffects.h */,
+				50EB009719556C79009C346D /* UIImage+ImageEffects.m */,
+				50EB009A19556D23009C346D /* MZAppearance.h */,
+				50EB009B19556D23009C346D /* MZAppearance.m */,
+				50EB008E19556BF0009C346D /* BlurryModalSegue.h */,
+				50EB008F19556BF0009C346D /* BlurryModalSegue.m */,
+			);
+			name = BlurryModalSegue;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,6 +380,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50EB009819556C79009C346D /* UIImage+ImageEffects.m in Sources */,
+				50EB009C19556D23009C346D /* MZAppearance.m in Sources */,
 				50C403F319250FA00099FAFD /* EasyLifeAppDelegate.m in Sources */,
 				50C4042C192511540099FAFD /* TipsCalViewController.mm in Sources */,
 				50EB008219541F7D009C346D /* Record.m in Sources */,
@@ -362,6 +390,7 @@
 				50C40431192511540099FAFD /* RecordMapViewController.m in Sources */,
 				50C4042E192511540099FAFD /* SharedResultViewController.m in Sources */,
 				50C403EF19250FA00099FAFD /* main.m in Sources */,
+				50EB009019556BF0009C346D /* BlurryModalSegue.m in Sources */,
 				50C4042F192511540099FAFD /* RecordViewController.m in Sources */,
 				50C4041C192511210099FAFD /* Record+Annotation.m in Sources */,
 				50EB008519555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */,
@@ -375,8 +404,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50EB009919556C79009C346D /* UIImage+ImageEffects.m in Sources */,
 				50EB008619555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */,
 				50C4040819250FA00099FAFD /* EasyLifeTests.m in Sources */,
+				50EB009D19556D23009C346D /* MZAppearance.m in Sources */,
+				50EB009119556BF0009C346D /* BlurryModalSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

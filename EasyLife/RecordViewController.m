@@ -30,23 +30,24 @@
 {
     [super viewDidLoad];
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    [self.tableView setSeparatorColor:self.appTintColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    [self.tableView setSeparatorColor:self.appTintColor];
+    [self.tableView flashScrollIndicators];
     
     [self.backButton setBackgroundImage:self.backButtonBackgroundImage forState:UIControlStateNormal];
     [self.backButton setBackgroundColor:[UIColor whiteColor]];
     [self.backButton.layer setBorderWidth:0.5];
     [self.backButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
     [self.backButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
+    self.tableView.backgroundColor = [UIColor clearColor];
     
     [self.mapButton setBackgroundImage:self.mapButtonBackgroundImage forState:UIControlStateNormal];
     [self.mapButton setBackgroundColor:[UIColor whiteColor]];
     [self.mapButton.layer setBorderWidth:0.5];
     [self.mapButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
     [self.mapButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
-}
+    }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -196,6 +197,7 @@
     
     cell.textLabel.text = [NSString stringWithFormat:@"$%@", [((Record *)self.records[position]).amount stringValue]];
     cell.detailTextLabel.text = subTitle;
+    cell.backgroundColor = [UIColor clearColor];
 
     return cell;
 }
@@ -232,12 +234,14 @@
     if ([segue.identifier isEqualToString:@"Check History On Map"]) {
         if ([segue.destinationViewController isKindOfClass:[RecordMapViewController class]]) {
             [self setManagedObjectContextForViewController:segue.destinationViewController withManagedObjectContext:self.managedObjectContext];
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
         }
     }
     if ([segue.identifier isEqualToString:@"Check Single History On Map"]) {
         if ([segue.destinationViewController isKindOfClass:[SingleRecordMapViewController class]]) {
             NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
             ((SingleRecordMapViewController *)segue.destinationViewController).displayRecord = [self.records objectAtIndex:indexPath.row];
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
         }
     }
 }

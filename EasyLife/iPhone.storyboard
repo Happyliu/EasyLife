@@ -217,7 +217,7 @@
                     <navigationItem key="navigationItem" title="Calculate Tips" id="XM0-RE-3vb">
                         <barButtonItem key="leftBarButtonItem" systemItem="organize" id="cJZ-AA-yv2">
                             <connections>
-                                <segue destination="KLK-OS-Gqs" kind="modal" identifier="Check History" modalTransitionStyle="coverVertical" id="H88-Ww-xcR"/>
+                                <segue destination="KLK-OS-Gqs" kind="custom" identifier="Check History" customClass="BlurryModalSegue" id="H88-Ww-xcR"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="PLT-py-AHl">

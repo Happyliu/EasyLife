@@ -76,6 +76,12 @@
     self.totalAmountLabel.textColor = [UIColor whiteColor];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+}
+
 - (void)setMapView:(MKMapView *)mapView
 {
     _mapView = mapView;

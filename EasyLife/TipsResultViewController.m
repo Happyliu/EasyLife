@@ -261,6 +261,8 @@
         NSManagedObjectContext *context = self.managedObjectContext;
         if (context) {
             Record *record = [NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:context];
+#warning should set the currency type in next version
+            record.currency = @"USD";
             record.amount = self.tipsResults[self.currentSelectedIndexPath.section];
             record.latitude = @(self.location.coordinate.latitude);
             record.longitude = @(self.location.coordinate.longitude);

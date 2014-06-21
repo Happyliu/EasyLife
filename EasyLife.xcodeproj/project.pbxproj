@@ -17,7 +17,6 @@
 		50C403FD19250FA00099FAFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E219250FA00099FAFD /* Foundation.framework */; };
 		50C403FE19250FA00099FAFD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E619250FA00099FAFD /* UIKit.framework */; };
 		50C4040819250FA00099FAFD /* EasyLifeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C4040719250FA00099FAFD /* EasyLifeTests.m */; };
-		50C4041B192511210099FAFD /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C40417192511210099FAFD /* Record.m */; };
 		50C4041C192511210099FAFD /* Record+Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C40419192511210099FAFD /* Record+Annotation.m */; };
 		50C4041D192511210099FAFD /* Xpence.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 50C4041A192511210099FAFD /* Xpence.xcdatamodel */; };
 		50C4042C192511540099FAFD /* TipsCalViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50C40421192511540099FAFD /* TipsCalViewController.mm */; };
@@ -36,6 +35,7 @@
 		50C40442192518890099FAFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C403F419250FA00099FAFD /* Images.xcassets */; };
 		50C404431925188F0099FAFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50C403EB19250FA00099FAFD /* InfoPlist.strings */; };
 		50EB007F1952EEA7009C346D /* DividerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB007E1952EEA7009C346D /* DividerViewController.m */; };
+		50EB008219541F7D009C346D /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008119541F7D009C346D /* Record.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +68,6 @@
 		50C4040519250FA00099FAFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		50C4040719250FA00099FAFD /* EasyLifeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EasyLifeTests.m; sourceTree = "<group>"; };
 		50C40414192510B00099FAFD /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
-		50C40416192511210099FAFD /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
-		50C40417192511210099FAFD /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		50C40418192511210099FAFD /* Record+Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+Annotation.h"; sourceTree = "<group>"; };
 		50C40419192511210099FAFD /* Record+Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+Annotation.m"; sourceTree = "<group>"; };
 		50C4041A192511210099FAFD /* Xpence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Xpence.xcdatamodel; sourceTree = "<group>"; };
@@ -94,6 +92,8 @@
 		50C4043D192514EA0099FAFD /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		50EB007D1952EEA7009C346D /* DividerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DividerViewController.h; sourceTree = "<group>"; };
 		50EB007E1952EEA7009C346D /* DividerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DividerViewController.m; sourceTree = "<group>"; };
+		50EB008019541F7D009C346D /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
+		50EB008119541F7D009C346D /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,11 +210,11 @@
 			children = (
 				50C1A69E19267C3400525552 /* UIImage+OpenCV.h */,
 				50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */,
-				50C40416192511210099FAFD /* Record.h */,
-				50C40417192511210099FAFD /* Record.m */,
 				50C40418192511210099FAFD /* Record+Annotation.h */,
 				50C40419192511210099FAFD /* Record+Annotation.m */,
 				50C4041A192511210099FAFD /* Xpence.xcdatamodel */,
+				50EB008019541F7D009C346D /* Record.h */,
+				50EB008119541F7D009C346D /* Record.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -350,9 +350,9 @@
 			files = (
 				50C403F319250FA00099FAFD /* EasyLifeAppDelegate.m in Sources */,
 				50C4042C192511540099FAFD /* TipsCalViewController.mm in Sources */,
+				50EB008219541F7D009C346D /* Record.m in Sources */,
 				50EB007F1952EEA7009C346D /* DividerViewController.m in Sources */,
 				50C4042D192511540099FAFD /* TipsResultViewController.m in Sources */,
-				50C4041B192511210099FAFD /* Record.m in Sources */,
 				50C40431192511540099FAFD /* RecordMapViewController.m in Sources */,
 				50C4042E192511540099FAFD /* SharedResultViewController.m in Sources */,
 				50C403EF19250FA00099FAFD /* main.m in Sources */,

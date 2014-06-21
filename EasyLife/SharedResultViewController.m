@@ -224,6 +224,8 @@
         NSManagedObjectContext *context = self.managedObjectContext;
         if (context) {
             Record *record = [NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:context];
+#warning should set the currency type in next version
+            record.currency = @"USD";
             record.amount = [NSNumber numberWithFloat:[[NSString stringWithFormat:@"%.2f",self.totalSharedAmount / self.numberOfPeopleToShare] floatValue]];
             record.latitude = @(self.location.coordinate.latitude);
             record.longitude = @(self.location.coordinate.longitude);

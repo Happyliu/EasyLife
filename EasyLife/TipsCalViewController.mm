@@ -13,6 +13,7 @@
 #import "Record.h"
 #import "DatabaseAvailability.h"
 #import "RecordViewController.h"
+#import "RecognitionCameraOverlayView.h"
 
 @interface TipsCalViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
@@ -21,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *calculateButton;
 @property (strong, nonatomic) NSMutableString *currentDisplayResult;
 @property BOOL isDoted;
-@property float currentResult;
+@property double currentResult;
 @property (strong, nonatomic) UIImage *resetButtonBackgroundImage, *normalButtonBackgroundImage, *calculateButtonBackgroundImage;
 @property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appBlackColor;
 @property (strong, nonatomic) UIImagePickerController *picker;
@@ -86,7 +87,7 @@
     if (self.detectedResult) { // display the tesseractORC result to user
         [self.currentDisplayResult setString:self.detectedResult];
         self.displayLabel.text = [self.currentDisplayResult copy];
-        self.currentResult = [self.detectedResult floatValue];
+        self.currentResult = [self.detectedResult doubleValue];
         self.detectedResult = nil;
     } else { // reset the current display each time
         [self.currentDisplayResult setString:@""];
@@ -173,6 +174,7 @@
 }
 
 - (UIColor *)transColor {
+    
     UIColor *transColor = [UIColor colorWithRed:20/255.0 green:20/255.0 blue:20/255.0 alpha:0.3];
 
     return transColor;
@@ -190,16 +192,13 @@
 
 - (IBAction)cameraButtonIsPressed:(UIBarButtonItem *)sender {
     
-    CGPoint center = CGPointMake(CGRectGetMidX(self.view.bounds),
-                                      CGRectGetMidY(self.view.bounds));
-    CGRect viewFrame = CGRectMake(center.x-100, center.y-50, 200, 100);
-    UIView *view = [[UIView alloc] initWithFrame:viewFrame];
-    view.backgroundColor = [self transColor];
+    CGRect viewFrame = [UIScreen mainScreen].bounds;
+    RecognitionCameraOverlayView *RCOView = [[RecognitionCameraOverlayView alloc] initWithFrame:viewFrame];
+    RCOView.backgroundColor = [self transColor];
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        self.picker.cameraOverlayView = view;
-        //self.picker.allowsEditing = YES;
+        self.picker.cameraOverlayView = RCOView;
         self.picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         self.picker.delegate = self;
         [self presentViewController:self.picker animated:YES completion:NULL];
@@ -214,7 +213,7 @@
         [self resetButtonIsPressed];
     } else {
         [self.currentDisplayResult appendString:sender.currentTitle];
-        self.currentResult = [self.currentDisplayResult floatValue];
+        self.currentResult = [self.currentDisplayResult doubleValue];
         self.displayLabel.text = [self.currentDisplayResult copy];
     }
 }
@@ -282,7 +281,7 @@
     [tesseract setImage:image]; //image to check
     [tesseract recognize];
     
-    self.detectedResult = [NSString stringWithFormat:@"%.2f", [[tesseract recognizedText] floatValue]];
+    self.detectedResult = [NSString stringWithFormat:@"%.2f", [[tesseract recognizedText] doubleValue]];
     
     NSLog(@"%@", self.detectedResult);
     tesseract = nil; //deallocate and free all memory
@@ -298,7 +297,7 @@
 
 #pragma mark - Navigation
 
-- (void)setTotalAmountTipsForViewController:(TipsResultViewController *)tvc withTotalAmount:(float)totalAmount andManagedObjectContext:(NSManagedObjectContext *)context
+- (void)setTotalAmountTipsForViewController:(TipsResultViewController *)tvc withTotalAmount:(double)totalAmount andManagedObjectContext:(NSManagedObjectContext *)context
 { // send the total amount and database context to tips result view controller
     tvc.totalAmount = totalAmount;
     tvc.managedObjectContext = context;

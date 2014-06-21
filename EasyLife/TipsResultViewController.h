@@ -11,7 +11,7 @@
 
 @interface TipsResultViewController : UIViewController
 // in
-@property float totalAmount;
+@property double totalAmount;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 // out
 @property (nonatomic, readonly) Record *addedRecord;

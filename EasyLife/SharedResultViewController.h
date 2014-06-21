@@ -11,7 +11,7 @@
 
 @interface SharedResultViewController : UIViewController
 //in
-@property float totalSharedAmount;
+@property double totalSharedAmount;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 //out
 @property (nonatomic, readonly) Record *addedRecord;

@@ -16,7 +16,7 @@
 @property (strong, nonatomic) NSArray *records;
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
-@property float totalAmount;
+@property double totalAmount;
 @property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @end
 
@@ -103,7 +103,7 @@
     [self.mapView showAnnotations:self.records animated:YES];
     self.totalAmount = 0;
     for (Record *record in self.records) {
-        self.totalAmount += [record.amount floatValue];
+        self.totalAmount += [record.amount doubleValue];
     }
     self.totalAmountLabel.text = [NSString stringWithFormat:@"$%.2f", self.totalAmount];
     self.records = nil;

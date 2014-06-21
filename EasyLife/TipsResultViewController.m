@@ -72,11 +72,11 @@
 
 - (void)calculateTips
 {
-    float tips15 = self.totalAmount * 1.15;
-    float tips18 = self.totalAmount * 1.18;
-    float tips20 = self.totalAmount * 1.2;
+    double tips15 = self.totalAmount * 1.15;
+    double tips18 = self.totalAmount * 1.18;
+    double tips20 = self.totalAmount * 1.2;
     if (!_tipsResults) {
-        _tipsResults = [[NSMutableArray alloc]  initWithObjects:[NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", self.totalAmount].floatValue], [NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", tips15].floatValue], [NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", tips18].floatValue], [NSNumber numberWithFloat:[NSString stringWithFormat:@"%.2f", tips20].floatValue], nil];
+        _tipsResults = [[NSMutableArray alloc]  initWithObjects:[NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", self.totalAmount].doubleValue], [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", tips15].doubleValue], [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", tips18].doubleValue], [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", tips20].doubleValue], nil];
     }
 }
 
@@ -208,7 +208,7 @@
     NSInteger position = [indexPath row];
     cell.textLabel.textAlignment = NSTextAlignmentRight;
     if (position == 0) {
-        float cellContent = [self.tipsResults[indexPath.section] floatValue];
+        double cellContent = [self.tipsResults[indexPath.section] doubleValue];
         cell.textLabel.text = [NSString stringWithFormat:@"$%.2f", cellContent];
         if (indexPath.section == 0) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -244,7 +244,7 @@
 
 #pragma mark - Navigation
 
-- (void)setSharedTotalAmountForTableViewController:(SharedResultViewController *)srvc withTotalSharedAmount:(float)totalSharedAmount andManagedContext:(NSManagedObjectContext *)context
+- (void)setSharedTotalAmountForTableViewController:(SharedResultViewController *)srvc withTotalSharedAmount:(double)totalSharedAmount andManagedContext:(NSManagedObjectContext *)context
 {
     srvc.totalSharedAmount = totalSharedAmount;
     srvc.managedObjectContext = context;
@@ -254,7 +254,7 @@
 {
     if ([segue.identifier isEqualToString:@"CalculateShare"]) {
         if ([segue.destinationViewController isKindOfClass:[SharedResultViewController class]]) {
-            [self setSharedTotalAmountForTableViewController:segue.destinationViewController withTotalSharedAmount:[self.tipsResults[self.currentSelectedIndexPath.section] floatValue] andManagedContext:self.managedObjectContext];
+            [self setSharedTotalAmountForTableViewController:segue.destinationViewController withTotalSharedAmount:[self.tipsResults[self.currentSelectedIndexPath.section] doubleValue] andManagedContext:self.managedObjectContext];
         }
     } else if ([segue.identifier isEqualToString:@"Do Added Record"]) {
         

@@ -8,6 +8,7 @@
 
 #import "EasyLifeAppDelegate.h"
 #import "DatabaseAvailability.h"
+#import "UIColor+MLPFlatColors.h"
 
 @interface EasyLifeAppDelegate()
 @property (strong, nonatomic)UIManagedDocument *document;
@@ -18,21 +19,24 @@
 
 - (UIColor *)appTintColor {
     if (!_appTintColor) {
-        _appTintColor = [UIColor colorWithRed:222/255.0 green:74/255.0 blue:44/255.0 alpha:1.0];
+        //_appTintColor = [UIColor colorWithRed:222/255.0 green:74/255.0 blue:44/255.0 alpha:1.0];
+        _appTintColor = [UIColor flatRedColor];
     }
     return _appTintColor;
 }
 
 - (UIColor *)appSecondColor {
     if (!_appSecondColor) {
-        _appSecondColor = [UIColor colorWithRed:95/255.0 green:180/255.0 blue:180/255.0 alpha:1.0];
+        //_appSecondColor = [UIColor colorWithRed:95/255.0 green:180/255.0 blue:180/255.0 alpha:1.0];
+        _appSecondColor = [UIColor flatTealColor];
     }
     return _appSecondColor;
 }
 
 - (UIColor *)appThirdColor {
     if (!_appThirdColor) {
-        _appThirdColor = [UIColor colorWithRed:247/255.0 green:193/255.0 blue:62/255.0 alpha:1.0];
+        //_appThirdColor = [UIColor colorWithRed:247/255.0 green:193/255.0 blue:62/255.0 alpha:1.0];
+        _appThirdColor = [UIColor flatYellowColor];
     }
     return _appThirdColor;
 }

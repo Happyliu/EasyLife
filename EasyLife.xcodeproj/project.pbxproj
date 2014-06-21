@@ -36,6 +36,8 @@
 		50C404431925188F0099FAFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50C403EB19250FA00099FAFD /* InfoPlist.strings */; };
 		50EB007F1952EEA7009C346D /* DividerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB007E1952EEA7009C346D /* DividerViewController.m */; };
 		50EB008219541F7D009C346D /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008119541F7D009C346D /* Record.m */; };
+		50EB008519555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */; };
+		50EB008619555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,8 @@
 		50EB007E1952EEA7009C346D /* DividerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DividerViewController.m; sourceTree = "<group>"; };
 		50EB008019541F7D009C346D /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
 		50EB008119541F7D009C346D /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
+		50EB008319555FFE009C346D /* UIColor+MLPFlatColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MLPFlatColors.h"; sourceTree = "<group>"; };
+		50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MLPFlatColors.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +212,8 @@
 		50C40411192510790099FAFD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				50EB008319555FFE009C346D /* UIColor+MLPFlatColors.h */,
+				50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */,
 				50C1A69E19267C3400525552 /* UIImage+OpenCV.h */,
 				50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */,
 				50C40418192511210099FAFD /* Record+Annotation.h */,
@@ -358,6 +364,7 @@
 				50C403EF19250FA00099FAFD /* main.m in Sources */,
 				50C4042F192511540099FAFD /* RecordViewController.m in Sources */,
 				50C4041C192511210099FAFD /* Record+Annotation.m in Sources */,
+				50EB008519555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */,
 				50C40430192511540099FAFD /* SingleRecordMapViewController.m in Sources */,
 				50C1A6A019267C3400525552 /* UIImage+OpenCV.mm in Sources */,
 				50C4041D192511210099FAFD /* Xpence.xcdatamodel in Sources */,
@@ -368,6 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50EB008619555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */,
 				50C4040819250FA00099FAFD /* EasyLifeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

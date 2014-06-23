@@ -10,6 +10,12 @@
 		50183B12195587190012E0B2 /* RecognitionCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B11195587190012E0B2 /* RecognitionCameraOverlayView.m */; };
 		50183B1519559C7A0012E0B2 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B1419559C7A0012E0B2 /* Record.m */; };
 		50183B1A19559FA50012E0B2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50183B1919559FA50012E0B2 /* CoreData.framework */; };
+		50183B211955B24B0012E0B2 /* JVFloatLabeledTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B1C1955B24B0012E0B2 /* JVFloatLabeledTextField.m */; };
+		50183B221955B24B0012E0B2 /* JVFloatLabeledTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B1C1955B24B0012E0B2 /* JVFloatLabeledTextField.m */; };
+		50183B231955B24B0012E0B2 /* JVFloatLabeledTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B1E1955B24B0012E0B2 /* JVFloatLabeledTextView.m */; };
+		50183B241955B24B0012E0B2 /* JVFloatLabeledTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B1E1955B24B0012E0B2 /* JVFloatLabeledTextView.m */; };
+		50183B251955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
+		50183B261955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
 		50C1A6A019267C3400525552 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */; };
 		50C403E319250FA00099FAFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E219250FA00099FAFD /* Foundation.framework */; };
 		50C403E519250FA00099FAFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E419250FA00099FAFD /* CoreGraphics.framework */; };
@@ -64,6 +70,12 @@
 		50183B1319559C7A0012E0B2 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
 		50183B1419559C7A0012E0B2 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		50183B1919559FA50012E0B2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		50183B1B1955B24B0012E0B2 /* JVFloatLabeledTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatLabeledTextField.h; sourceTree = "<group>"; };
+		50183B1C1955B24B0012E0B2 /* JVFloatLabeledTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatLabeledTextField.m; sourceTree = "<group>"; };
+		50183B1D1955B24B0012E0B2 /* JVFloatLabeledTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatLabeledTextView.h; sourceTree = "<group>"; };
+		50183B1E1955B24B0012E0B2 /* JVFloatLabeledTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatLabeledTextView.m; sourceTree = "<group>"; };
+		50183B1F1955B24B0012E0B2 /* NSString+TextDirectionality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TextDirectionality.h"; sourceTree = "<group>"; };
+		50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TextDirectionality.m"; sourceTree = "<group>"; };
 		50C1A69E19267C3400525552 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
 		50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		50C403DF19250FA00099FAFD /* EasyLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +189,19 @@
 			name = OpenCVForUIImage;
 			sourceTree = "<group>";
 		};
+		50183B271955B2580012E0B2 /* JVFloatLabeledTextField */ = {
+			isa = PBXGroup;
+			children = (
+				50183B1B1955B24B0012E0B2 /* JVFloatLabeledTextField.h */,
+				50183B1C1955B24B0012E0B2 /* JVFloatLabeledTextField.m */,
+				50183B1D1955B24B0012E0B2 /* JVFloatLabeledTextView.h */,
+				50183B1E1955B24B0012E0B2 /* JVFloatLabeledTextView.m */,
+				50183B1F1955B24B0012E0B2 /* NSString+TextDirectionality.h */,
+				50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */,
+			);
+			name = JVFloatLabeledTextField;
+			sourceTree = "<group>";
+		};
 		50C403D619250FA00099FAFD = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +286,7 @@
 		50C40411192510790099FAFD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				50183B271955B2580012E0B2 /* JVFloatLabeledTextField */,
 				50183B1819559D6C0012E0B2 /* OpenCVForUIImage */,
 				50183B1719559D570012E0B2 /* CoreDataModel */,
 				50183B1619559D450012E0B2 /* FlatColors */,
@@ -415,17 +441,20 @@
 			files = (
 				50EB009819556C79009C346D /* UIImage+ImageEffects.m in Sources */,
 				50EB009C19556D23009C346D /* MZAppearance.m in Sources */,
+				50183B251955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */,
 				50C403F319250FA00099FAFD /* EasyLifeAppDelegate.m in Sources */,
 				50C4042C192511540099FAFD /* TipsCalViewController.mm in Sources */,
 				50EB007F1952EEA7009C346D /* DividerViewController.m in Sources */,
 				50C4042D192511540099FAFD /* TipsResultViewController.m in Sources */,
 				50C40431192511540099FAFD /* RecordMapViewController.m in Sources */,
+				50183B211955B24B0012E0B2 /* JVFloatLabeledTextField.m in Sources */,
 				50C4042E192511540099FAFD /* SharedResultViewController.m in Sources */,
 				50C403EF19250FA00099FAFD /* main.m in Sources */,
 				50183B12195587190012E0B2 /* RecognitionCameraOverlayView.m in Sources */,
 				50183B1519559C7A0012E0B2 /* Record.m in Sources */,
 				50EB009019556BF0009C346D /* BlurryModalSegue.m in Sources */,
 				50C4042F192511540099FAFD /* RecordViewController.m in Sources */,
+				50183B231955B24B0012E0B2 /* JVFloatLabeledTextView.m in Sources */,
 				50C4041C192511210099FAFD /* Record+Annotation.m in Sources */,
 				50EB008519555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */,
 				50C40430192511540099FAFD /* SingleRecordMapViewController.m in Sources */,
@@ -438,8 +467,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50183B221955B24B0012E0B2 /* JVFloatLabeledTextField.m in Sources */,
 				50EB009919556C79009C346D /* UIImage+ImageEffects.m in Sources */,
+				50183B241955B24B0012E0B2 /* JVFloatLabeledTextView.m in Sources */,
 				50EB008619555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */,
+				50183B261955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */,
 				50C4040819250FA00099FAFD /* EasyLifeTests.m in Sources */,
 				50EB009D19556D23009C346D /* MZAppearance.m in Sources */,
 				50EB009119556BF0009C346D /* BlurryModalSegue.m in Sources */,

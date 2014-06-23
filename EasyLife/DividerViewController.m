@@ -8,9 +8,12 @@
 
 #import "DividerViewController.h"
 #import "EasyLifeAppDelegate.h"
+#import "JVFloatLabeledTextField.h"
+#import "JVFloatLabeledTextView.h"
 
 @interface DividerViewController ()
 @property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
+@property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *priceTextField;
 
 @end
 
@@ -66,6 +69,7 @@
     self.tabBarController.tabBar.barTintColor = self.appTintColor;
     self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
     self.tabBarController.tabBar.translucent = NO;
+
 }
 
 @end

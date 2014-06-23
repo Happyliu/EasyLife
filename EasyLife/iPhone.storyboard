@@ -15,9 +15,20 @@
                     <view key="view" contentMode="scaleToFill" id="Yfe-yQ-YUj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" borderStyle="roundedRect" placeholder="Price" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fp1-oZ-mUo" customClass="JVFloatLabeledTextField">
+                                <rect key="frame" x="53" y="85" width="214" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Expence Divider" id="lMQ-7g-MbR"/>
+                    <connections>
+                        <outlet property="priceTextField" destination="Fp1-oZ-mUo" id="h6M-7N-Ojw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TP4-KK-5lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

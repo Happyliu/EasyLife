@@ -14,6 +14,7 @@
 #import "DatabaseAvailability.h"
 #import "RecordViewController.h"
 #import "RecognitionCameraOverlayView.h"
+#import "AMSmoothAlertView.h"
 
 @interface TipsCalViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
@@ -21,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
 @property (weak, nonatomic) IBOutlet UIButton *calculateButton;
 @property (strong, nonatomic) NSMutableString *currentDisplayResult;
-@property BOOL isDoted;
+@property BOOL isDoted, isAddedRecord, isSuccessAddedRecord;
 @property double currentResult;
 @property (strong, nonatomic) UIImage *resetButtonBackgroundImage, *normalButtonBackgroundImage, *calculateButtonBackgroundImage;
 @property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appBlackColor;
@@ -47,6 +48,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //[NSThread sleepForTimeInterval:1.0];
 
     /* initialize the UIImagePickerController */
     self.navigationItem.rightBarButtonItem.enabled = false; // disable the button before initialized
@@ -95,6 +98,21 @@
         self.currentResult = 0;
         self.isDoted = NO;
     }
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    if (self.isAddedRecord) {
+        if (self.isSuccessAddedRecord) {
+            [self successAlert:@"Success"];
+        } else {
+            [self failAlert:@"Fail"];
+        }
+    }
+    self.isAddedRecord = NO;
+    self.isSuccessAddedRecord = NO;
 }
 
 #pragma mark - ButtonBackgroundImage
@@ -242,32 +260,44 @@
         TipsResultViewController *trvc = (TipsResultViewController *)segue.sourceViewController;
         Record *addedRecord = trvc.addedRecord;
         if (addedRecord) {
-            [self alert:@"Success"];
+            self.isAddedRecord = YES;
+            self.isSuccessAddedRecord = YES;
         } else {
-            [self alert:@"Fail"];
+            self.isAddedRecord = YES;
+            self.isSuccessAddedRecord = NO;
         }
     } else if ([segue.sourceViewController isKindOfClass:[SharedResultViewController class]]) {
         SharedResultViewController *srvc = (SharedResultViewController *)segue.sourceViewController;
         Record *addedRecord = srvc.addedRecord;
         if (addedRecord) {
-            [self alert:@"Success"];
+            //[self alert:@"Success"];
+            self.isAddedRecord = YES;
+            self.isSuccessAddedRecord = YES;
         } else {
-            [self alert:@"Fail"];
+            //[self alert:@"Fail"];
+            self.isAddedRecord = YES;
+            self.isSuccessAddedRecord = NO;
         }
     }
 }
 
 #pragma mark - Alert
 
-- (void)alert:(NSString *)message
+- (void)successAlert:(NSString *)message
 {
-    [[[UIAlertView alloc] initWithTitle:@"Add Record" message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Add Record" andText:message andCancelButton:NO forAlertType:AlertSuccess andColor:self.appSecondColor] show];
+}
+
+- (void)failAlert:(NSString *)message
+{
+    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Add Record" andText:message andCancelButton:NO forAlertType:AlertSuccess andColor:self.appTintColor] show];
 }
 
 - (void)fatalAlert:(NSString *)message
 {
-    [[[UIAlertView alloc] initWithTitle:@"Sorry" message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Sorry" andText:message andCancelButton:NO forAlertType:AlertInfo andColor:self.appTintColor] show];
 }
+
 
 #pragma mark - UIImagePickerControllerDelegate
 

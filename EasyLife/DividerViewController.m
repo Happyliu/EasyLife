@@ -9,11 +9,14 @@
 #import "DividerViewController.h"
 #import "EasyLifeAppDelegate.h"
 #import "JVFloatLabeledTextField.h"
-#import "JVFloatLabeledTextView.h"
+#import "SingleExpenceRecord.h"
 
-@interface DividerViewController ()
+const static CGFloat PADDING = 10.0f;
+
+@interface DividerViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
-@property (weak, nonatomic) IBOutlet JVFloatLabeledTextField *priceTextField;
+@property (strong, nonatomic) NSMutableArray *expenceForEachPerson;
+@property (weak, nonatomic) IBOutlet UIScrollView *dividerScrollView;
 
 @end
 
@@ -60,7 +63,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.navigationController.navigationBar.barTintColor = self.appTintColor;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor]; // color of the back button
     self.navigationController.navigationBar.translucent = NO;
@@ -69,7 +72,26 @@
     self.tabBarController.tabBar.barTintColor = self.appTintColor;
     self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
     self.tabBarController.tabBar.translucent = NO;
+    
+    JVFloatLabeledTextField *test = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(PADDING, 0, self.dividerScrollView.frame.size.width, 50)];
+    test.delegate = self;
+    test.placeholder = @"test";
+    [self.dividerScrollView addSubview:test];
 
+}
+
+- (NSMutableArray *)expenceForEachPerson
+{
+    if (!_expenceForEachPerson) {
+        
+    }
+    return _expenceForEachPerson;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

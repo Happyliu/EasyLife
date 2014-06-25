@@ -11,13 +11,13 @@
 #import "EasyLifeAppDelegate.h"
 
 @interface RecordMapViewController () <MKMapViewDelegate>
-@property (strong, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong, nonatomic) IBOutlet UISegmentedControl *segements;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segements;
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (strong, nonatomic) NSArray *records;
 @property double totalAmount;
-@property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
+@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @end
 
 @implementation RecordMapViewController

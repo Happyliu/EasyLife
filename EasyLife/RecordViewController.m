@@ -13,10 +13,10 @@
 #import "SingleRecordMapViewController.h"
 
 @interface RecordViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (strong, nonatomic) IBOutlet UIButton *backButton;
-@property (strong, nonatomic) IBOutlet UIButton *mapButton;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *mapButton;
 @property (strong, nonatomic) NSMutableArray *records;
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @property (strong, nonatomic) UIImage *backButtonBackgroundImage, *mapButtonBackgroundImage;
@@ -54,7 +54,6 @@
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
-
 
 #pragma mark - ButtonBackgroundImage
 

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		50183B12195587190012E0B2 /* RecognitionCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B11195587190012E0B2 /* RecognitionCameraOverlayView.m */; };
-		50183B1519559C7A0012E0B2 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B1419559C7A0012E0B2 /* Record.m */; };
 		50183B1A19559FA50012E0B2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50183B1919559FA50012E0B2 /* CoreData.framework */; };
 		50183B211955B24B0012E0B2 /* JVFloatLabeledTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B1C1955B24B0012E0B2 /* JVFloatLabeledTextField.m */; };
 		50183B221955B24B0012E0B2 /* JVFloatLabeledTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B1C1955B24B0012E0B2 /* JVFloatLabeledTextField.m */; };
@@ -26,7 +25,6 @@
 		50C403FE19250FA00099FAFD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E619250FA00099FAFD /* UIKit.framework */; };
 		50C4040819250FA00099FAFD /* EasyLifeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C4040719250FA00099FAFD /* EasyLifeTests.m */; };
 		50C4041C192511210099FAFD /* Record+Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C40419192511210099FAFD /* Record+Annotation.m */; };
-		50C4041D192511210099FAFD /* Xpence.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 50C4041A192511210099FAFD /* Xpence.xcdatamodel */; };
 		50C4042C192511540099FAFD /* TipsCalViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50C40421192511540099FAFD /* TipsCalViewController.mm */; };
 		50C4042D192511540099FAFD /* TipsResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C40423192511540099FAFD /* TipsResultViewController.m */; };
 		50C4042E192511540099FAFD /* SharedResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C40425192511540099FAFD /* SharedResultViewController.m */; };
@@ -370,6 +368,8 @@
 		50D60BF3195A984A00A9F628 /* GPUImagePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D60BEB195A984A00A9F628 /* GPUImagePicture.m */; };
 		50D60BF4195A984A00A9F628 /* GPUImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D60BED195A984A00A9F628 /* GPUImageView.m */; };
 		50D60BF5195A984A00A9F628 /* GPUImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D60BED195A984A00A9F628 /* GPUImageView.m */; };
+		50D60BFD195AA19700A9F628 /* Xpence.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50D60BFB195AA19700A9F628 /* Xpence.xcdatamodeld */; };
+		50D60C00195AA24500A9F628 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D60BFF195AA24500A9F628 /* Record.m */; };
 		50EB007F1952EEA7009C346D /* DividerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB007E1952EEA7009C346D /* DividerViewController.m */; };
 		50EB008519555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */; };
 		50EB008619555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */; };
@@ -394,8 +394,6 @@
 /* Begin PBXFileReference section */
 		50183B10195587190012E0B2 /* RecognitionCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecognitionCameraOverlayView.h; sourceTree = "<group>"; };
 		50183B11195587190012E0B2 /* RecognitionCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecognitionCameraOverlayView.m; sourceTree = "<group>"; };
-		50183B1319559C7A0012E0B2 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
-		50183B1419559C7A0012E0B2 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		50183B1919559FA50012E0B2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		50183B1B1955B24B0012E0B2 /* JVFloatLabeledTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatLabeledTextField.h; sourceTree = "<group>"; };
 		50183B1C1955B24B0012E0B2 /* JVFloatLabeledTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatLabeledTextField.m; sourceTree = "<group>"; };
@@ -424,7 +422,6 @@
 		50C40414192510B00099FAFD /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		50C40418192511210099FAFD /* Record+Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+Annotation.h"; sourceTree = "<group>"; };
 		50C40419192511210099FAFD /* Record+Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+Annotation.m"; sourceTree = "<group>"; };
-		50C4041A192511210099FAFD /* Xpence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Xpence.xcdatamodel; sourceTree = "<group>"; };
 		50C4041E192511400099FAFD /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		50C40420192511540099FAFD /* TipsCalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsCalViewController.h; sourceTree = "<group>"; };
 		50C40421192511540099FAFD /* TipsCalViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TipsCalViewController.mm; sourceTree = "<group>"; };
@@ -775,6 +772,9 @@
 		50D60BEB195A984A00A9F628 /* GPUImagePicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImagePicture.m; sourceTree = "<group>"; };
 		50D60BEC195A984A00A9F628 /* GPUImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageView.h; sourceTree = "<group>"; };
 		50D60BED195A984A00A9F628 /* GPUImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageView.m; sourceTree = "<group>"; };
+		50D60BFC195AA19700A9F628 /* Xpence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Xpence.xcdatamodel; sourceTree = "<group>"; };
+		50D60BFE195AA24500A9F628 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
+		50D60BFF195AA24500A9F628 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		50EB007D1952EEA7009C346D /* DividerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DividerViewController.h; sourceTree = "<group>"; };
 		50EB007E1952EEA7009C346D /* DividerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DividerViewController.m; sourceTree = "<group>"; };
 		50EB008319555FFE009C346D /* UIColor+MLPFlatColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MLPFlatColors.h"; sourceTree = "<group>"; };
@@ -831,9 +831,9 @@
 			children = (
 				50C40418192511210099FAFD /* Record+Annotation.h */,
 				50C40419192511210099FAFD /* Record+Annotation.m */,
-				50183B1319559C7A0012E0B2 /* Record.h */,
-				50183B1419559C7A0012E0B2 /* Record.m */,
-				50C4041A192511210099FAFD /* Xpence.xcdatamodel */,
+				50D60BFB195AA19700A9F628 /* Xpence.xcdatamodeld */,
+				50D60BFE195AA24500A9F628 /* Record.h */,
+				50D60BFF195AA24500A9F628 /* Record.m */,
 			);
 			name = CoreDataModel;
 			sourceTree = "<group>";
@@ -1510,6 +1510,7 @@
 				50D60BF2195A984A00A9F628 /* GPUImagePicture.m in Sources */,
 				50D60BB7195A983200A9F628 /* GPUImageTextureInput.m in Sources */,
 				50D60B8F195A983200A9F628 /* GPUImageRGBOpeningFilter.m in Sources */,
+				50D60BFD195AA19700A9F628 /* Xpence.xcdatamodeld in Sources */,
 				50D60B01195A983200A9F628 /* GPUImageFilterPipeline.m in Sources */,
 				50D60B53195A983200A9F628 /* GPUImageMonochromeFilter.m in Sources */,
 				50D60ABF195A983200A9F628 /* GPUImageBrightnessFilter.m in Sources */,
@@ -1562,7 +1563,6 @@
 				50D60B67195A983200A9F628 /* GPUImageOpacityFilter.m in Sources */,
 				50D60B6F195A983200A9F628 /* GPUImageParallelCoordinateLineTransformFilter.m in Sources */,
 				50183B12195587190012E0B2 /* RecognitionCameraOverlayView.m in Sources */,
-				50183B1519559C7A0012E0B2 /* Record.m in Sources */,
 				50EB009019556BF0009C346D /* BlurryModalSegue.m in Sources */,
 				50D60BC1195A983200A9F628 /* GPUImageThresholdSketchFilter.m in Sources */,
 				50D60BD1195A983200A9F628 /* GPUImageTwoPassTextureSamplingFilter.m in Sources */,
@@ -1604,6 +1604,7 @@
 				50D60BCF195A983200A9F628 /* GPUImageTwoPassFilter.m in Sources */,
 				50D60BB1195A983200A9F628 /* GPUImageStretchDistortionFilter.m in Sources */,
 				50D60B69195A983200A9F628 /* GPUImageOpeningFilter.m in Sources */,
+				50D60C00195AA24500A9F628 /* Record.m in Sources */,
 				50D60AB9195A983200A9F628 /* GPUImageAverageLuminanceThresholdFilter.m in Sources */,
 				50C1A6A019267C3400525552 /* UIImage+OpenCV.mm in Sources */,
 				50D60B63195A983200A9F628 /* GPUImageNonMaximumSuppressionFilter.m in Sources */,
@@ -1612,7 +1613,6 @@
 				50D60AF3195A983200A9F628 /* GPUImageErosionFilter.m in Sources */,
 				50D60B17195A983200A9F628 /* GPUImageHarrisCornerDetectionFilter.m in Sources */,
 				50D60BF0195A984A00A9F628 /* GPUImageMovieWriter.m in Sources */,
-				50C4041D192511210099FAFD /* Xpence.xcdatamodel in Sources */,
 				50D60B45195A983200A9F628 /* GPUImageLuminanceRangeFilter.m in Sources */,
 				50D60B83195A983200A9F628 /* GPUImageRawDataInput.m in Sources */,
 				50D60BC7195A983200A9F628 /* GPUImageToonFilter.m in Sources */,
@@ -2029,6 +2029,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		50D60BFB195AA19700A9F628 /* Xpence.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				50D60BFC195AA19700A9F628 /* Xpence.xcdatamodel */,
+			);
+			currentVersion = 50D60BFC195AA19700A9F628 /* Xpence.xcdatamodel */;
+			path = Xpence.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 50C403D719250FA00099FAFD /* Project object */;
 }

@@ -211,12 +211,9 @@
 - (IBAction)cameraButtonIsPressed:(UIBarButtonItem *)sender {
     
     CGRect viewFrame = [UIScreen mainScreen].bounds;
-    RecognitionCameraOverlayView *RCOView = [[RecognitionCameraOverlayView alloc] initWithFrame:viewFrame];
-    RCOView.backgroundColor = [self transColor];
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        self.picker.cameraOverlayView = RCOView;
         self.picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         self.picker.delegate = self;
         [self presentViewController:self.picker animated:YES completion:NULL];

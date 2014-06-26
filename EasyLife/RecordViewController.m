@@ -13,13 +13,12 @@
 #import "SingleRecordMapViewController.h"
 
 @interface RecordViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *mapButton;
 @property (strong, nonatomic) NSMutableArray *records;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
-@property (strong, nonatomic) UIImage *backButtonBackgroundImage, *mapButtonBackgroundImage;
+@property (strong, nonatomic) UIImage *mapButtonBackgroundImage;
 @end
 
 @implementation RecordViewController
@@ -34,12 +33,6 @@
     self.tableView.dataSource = self;
     [self.tableView setSeparatorColor:self.appTintColor];
     [self.tableView flashScrollIndicators];
-    
-    [self.backButton setBackgroundImage:self.backButtonBackgroundImage forState:UIControlStateNormal];
-    [self.backButton setBackgroundColor:[UIColor whiteColor]];
-    [self.backButton.layer setBorderWidth:0.5];
-    [self.backButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
-    [self.backButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
     self.tableView.backgroundColor = [UIColor clearColor];
     
     [self.mapButton setBackgroundImage:self.mapButtonBackgroundImage forState:UIControlStateNormal];
@@ -56,21 +49,6 @@
 }
 
 #pragma mark - ButtonBackgroundImage
-
-- (UIImage *)backButtonBackgroundImage
-{
-    if (!_backButtonBackgroundImage) {
-        UIColor *color = self.appSecondColor;
-        CGRect rect = CGRectMake(0, 0, 1, 1);
-        UIGraphicsBeginImageContext(rect.size);
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [color CGColor]);
-        CGContextFillRect(context, rect);
-        _backButtonBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    }
-    return _backButtonBackgroundImage;
-}
 
 - (UIImage *)mapButtonBackgroundImage
 {
@@ -145,12 +123,6 @@
         _appBlackColor = appDelegate.appBlackColor;
     }
     return _appBlackColor;
-}
-
-#pragma mark - IBAction
-
-- (IBAction)backIsPressed {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - UITableViewDelegate
@@ -243,5 +215,10 @@
         }
     }
 }
+
+- (IBAction)swipeDown:(UISwipeGestureRecognizer *)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+}
+
 
 @end

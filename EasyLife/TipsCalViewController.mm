@@ -210,8 +210,6 @@
 
 - (IBAction)cameraButtonIsPressed:(UIBarButtonItem *)sender {
     
-    CGRect viewFrame = [UIScreen mainScreen].bounds;
-    
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         self.picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;

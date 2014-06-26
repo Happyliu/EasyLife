@@ -378,9 +378,12 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EY0-Kk-iiP">
-                                <rect key="frame" x="159" y="20" width="161" height="55"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="v3c-vB-5HU"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Records">
+                                <state key="normal" title="View All Records on Map">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -420,42 +423,34 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzc-Js-oFP">
-                                <rect key="frame" x="0.0" y="20" width="160" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="5kF-6c-uJs"/>
-                                    <constraint firstAttribute="width" constant="160" id="SBR-eA-seX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="backIsPressed" destination="KLK-OS-Gqs" eventType="touchUpInside" id="XbG-pK-Aqs"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="xzc-Js-oFP" firstAttribute="top" secondItem="xH5-Mq-kto" secondAttribute="bottom" id="Agf-cE-NQR"/>
-                            <constraint firstItem="EY0-Kk-iiP" firstAttribute="centerY" secondItem="xzc-Js-oFP" secondAttribute="centerY" id="IrV-uD-ohw"/>
-                            <constraint firstItem="EY0-Kk-iiP" firstAttribute="height" secondItem="xzc-Js-oFP" secondAttribute="height" id="JIc-eP-3ed"/>
+                            <constraint firstItem="oDg-A8-95L" firstAttribute="top" secondItem="EY0-Kk-iiP" secondAttribute="bottom" id="CvC-fv-K4f"/>
+                            <constraint firstItem="EY0-Kk-iiP" firstAttribute="leading" secondItem="rUM-Xz-zdS" secondAttribute="leading" id="K5C-Ew-Oh9"/>
                             <constraint firstAttribute="trailing" secondItem="EY0-Kk-iiP" secondAttribute="trailing" id="Pic-ke-R1e"/>
-                            <constraint firstItem="oDg-A8-95L" firstAttribute="top" secondItem="xzc-Js-oFP" secondAttribute="bottom" id="WkP-2e-ZV0"/>
                             <constraint firstAttribute="trailing" secondItem="oDg-A8-95L" secondAttribute="trailing" id="gDT-C2-6Ot"/>
                             <constraint firstItem="oDg-A8-95L" firstAttribute="leading" secondItem="rUM-Xz-zdS" secondAttribute="leading" id="hU3-Pi-6Ec"/>
                             <constraint firstItem="WZW-Ow-mKe" firstAttribute="top" secondItem="oDg-A8-95L" secondAttribute="bottom" id="jXU-Kd-TJ8"/>
-                            <constraint firstItem="xzc-Js-oFP" firstAttribute="leading" secondItem="rUM-Xz-zdS" secondAttribute="leading" id="oH2-Sj-yWS"/>
-                            <constraint firstItem="EY0-Kk-iiP" firstAttribute="width" secondItem="xzc-Js-oFP" secondAttribute="width" id="sk2-Wc-k0S"/>
+                            <constraint firstItem="EY0-Kk-iiP" firstAttribute="top" secondItem="xH5-Mq-kto" secondAttribute="bottom" id="xsX-ah-ApY"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Zvs-Ku-TeI" appends="YES" id="EWu-5Y-4Vh"/>
+                        </connections>
                     </view>
                     <connections>
-                        <outlet property="backButton" destination="xzc-Js-oFP" id="3jc-vn-0Xa"/>
                         <outlet property="mapButton" destination="EY0-Kk-iiP" id="nty-Ow-npD"/>
                         <outlet property="tableView" destination="oDg-A8-95L" id="nzC-7N-T5j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryU-ed-fYy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="up" id="KXp-J7-CXC"/>
+                <swipeGestureRecognizer direction="down" id="Zvs-Ku-TeI">
+                    <connections>
+                        <action selector="swipeDown:" destination="KLK-OS-Gqs" id="FNF-z4-yh1"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2357" y="53"/>
         </scene>

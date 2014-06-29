@@ -14,6 +14,11 @@
 		50183B251955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
 		50183B261955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
 		5030BE3B19582E1000985DEC /* SingleExpenceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030BE3A19582E1000985DEC /* SingleExpenceRecord.m */; };
+		508B84C1195DA21B0056ABE1 /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84BE195DA21B0056ABE1 /* DIDatepicker.m */; };
+		508B84C2195DA21B0056ABE1 /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84BE195DA21B0056ABE1 /* DIDatepicker.m */; };
+		508B84C3195DA21B0056ABE1 /* DIDatepickerDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84C0195DA21B0056ABE1 /* DIDatepickerDateView.m */; };
+		508B84C4195DA21B0056ABE1 /* DIDatepickerDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84C0195DA21B0056ABE1 /* DIDatepickerDateView.m */; };
+		508B84D61960685A0056ABE1 /* SingleExpenceRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84D51960685A0056ABE1 /* SingleExpenceRecordView.m */; };
 		50C1A6A019267C3400525552 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */; };
 		50C403E319250FA00099FAFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E219250FA00099FAFD /* Foundation.framework */; };
 		50C403E519250FA00099FAFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E419250FA00099FAFD /* CoreGraphics.framework */; };
@@ -401,6 +406,12 @@
 		50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TextDirectionality.m"; sourceTree = "<group>"; };
 		5030BE3919582E1000985DEC /* SingleExpenceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleExpenceRecord.h; sourceTree = "<group>"; };
 		5030BE3A19582E1000985DEC /* SingleExpenceRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleExpenceRecord.m; sourceTree = "<group>"; };
+		508B84BD195DA21B0056ABE1 /* DIDatepicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepicker.h; sourceTree = "<group>"; };
+		508B84BE195DA21B0056ABE1 /* DIDatepicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepicker.m; sourceTree = "<group>"; };
+		508B84BF195DA21B0056ABE1 /* DIDatepickerDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepickerDateView.h; sourceTree = "<group>"; };
+		508B84C0195DA21B0056ABE1 /* DIDatepickerDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepickerDateView.m; sourceTree = "<group>"; };
+		508B84D41960685A0056ABE1 /* SingleExpenceRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleExpenceRecordView.h; sourceTree = "<group>"; };
+		508B84D51960685A0056ABE1 /* SingleExpenceRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleExpenceRecordView.m; sourceTree = "<group>"; };
 		50C1A69E19267C3400525552 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
 		50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		50C403DF19250FA00099FAFD /* EasyLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -858,6 +869,17 @@
 			name = JVFloatLabeledTextField;
 			sourceTree = "<group>";
 		};
+		508B84C5195DA22A0056ABE1 /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				508B84BD195DA21B0056ABE1 /* DIDatepicker.h */,
+				508B84BE195DA21B0056ABE1 /* DIDatepicker.m */,
+				508B84BF195DA21B0056ABE1 /* DIDatepickerDateView.h */,
+				508B84C0195DA21B0056ABE1 /* DIDatepickerDateView.m */,
+			);
+			name = DatePicker;
+			sourceTree = "<group>";
+		};
 		50C403D619250FA00099FAFD = {
 			isa = PBXGroup;
 			children = (
@@ -957,10 +979,13 @@
 		50C40412192510820099FAFD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				508B84C5195DA22A0056ABE1 /* DatePicker */,
 				50D60450195A8AE600A9F628 /* AMSmoothAlert */,
 				50C40414192510B00099FAFD /* iPhone.storyboard */,
 				50183B10195587190012E0B2 /* RecognitionCameraOverlayView.h */,
 				50183B11195587190012E0B2 /* RecognitionCameraOverlayView.m */,
+				508B84D41960685A0056ABE1 /* SingleExpenceRecordView.h */,
+				508B84D51960685A0056ABE1 /* SingleExpenceRecordView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1485,6 +1510,7 @@
 				50D60AE1195A983200A9F628 /* GPUImageCrosshatchFilter.m in Sources */,
 				50C4042D192511540099FAFD /* TipsResultViewController.m in Sources */,
 				50D60AF1195A983200A9F628 /* GPUImageEmbossFilter.m in Sources */,
+				508B84C3195DA21B0056ABE1 /* DIDatepickerDateView.m in Sources */,
 				50D60B0F195A983200A9F628 /* GPUImageGlassSphereFilter.m in Sources */,
 				50D60BB3195A983200A9F628 /* GPUImageSubtractBlendFilter.m in Sources */,
 				50D60AFD195A983200A9F628 /* GPUImageFilter.m in Sources */,
@@ -1524,6 +1550,7 @@
 				50D60ACF195A983200A9F628 /* GPUImageColorBlendFilter.m in Sources */,
 				50D60AAF195A983200A9F628 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
 				50C40431192511540099FAFD /* RecordMapViewController.m in Sources */,
+				508B84C1195DA21B0056ABE1 /* DIDatepicker.m in Sources */,
 				50D60B65195A983200A9F628 /* GPUImageNormalBlendFilter.m in Sources */,
 				50D60B79195A983200A9F628 /* GPUImagePoissonBlendFilter.m in Sources */,
 				50D60BC3195A983200A9F628 /* GPUImageTiltShiftFilter.m in Sources */,
@@ -1538,6 +1565,7 @@
 				50D60B1B195A983200A9F628 /* GPUImageHighlightShadowFilter.m in Sources */,
 				50D60BDD195A983200A9F628 /* GPUImageWeakPixelInclusionFilter.m in Sources */,
 				50D60AF5195A983200A9F628 /* GPUImageExclusionBlendFilter.m in Sources */,
+				508B84D61960685A0056ABE1 /* SingleExpenceRecordView.m in Sources */,
 				50D60B6D195A983200A9F628 /* GPUImageOverlayBlendFilter.m in Sources */,
 				50D60B8B195A983200A9F628 /* GPUImageRGBErosionFilter.m in Sources */,
 				50D60AB7195A983200A9F628 /* GPUImageAverageColor.m in Sources */,
@@ -1730,6 +1758,7 @@
 				50D6044D195A8ADA00A9F628 /* AMBouncingView.m in Sources */,
 				50D60BD6195A983200A9F628 /* GPUImageUnsharpMaskFilter.m in Sources */,
 				50D60ABE195A983200A9F628 /* GPUImageBoxBlurFilter.m in Sources */,
+				508B84C4195DA21B0056ABE1 /* DIDatepickerDateView.m in Sources */,
 				50D60B12195A983200A9F628 /* GPUImageGrayscaleFilter.m in Sources */,
 				50D60B4A195A983200A9F628 /* GPUImageLuminosity.m in Sources */,
 				50D60B54195A983200A9F628 /* GPUImageMonochromeFilter.m in Sources */,
@@ -1766,6 +1795,7 @@
 				50D60B94195A983200A9F628 /* GPUImageSaturationFilter.m in Sources */,
 				50D60B44195A983200A9F628 /* GPUImageLowPassFilter.m in Sources */,
 				50D60B8E195A983200A9F628 /* GPUImageRGBFilter.m in Sources */,
+				508B84C2195DA21B0056ABE1 /* DIDatepicker.m in Sources */,
 				50D60AD8195A983200A9F628 /* GPUImageColorMatrixFilter.m in Sources */,
 				50D60BB4195A983200A9F628 /* GPUImageSubtractBlendFilter.m in Sources */,
 				50D60AC0195A983200A9F628 /* GPUImageBrightnessFilter.m in Sources */,

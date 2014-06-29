@@ -16,22 +16,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kd9-Ct-qVr">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qxs-nk-IyG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Kd9-Ct-qVr" secondAttribute="trailing" id="8us-45-HZY"/>
-                            <constraint firstItem="9Oh-gG-Hec" firstAttribute="top" secondItem="Kd9-Ct-qVr" secondAttribute="bottom" id="DRr-MY-SGC"/>
-                            <constraint firstItem="Kd9-Ct-qVr" firstAttribute="leading" secondItem="Yfe-yQ-YUj" secondAttribute="leading" id="Qhp-gL-PuR"/>
-                            <constraint firstItem="Kd9-Ct-qVr" firstAttribute="top" secondItem="3kQ-Sa-WcI" secondAttribute="bottom" id="uKU-2e-DZ6"/>
+                            <constraint firstItem="Qxs-nk-IyG" firstAttribute="top" secondItem="Yfe-yQ-YUj" secondAttribute="top" id="3Vo-fq-Zg8"/>
+                            <constraint firstAttribute="trailing" secondItem="Qxs-nk-IyG" secondAttribute="trailing" id="9X7-cb-mbl"/>
+                            <constraint firstItem="Qxs-nk-IyG" firstAttribute="leading" secondItem="Yfe-yQ-YUj" secondAttribute="leading" id="9dg-js-Mqv"/>
+                            <constraint firstAttribute="bottom" secondItem="Qxs-nk-IyG" secondAttribute="bottom" id="CW9-az-47e"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Expence Divider" id="lMQ-7g-MbR"/>
                     <connections>
-                        <outlet property="dividerScrollView" destination="Kd9-Ct-qVr" id="xug-VJ-VFr"/>
+                        <outlet property="dividerScrollView" destination="Qxs-nk-IyG" id="KzU-sh-Bk3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TP4-KK-5lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -378,7 +378,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EY0-Kk-iiP">
-                                <rect key="frame" x="0.0" y="20" width="320" height="55"/>
+                                <rect key="frame" x="0.0" y="40" width="320" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="v3c-vB-5HU"/>
                                 </constraints>
@@ -391,7 +391,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="oDg-A8-95L">
-                                <rect key="frame" x="0.0" y="75" width="320" height="493"/>
+                                <rect key="frame" x="0.0" y="95" width="320" height="473"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Record" textLabel="kms-BZ-En6" detailTextLabel="qgV-TO-RC7" style="IBUITableViewCellStyleSubtitle" id="t2o-9i-wcf">
@@ -433,7 +433,7 @@
                             <constraint firstAttribute="trailing" secondItem="oDg-A8-95L" secondAttribute="trailing" id="gDT-C2-6Ot"/>
                             <constraint firstItem="oDg-A8-95L" firstAttribute="leading" secondItem="rUM-Xz-zdS" secondAttribute="leading" id="hU3-Pi-6Ec"/>
                             <constraint firstItem="WZW-Ow-mKe" firstAttribute="top" secondItem="oDg-A8-95L" secondAttribute="bottom" id="jXU-Kd-TJ8"/>
-                            <constraint firstItem="EY0-Kk-iiP" firstAttribute="top" secondItem="xH5-Mq-kto" secondAttribute="bottom" id="xsX-ah-ApY"/>
+                            <constraint firstItem="EY0-Kk-iiP" firstAttribute="top" secondItem="xH5-Mq-kto" secondAttribute="bottom" constant="20" id="xsX-ah-ApY"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Zvs-Ku-TeI" appends="YES" id="EWu-5Y-4Vh"/>
@@ -445,7 +445,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryU-ed-fYy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="up" id="KXp-J7-CXC"/>
                 <swipeGestureRecognizer direction="down" id="Zvs-Ku-TeI">
                     <connections>
                         <action selector="swipeDown:" destination="KLK-OS-Gqs" id="FNF-z4-yh1"/>

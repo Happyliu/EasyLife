@@ -8,14 +8,12 @@
 
 #import "DividerViewController.h"
 #import "EasyLifeAppDelegate.h"
-#import "JVFloatLabeledTextField.h"
-#import "SingleExpenceRecord.h"
+#import "SingleExpenceRecordView.h"
 
-const static CGFloat PADDING = 10.0f;
 
 @interface DividerViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
-@property (strong, nonatomic) NSMutableArray *expenceForEachPerson;
+@property (strong, nonatomic) NSMutableArray *SingleExpenceRecordViews;
 @property (weak, nonatomic) IBOutlet UIScrollView *dividerScrollView;
 
 @end
@@ -72,26 +70,19 @@ const static CGFloat PADDING = 10.0f;
     self.tabBarController.tabBar.barTintColor = self.appTintColor;
     self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
     self.tabBarController.tabBar.translucent = NO;
+
     
-    JVFloatLabeledTextField *test = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(PADDING, 0, self.dividerScrollView.frame.size.width, 50)];
-    test.delegate = self;
-    test.placeholder = @"test";
+    SingleExpenceRecordView *test = [[SingleExpenceRecordView alloc] initWithFrame:CGRectMake(0, 0, self.dividerScrollView.frame.size.width, 150)];
+    //[self.dividerScrollView setContentSize:CGSizeMake(self.view.frame.size.width, 1000)];
+    test.layer.borderWidth = 1.0;
+    test.layer.borderColor = [UIColor blackColor].CGColor;
+    
+    SingleExpenceRecordView *test2 = [[SingleExpenceRecordView alloc] initWithFrame:CGRectMake(0, 150, self.dividerScrollView.frame.size.width, 150)];
+    test2.layer.borderWidth = 1.0;
+    test2.layer.borderColor = [UIColor blackColor].CGColor;
+
     [self.dividerScrollView addSubview:test];
-
-}
-
-- (NSMutableArray *)expenceForEachPerson
-{
-    if (!_expenceForEachPerson) {
-        
-    }
-    return _expenceForEachPerson;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
+    [self.dividerScrollView addSubview:test2];
 }
 
 @end

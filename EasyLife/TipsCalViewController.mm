@@ -285,7 +285,7 @@
 
 - (void)failAlert:(NSString *)message
 {
-    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Add Record" andText:message andCancelButton:NO forAlertType:AlertSuccess andColor:self.appTintColor] show];
+    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Add Record" andText:message andCancelButton:NO forAlertType:AlertFailure andColor:self.appTintColor] show];
 }
 
 - (void)fatalAlert:(NSString *)message

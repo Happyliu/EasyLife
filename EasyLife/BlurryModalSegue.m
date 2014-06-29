@@ -42,7 +42,7 @@ static UIImageOrientation ImageOrientationFromInterfaceOrientation(UIInterfaceOr
     if (self)
     {
         // Some sane defaults
-        self.backingImageBlurRadius = @(20);
+        self.backingImageBlurRadius = @(10);
         self.backingImageSaturationDeltaFactor = @(.45f);
         
         [[[self class] appearance] applyInvocationTo:self];

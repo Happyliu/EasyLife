@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Divider View Controller - Expence Divider-->
+        <!--Divider View Controller - Expense Divider-->
         <scene sceneID="uCZ-li-mPg">
             <objects>
                 <viewController id="GBg-Ng-o8A" customClass="DividerViewController" sceneMemberID="viewController">
@@ -29,7 +29,7 @@
                             <constraint firstAttribute="bottom" secondItem="Qxs-nk-IyG" secondAttribute="bottom" id="CW9-az-47e"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Expence Divider" id="lMQ-7g-MbR"/>
+                    <navigationItem key="navigationItem" title="Expense Divider" id="lMQ-7g-MbR"/>
                     <connections>
                         <outlet property="dividerScrollView" destination="Qxs-nk-IyG" id="KzU-sh-Bk3"/>
                     </connections>

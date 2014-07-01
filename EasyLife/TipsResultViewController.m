@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSMutableArray *tipsResults;
 @property (strong, nonatomic) NSIndexPath *currentSelectedIndexPath;
 @property (strong, nonatomic) UIImage *goDutchButtonBackgroundImage, *doneButtonBackgroundImage;
-@property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
+@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @property (strong, readwrite) Record *addedRecord;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong,nonatomic) CLLocation *location;

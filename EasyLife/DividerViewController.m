@@ -8,14 +8,14 @@
 
 #import "DividerViewController.h"
 #import "EasyLifeAppDelegate.h"
-#import "SingleExpenceRecordView.h"
+#import "SingleExpenseRecordView.h"
+#import "UIScrollView+UITouchEvent.h"
 
 
 @interface DividerViewController () <UITextFieldDelegate>
-@property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
-@property (strong, nonatomic) NSMutableArray *SingleExpenceRecordViews;
+@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
+@property (strong, nonatomic) NSMutableArray *singleExpenseRecordViews;
 @property (weak, nonatomic) IBOutlet UIScrollView *dividerScrollView;
-
 @end
 
 @implementation DividerViewController
@@ -70,19 +70,81 @@
     self.tabBarController.tabBar.barTintColor = self.appTintColor;
     self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
     self.tabBarController.tabBar.translucent = NO;
+}
 
-    
-    SingleExpenceRecordView *test = [[SingleExpenceRecordView alloc] initWithFrame:CGRectMake(0, 0, self.dividerScrollView.frame.size.width, 150)];
-    //[self.dividerScrollView setContentSize:CGSizeMake(self.view.frame.size.width, 1000)];
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    SingleExpenseRecordView *test = [[SingleExpenseRecordView alloc] initWithFrame:CGRectMake(0, 0, self.dividerScrollView.frame.size.width, 160)];
     test.layer.borderWidth = 1.0;
     test.layer.borderColor = [UIColor blackColor].CGColor;
+    test.expensePayerTextField.delegate = self;
+    test.expenseAmountTextField.delegate = self;
     
-    SingleExpenceRecordView *test2 = [[SingleExpenceRecordView alloc] initWithFrame:CGRectMake(0, 150, self.dividerScrollView.frame.size.width, 150)];
+    [self.singleExpenseRecordViews addObject:test];
+    test.tag = [self.singleExpenseRecordViews count];
+    
+    SingleExpenseRecordView *test2 = [[SingleExpenseRecordView alloc] initWithFrame:CGRectMake(0, 159, self.dividerScrollView.frame.size.width, 160)];
     test2.layer.borderWidth = 1.0;
     test2.layer.borderColor = [UIColor blackColor].CGColor;
+    test2.expensePayerTextField.delegate = self;
+    test2.expenseAmountTextField.delegate = self;
+    
+    
+    [self.singleExpenseRecordViews addObject:test2];
+    
+    test2.tag = [self.singleExpenseRecordViews count];
+    
+    self.dividerScrollView.contentSize = CGSizeMake(self.view.frame.size.width, [self.singleExpenseRecordViews count] * 160);
+    for (SingleExpenseRecordView *view in self.singleExpenseRecordViews) {
+        [self.view addSubview:view];
+    }
+    
+}
 
-    [self.dividerScrollView addSubview:test];
-    [self.dividerScrollView addSubview:test2];
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    for (SingleExpenseRecordView *view in self.singleExpenseRecordViews) {
+        [view removeFromSuperview];
+    }
+    self.singleExpenseRecordViews = nil;
+}
+
+- (NSMutableArray *)singleExpenseRecordViews
+{
+    if (!_singleExpenseRecordViews) {
+        _singleExpenseRecordViews = [[NSMutableArray alloc] init];
+    }
+    return _singleExpenseRecordViews;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (SingleExpenseRecordView *serv in self.singleExpenseRecordViews) {
+        [serv.expensePayerTextField resignFirstResponder];
+        [serv.expenseAmountTextField resignFirstResponder];
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField.superview.tag >= 2) {
+        CGPoint contentOffset = CGPointMake(0, ((SingleExpenseRecordView *)[self.singleExpenseRecordViews lastObject]).frame.origin.y);
+        [self.dividerScrollView setContentOffset:contentOffset animated:YES];
+    }
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES;
 }
 
 @end

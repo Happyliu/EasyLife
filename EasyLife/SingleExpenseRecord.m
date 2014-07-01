@@ -1,14 +1,14 @@
 //
-//  SingleExpenceRecord.m
+//  SingleExpenseRecord.m
 //  EasyLife
 //
 //  Created by 张 子豪 on 6/23/14.
 //  Copyright (c) 2014 Albert. All rights reserved.
 //
 
-#import "SingleExpenceRecord.h"
+#import "SingleExpenseRecord.h"
 
-@implementation SingleExpenceRecord
+@implementation SingleExpenseRecord
 
 - (NSString *)paymentPurpose
 {

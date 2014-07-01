@@ -13,12 +13,13 @@
 		50183B221955B24B0012E0B2 /* JVFloatLabeledTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B1C1955B24B0012E0B2 /* JVFloatLabeledTextField.m */; };
 		50183B251955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
 		50183B261955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
-		5030BE3B19582E1000985DEC /* SingleExpenceRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030BE3A19582E1000985DEC /* SingleExpenceRecord.m */; };
+		5030BE3B19582E1000985DEC /* SingleExpenseRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030BE3A19582E1000985DEC /* SingleExpenseRecord.m */; };
 		508B84C1195DA21B0056ABE1 /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84BE195DA21B0056ABE1 /* DIDatepicker.m */; };
 		508B84C2195DA21B0056ABE1 /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84BE195DA21B0056ABE1 /* DIDatepicker.m */; };
 		508B84C3195DA21B0056ABE1 /* DIDatepickerDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84C0195DA21B0056ABE1 /* DIDatepickerDateView.m */; };
 		508B84C4195DA21B0056ABE1 /* DIDatepickerDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84C0195DA21B0056ABE1 /* DIDatepickerDateView.m */; };
-		508B84D61960685A0056ABE1 /* SingleExpenceRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84D51960685A0056ABE1 /* SingleExpenceRecordView.m */; };
+		508B84D61960685A0056ABE1 /* SingleExpenseRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84D51960685A0056ABE1 /* SingleExpenseRecordView.m */; };
+		5091AB7F1962FB4B00B626B3 /* UIScrollView+UITouchEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5091AB7E1962FB4B00B626B3 /* UIScrollView+UITouchEvent.m */; };
 		50C1A6A019267C3400525552 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */; };
 		50C403E319250FA00099FAFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E219250FA00099FAFD /* Foundation.framework */; };
 		50C403E519250FA00099FAFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E419250FA00099FAFD /* CoreGraphics.framework */; };
@@ -404,14 +405,16 @@
 		50183B1C1955B24B0012E0B2 /* JVFloatLabeledTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatLabeledTextField.m; sourceTree = "<group>"; };
 		50183B1F1955B24B0012E0B2 /* NSString+TextDirectionality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TextDirectionality.h"; sourceTree = "<group>"; };
 		50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TextDirectionality.m"; sourceTree = "<group>"; };
-		5030BE3919582E1000985DEC /* SingleExpenceRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleExpenceRecord.h; sourceTree = "<group>"; };
-		5030BE3A19582E1000985DEC /* SingleExpenceRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleExpenceRecord.m; sourceTree = "<group>"; };
+		5030BE3919582E1000985DEC /* SingleExpenseRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleExpenseRecord.h; sourceTree = "<group>"; };
+		5030BE3A19582E1000985DEC /* SingleExpenseRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleExpenseRecord.m; sourceTree = "<group>"; };
 		508B84BD195DA21B0056ABE1 /* DIDatepicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepicker.h; sourceTree = "<group>"; };
 		508B84BE195DA21B0056ABE1 /* DIDatepicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepicker.m; sourceTree = "<group>"; };
 		508B84BF195DA21B0056ABE1 /* DIDatepickerDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepickerDateView.h; sourceTree = "<group>"; };
 		508B84C0195DA21B0056ABE1 /* DIDatepickerDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepickerDateView.m; sourceTree = "<group>"; };
-		508B84D41960685A0056ABE1 /* SingleExpenceRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleExpenceRecordView.h; sourceTree = "<group>"; };
-		508B84D51960685A0056ABE1 /* SingleExpenceRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleExpenceRecordView.m; sourceTree = "<group>"; };
+		508B84D41960685A0056ABE1 /* SingleExpenseRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleExpenseRecordView.h; sourceTree = "<group>"; };
+		508B84D51960685A0056ABE1 /* SingleExpenseRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleExpenseRecordView.m; sourceTree = "<group>"; };
+		5091AB7D1962FB4B00B626B3 /* UIScrollView+UITouchEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+UITouchEvent.h"; sourceTree = "<group>"; };
+		5091AB7E1962FB4B00B626B3 /* UIScrollView+UITouchEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+UITouchEvent.m"; sourceTree = "<group>"; };
 		50C1A69E19267C3400525552 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
 		50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		50C403DF19250FA00099FAFD /* EasyLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -970,8 +973,10 @@
 				50183B1719559D570012E0B2 /* CoreDataModel */,
 				50183B1619559D450012E0B2 /* FlatColors */,
 				50EB009E19556D52009C346D /* BlurryModalSegue */,
-				5030BE3919582E1000985DEC /* SingleExpenceRecord.h */,
-				5030BE3A19582E1000985DEC /* SingleExpenceRecord.m */,
+				5030BE3919582E1000985DEC /* SingleExpenseRecord.h */,
+				5030BE3A19582E1000985DEC /* SingleExpenseRecord.m */,
+				5091AB7D1962FB4B00B626B3 /* UIScrollView+UITouchEvent.h */,
+				5091AB7E1962FB4B00B626B3 /* UIScrollView+UITouchEvent.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -984,8 +989,8 @@
 				50C40414192510B00099FAFD /* iPhone.storyboard */,
 				50183B10195587190012E0B2 /* RecognitionCameraOverlayView.h */,
 				50183B11195587190012E0B2 /* RecognitionCameraOverlayView.m */,
-				508B84D41960685A0056ABE1 /* SingleExpenceRecordView.h */,
-				508B84D51960685A0056ABE1 /* SingleExpenceRecordView.m */,
+				508B84D41960685A0056ABE1 /* SingleExpenseRecordView.h */,
+				508B84D51960685A0056ABE1 /* SingleExpenseRecordView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1524,7 +1529,7 @@
 				50D60B61195A983200A9F628 /* GPUImageNobleCornerDetectionFilter.m in Sources */,
 				50D60B31195A983200A9F628 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
 				50D60B29195A983200A9F628 /* GPUImageHueFilter.m in Sources */,
-				5030BE3B19582E1000985DEC /* SingleExpenceRecord.m in Sources */,
+				5030BE3B19582E1000985DEC /* SingleExpenseRecord.m in Sources */,
 				50D60B49195A983200A9F628 /* GPUImageLuminosity.m in Sources */,
 				50D60B57195A983200A9F628 /* GPUImageMotionBlurFilter.m in Sources */,
 				50D60BBD195A983200A9F628 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
@@ -1565,7 +1570,7 @@
 				50D60B1B195A983200A9F628 /* GPUImageHighlightShadowFilter.m in Sources */,
 				50D60BDD195A983200A9F628 /* GPUImageWeakPixelInclusionFilter.m in Sources */,
 				50D60AF5195A983200A9F628 /* GPUImageExclusionBlendFilter.m in Sources */,
-				508B84D61960685A0056ABE1 /* SingleExpenceRecordView.m in Sources */,
+				508B84D61960685A0056ABE1 /* SingleExpenseRecordView.m in Sources */,
 				50D60B6D195A983200A9F628 /* GPUImageOverlayBlendFilter.m in Sources */,
 				50D60B8B195A983200A9F628 /* GPUImageRGBErosionFilter.m in Sources */,
 				50D60AB7195A983200A9F628 /* GPUImageAverageColor.m in Sources */,
@@ -1583,6 +1588,7 @@
 				50D60B11195A983200A9F628 /* GPUImageGrayscaleFilter.m in Sources */,
 				50D60B15195A983200A9F628 /* GPUImageHardLightBlendFilter.m in Sources */,
 				50D60AD1195A983200A9F628 /* GPUImageColorBurnBlendFilter.m in Sources */,
+				5091AB7F1962FB4B00B626B3 /* UIScrollView+UITouchEvent.m in Sources */,
 				50D60BBB195A983200A9F628 /* GPUImageThreeInputFilter.m in Sources */,
 				50D60BEE195A984A00A9F628 /* GPUImageContext.m in Sources */,
 				50D60BC9195A983200A9F628 /* GPUImageTransformFilter.m in Sources */,

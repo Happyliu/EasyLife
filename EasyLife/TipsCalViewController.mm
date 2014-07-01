@@ -25,7 +25,7 @@
 @property BOOL isDoted, isAddedRecord, isSuccessAddedRecord;
 @property double currentResult;
 @property (strong, nonatomic) UIImage *resetButtonBackgroundImage, *normalButtonBackgroundImage, *calculateButtonBackgroundImage;
-@property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appBlackColor;
+@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appBlackColor;
 @property (strong, nonatomic) UIImagePickerController *picker;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSString *detectedResult;

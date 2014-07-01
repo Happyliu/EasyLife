@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SingleExpenceRecord : NSObject
+@interface SingleExpenseRecord : NSObject
 @property (strong, nonatomic) NSString *paymentPurpose;
 @property (strong, nonatomic) NSString *payerName;
 @property (strong, nonatomic) NSString *description;

@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property float numberOfPeopleToShare;
 @property (strong, nonatomic) UIImage *doneButtonBackgroundImage;
-@property (strong, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
+@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @property (strong, readwrite) Record *addedRecord;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong,nonatomic) CLLocation *location;

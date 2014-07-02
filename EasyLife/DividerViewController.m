@@ -83,7 +83,6 @@
     
     [self.singleExpenseRecordViews addObject:test];
     test.tag = [self.singleExpenseRecordViews count];
-    
     SingleExpenseRecordView *test2 = [[SingleExpenseRecordView alloc] initWithFrame:CGRectMake(0, 159, self.dividerScrollView.frame.size.width, 160)];
     test2.layer.borderWidth = 1.0;
     test2.layer.borderColor = [UIColor blackColor].CGColor;
@@ -94,10 +93,9 @@
     [self.singleExpenseRecordViews addObject:test2];
     
     test2.tag = [self.singleExpenseRecordViews count];
-    
     self.dividerScrollView.contentSize = CGSizeMake(self.view.frame.size.width, [self.singleExpenseRecordViews count] * 160);
     for (SingleExpenseRecordView *view in self.singleExpenseRecordViews) {
-        [self.view addSubview:view];
+        [self.dividerScrollView addSubview:view];
     }
     
 }
@@ -136,6 +134,7 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (textField.superview.tag >= 2) {
+        [self.dividerScrollView setContentSize:CGSizeMake(self.dividerScrollView.frame.size.width, [self.singleExpenseRecordViews count] * 160 + 150)];
         CGPoint contentOffset = CGPointMake(0, ((SingleExpenseRecordView *)[self.singleExpenseRecordViews lastObject]).frame.origin.y);
         [self.dividerScrollView setContentOffset:contentOffset animated:YES];
     }

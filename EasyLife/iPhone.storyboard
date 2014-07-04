@@ -28,7 +28,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Calculate !"/>
                                 <connections>
-                                    <segue destination="YfK-ZZ-xt1" kind="push" id="ydK-ih-Kgw"/>
+                                    <segue destination="YfK-ZZ-xt1" kind="push" identifier="Calculate Expense" id="ydK-ih-Kgw"/>
                                 </connections>
                             </button>
                         </subviews>

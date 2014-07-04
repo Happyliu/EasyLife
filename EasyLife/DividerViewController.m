@@ -102,6 +102,8 @@
     [self.dividerScrollView setContentSize:CGSizeMake(self.dividerScrollView.frame.size.width, [self.singleExpenseRecordViews count] * 164 + 1)];
     
     self.currentViewTag = 0;
+    self.currentPoint = CGPointMake(0, 0);self.currentViewTag = 0;
+    [self setContentOffsetAnimation:self.currentPoint.y];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

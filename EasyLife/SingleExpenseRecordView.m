@@ -13,11 +13,13 @@ const static CGFloat textFieldMargin = 10.0f;
 const static CGFloat textFieldHeight = 50.0f;
 const static CGFloat textFieldFontSize = 17.0f;
 const static CGFloat floatingTextFieldFontSize = 12.0f;
-const static CGFloat marginBetweenTextField = 3.5f;
+const static CGFloat marginBetweenTextField = 2.5f;
 
 @interface SingleExpenseRecordView ()
 @property (nonatomic, readwrite) DIDatepicker *datePicker;
 @property (nonatomic, readwrite) JVFloatLabeledTextField *expensePayerTextField, *expenseAmountTextField;
+@property (nonatomic, readwrite) JVFloatLabeledTextField *expenseDescriptionTextField;
+@property (nonatomic, strong) UIView *horizontalLine, *verticalLine;
 @end
 
 @implementation SingleExpenseRecordView
@@ -30,26 +32,12 @@ const static CGFloat marginBetweenTextField = 3.5f;
         
         self.datePicker.selectedDateBottomLineColor = appDelegate.appSecondColor;
         
-//        JVFloatLabeledTextField *expenseDescriptionTextField = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(textFieldMargin ,datePicker.frame.size.height + expensePayerTextField.frame.size.height, self.frame.size.width - 2 * textFieldMargin, textFieldHeight)];
-//        expenseDescriptionTextField.font = [UIFont systemFontOfSize:textFieldFontSize];
-//        expenseDescriptionTextField.floatingLabelFont = [UIFont systemFontOfSize:floatingTextFieldFontSize];
-//        expenseDescriptionTextField.floatingLabelYPadding = [NSNumber numberWithInt:3];
-//        expenseDescriptionTextField.delegate = self;
-//        expenseDescriptionTextField.placeholder = @"Description";
-//        expenseDescriptionTextField.clearButtonMode = YES;
-//        expenseDescriptionTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
-        
-        UIView *div1 = [UIView new];
-        div1.frame = CGRectMake(textFieldMargin, self.expensePayerTextField.frame.origin.y + self.expensePayerTextField.frame.size.height,
-                                self.frame.size.width - 2 * textFieldMargin, 1.0f);
-        div1.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3f];
-        
         [self addSubview:self.datePicker];
         [self addSubview:self.expensePayerTextField];
         [self addSubview:self.expenseAmountTextField];
-//        [self addSubview:expenseDescriptionTextField];
-        [self addSubview:div1];
-        
+        [self addSubview:self.expenseDescriptionTextField];
+        [self addSubview:self.horizontalLine];
+        [self addSubview:self.verticalLine];
     }
     return self;
 }
@@ -59,7 +47,7 @@ const static CGFloat marginBetweenTextField = 3.5f;
     if (!_datePicker) {
         _datePicker = [[DIDatepicker alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 55)];
         [_datePicker fillCurrentMonth];
-        [_datePicker selectDateAtIndex:3];
+        [_datePicker selectDateAtIndex:1];
     }
     return _datePicker;
 }
@@ -67,7 +55,7 @@ const static CGFloat marginBetweenTextField = 3.5f;
 - (JVFloatLabeledTextField *)expensePayerTextField
 {
     if (!_expensePayerTextField) {
-        _expensePayerTextField = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(textFieldMargin, self.datePicker.frame.size.height + marginBetweenTextField, self.frame.size.width/2 - textFieldMargin, textFieldHeight)];
+        _expensePayerTextField = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(self.frame.size.width/5 * 2 + self.verticalLine.frame.size.width + textFieldMargin, self.horizontalLine.frame.origin.y + self.horizontalLine.frame.size.height + marginBetweenTextField, self.frame.size.width/5 * 3 - textFieldMargin, textFieldHeight)];
         _expensePayerTextField.font = [UIFont systemFontOfSize:textFieldFontSize];
         _expensePayerTextField.floatingLabelFont = [UIFont systemFontOfSize:floatingTextFieldFontSize];
         _expensePayerTextField.floatingLabelYPadding = [NSNumber numberWithInt:3];
@@ -82,7 +70,7 @@ const static CGFloat marginBetweenTextField = 3.5f;
 - (JVFloatLabeledTextField *)expenseAmountTextField
 {
     if (!_expenseAmountTextField) {
-        _expenseAmountTextField = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(self.frame.size.width/2, self.datePicker.frame.size.height + marginBetweenTextField, self.frame.size.width/2 - textFieldMargin, textFieldHeight)];
+        _expenseAmountTextField = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(textFieldMargin, self.horizontalLine.frame.origin.y + self.horizontalLine.frame.size.height + marginBetweenTextField, self.frame.size.width/5 * 2 - textFieldMargin * 2, textFieldHeight)];
         _expenseAmountTextField.font = [UIFont systemFontOfSize:textFieldFontSize];
         _expenseAmountTextField.floatingLabelFont = [UIFont systemFontOfSize:floatingTextFieldFontSize];
         _expenseAmountTextField.floatingLabelYPadding = [NSNumber numberWithInt:3];
@@ -90,8 +78,45 @@ const static CGFloat marginBetweenTextField = 3.5f;
         _expenseAmountTextField.clearButtonMode = YES;
         _expenseAmountTextField.keyboardType = UIKeyboardTypeDecimalPad;
         _expenseAmountTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
+        
     }
     return _expenseAmountTextField;
+}
+
+- (JVFloatLabeledTextField *)expenseDescriptionTextField
+{
+    if (!_expenseDescriptionTextField) {
+        _expenseDescriptionTextField = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(textFieldMargin, self.datePicker.frame.size.height + marginBetweenTextField, self.frame.size.width - 2 * textFieldMargin, textFieldHeight)];
+        _expenseDescriptionTextField.font = [UIFont systemFontOfSize:textFieldFontSize];
+        _expenseDescriptionTextField.floatingLabelFont = [UIFont systemFontOfSize:floatingTextFieldFontSize];
+        _expenseDescriptionTextField.floatingLabelYPadding = [NSNumber numberWithInt:3];
+        _expenseDescriptionTextField.placeholder = @"Description";
+        _expenseDescriptionTextField.clearButtonMode = YES;
+        _expenseDescriptionTextField.returnKeyType = UIReturnKeyDone;
+        _expenseDescriptionTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
+    }
+    return _expenseDescriptionTextField;
+}
+
+- (UIView *)horizontalLine
+{
+    if (!_horizontalLine) {
+        _horizontalLine = [[UIView alloc] init];
+        _horizontalLine.frame = CGRectMake(textFieldMargin, self.expenseDescriptionTextField.frame.origin.y + self.expenseDescriptionTextField.frame.size.height,
+                                self.frame.size.width - 2 * textFieldMargin, 1.0f);
+        _horizontalLine.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3f];
+    }
+    return _horizontalLine;
+}
+
+- (UIView *)verticalLine
+{
+    if (!_verticalLine) {
+        _verticalLine = [[UIView alloc] init];
+        _verticalLine.frame = CGRectMake(self.expenseAmountTextField.frame.size.width + 2 * textFieldMargin, self.horizontalLine.frame.origin.y + self.horizontalLine.frame.size.height + marginBetweenTextField, 1.0f, textFieldHeight);
+        _verticalLine.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3f];
+    }
+    return _verticalLine;
 }
 
 - (BOOL)isEmpty

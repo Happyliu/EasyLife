@@ -12,8 +12,7 @@
 
 @interface SingleExpenseRecordView : UIView
 @property (nonatomic, readonly) DIDatepicker *datePicker;
-@property (nonatomic, readonly) JVFloatLabeledTextField *expensePayerTextField, *expenseAmountTextField;
-
+@property (nonatomic, readonly) JVFloatLabeledTextField *expensePayerTextField, *expenseAmountTextField, *expenseDescriptionTextField;;
 - (BOOL)isEmpty;
 - (BOOL)isValid;
 @end

@@ -16,11 +16,16 @@
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @property (strong, nonatomic) NSMutableArray *singleExpenseRecordViews;
 @property (weak, nonatomic) IBOutlet UIScrollView *dividerScrollView;
+@property CGPoint currentPoint;
+@property (weak, nonatomic) IBOutlet UIButton *calculateButton;
+@property (strong, nonatomic) UIImage *calculateButtonBackgroundImage;
+@property NSInteger currentViewTag;
+@property BOOL isSameTag;
 @end
 
 @implementation DividerViewController
 
-#pragma mark - Initialize app colors
+#pragma mark - AppColor
 
 - (UIColor *)appTintColor
 {
@@ -58,6 +63,8 @@
     return _appBlackColor;
 }
 
+#pragma mark - ViewLifeCycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -70,34 +77,31 @@
     self.tabBarController.tabBar.barTintColor = self.appTintColor;
     self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
     self.tabBarController.tabBar.translucent = NO;
+    
+    [self.calculateButton setBackgroundImage:self.calculateButtonBackgroundImage forState:UIControlStateNormal];
+    [self.calculateButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    SingleExpenseRecordView *test = [[SingleExpenseRecordView alloc] initWithFrame:CGRectMake(0, 0, self.dividerScrollView.frame.size.width, 160)];
-    test.layer.borderWidth = 1.0;
-    test.layer.borderColor = [UIColor blackColor].CGColor;
-    test.expensePayerTextField.delegate = self;
-    test.expenseAmountTextField.delegate = self;
     
-    [self.singleExpenseRecordViews addObject:test];
-    test.tag = [self.singleExpenseRecordViews count];
-    SingleExpenseRecordView *test2 = [[SingleExpenseRecordView alloc] initWithFrame:CGRectMake(0, 159, self.dividerScrollView.frame.size.width, 160)];
-    test2.layer.borderWidth = 1.0;
-    test2.layer.borderColor = [UIColor blackColor].CGColor;
-    test2.expensePayerTextField.delegate = self;
-    test2.expenseAmountTextField.delegate = self;
+    self.isSameTag = NO;
     
+    SingleExpenseRecordView *firstExpenseView = [[SingleExpenseRecordView alloc] initWithFrame:CGRectMake(0, 0, self.dividerScrollView.frame.size.width, 165)];
+    firstExpenseView.layer.borderWidth = 1.0;
+    firstExpenseView.layer.borderColor = self.appBlackColor.CGColor;
+    firstExpenseView.expensePayerTextField.delegate = self;
+    firstExpenseView.expenseAmountTextField.delegate = self;
+    firstExpenseView.expenseDescriptionTextField.delegate = self;
     
-    [self.singleExpenseRecordViews addObject:test2];
+    [self.singleExpenseRecordViews addObject:firstExpenseView];
+    firstExpenseView.tag = [self.singleExpenseRecordViews count];
+
+    [self.dividerScrollView addSubview:firstExpenseView];
+    [self.dividerScrollView setContentSize:CGSizeMake(self.dividerScrollView.frame.size.width, [self.singleExpenseRecordViews count] * 164 + 1)];
     
-    test2.tag = [self.singleExpenseRecordViews count];
-    self.dividerScrollView.contentSize = CGSizeMake(self.view.frame.size.width, [self.singleExpenseRecordViews count] * 160);
-    for (SingleExpenseRecordView *view in self.singleExpenseRecordViews) {
-        [self.dividerScrollView addSubview:view];
-    }
-    
+    self.currentViewTag = 0;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -109,6 +113,8 @@
     self.singleExpenseRecordViews = nil;
 }
 
+#pragma mark - SingleExpenseRecordViewsInit
+
 - (NSMutableArray *)singleExpenseRecordViews
 {
     if (!_singleExpenseRecordViews) {
@@ -117,33 +123,81 @@
     return _singleExpenseRecordViews;
 }
 
+#pragma mark - TouchGestureForScrollView
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     for (SingleExpenseRecordView *serv in self.singleExpenseRecordViews) {
         [serv.expensePayerTextField resignFirstResponder];
         [serv.expenseAmountTextField resignFirstResponder];
+        [serv.expenseDescriptionTextField resignFirstResponder];
     }
+    self.currentViewTag = 0;
+    [self setContentOffsetAnimation:self.currentPoint.y];
+}
+
+#pragma mark - TextFieldDelegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField.superview.tag != self.currentViewTag) {
+        self.currentViewTag = textField.superview.tag;
+        self.currentPoint = self.dividerScrollView.contentOffset;
+        [self setContentOffsetAnimation:((SingleExpenseRecordView *)self.singleExpenseRecordViews[textField.superview.tag - 1]).frame.origin.y];
+    }
+    return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    self.currentViewTag = 0;
+    [self setContentOffsetAnimation:self.currentPoint.y];
     return YES;
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+#pragma mark - ScrollViewTouchEvent
+
+- (void)setContentOffsetAnimation:(CGFloat)offsetY
 {
-    if (textField.superview.tag >= 2) {
-        [self.dividerScrollView setContentSize:CGSizeMake(self.dividerScrollView.frame.size.width, [self.singleExpenseRecordViews count] * 160 + 150)];
-        CGPoint contentOffset = CGPointMake(0, ((SingleExpenseRecordView *)[self.singleExpenseRecordViews lastObject]).frame.origin.y);
-        [self.dividerScrollView setContentOffset:contentOffset animated:YES];
+    [UIView animateWithDuration:.3 animations:^{
+        self.dividerScrollView.contentOffset = CGPointMake(0, offsetY);
+    }];
+}
+
+#pragma mark - AddNewRecordView
+
+- (IBAction)addNewSingleRecordView:(id)sender {
+    SingleExpenseRecordView *lastView = [self.singleExpenseRecordViews lastObject];
+    SingleExpenseRecordView *serv = [[SingleExpenseRecordView alloc] initWithFrame:CGRectMake(0, lastView.frame.origin.y + lastView.frame.size.height - 1, self.dividerScrollView.frame.size.width, lastView.frame.size.height)];
+    serv.layer.borderWidth = 1.0;
+    serv.layer.borderColor = [UIColor blackColor].CGColor;
+    serv.expensePayerTextField.delegate = self;
+    serv.expenseAmountTextField.delegate = self;
+    serv.expenseDescriptionTextField.delegate = self;
+    
+    [self.singleExpenseRecordViews addObject:serv];
+    serv.tag = [self.singleExpenseRecordViews count];
+    
+    [self.dividerScrollView addSubview:[self.singleExpenseRecordViews lastObject]];
+    [self.dividerScrollView setContentSize:CGSizeMake(self.dividerScrollView.frame.size.width, [self.singleExpenseRecordViews count] * 164 + 1)];
+}
+
+#pragma mark - ButtonBackgroundImage
+
+- (UIImage *)calculateButtonBackgroundImage
+{
+    if (!_calculateButtonBackgroundImage) {
+        UIColor *color = self.appSecondColor;
+        CGRect rect = CGRectMake(0, 0, 1, 1);
+        UIGraphicsBeginImageContext(rect.size);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetFillColorWithColor(context, [color CGColor]);
+        CGContextFillRect(context, rect);
+        _calculateButtonBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
     }
-    return YES;
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-{
-    return YES;
+    return _calculateButtonBackgroundImage;
 }
 
 @end

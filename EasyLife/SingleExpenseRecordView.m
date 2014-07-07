@@ -123,6 +123,9 @@ const static CGFloat marginBetweenTextField = 2.5f;
 
 - (BOOL)isEmpty
 {
+    if ([self.expenseDescriptionTextField.text isEqualToString:@""] && [self.expenseAmountTextField.text isEqualToString:@""] && [self.expensePayerTextField.text isEqualToString:@""]) {
+        return YES;
+    }
     return NO;
 }
 

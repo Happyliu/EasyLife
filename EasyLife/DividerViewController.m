@@ -10,7 +10,7 @@
 #import "EasyLifeAppDelegate.h"
 #import "SingleExpenseRecordView.h"
 #import "UIScrollView+UITouchEvent.h"
-#import "AMSmoothAlertConstants.h"
+#import "AMSmoothAlertView.h"
 
 @interface DividerViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
@@ -224,9 +224,26 @@
 
 #pragma mark - Segue
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     
+    if ([identifier isEqualToString:@"Calculate Expense"]) {
+        for (SingleExpenseRecordView *view in self.singleExpenseRecordViews) {
+            if ([view isEmpty]) {
+                [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Error" andText:[NSString stringWithFormat:@"Record No.%@ is empty!", [NSNumber numberWithInteger:view.tag]] andCancelButton:NO forAlertType:AlertFailure andColor:self.appTintColor] show];
+                return NO;
+            } else if (![view isValid]) {
+                return NO;
+            }
+        }
+    } else {
+        [super shouldPerformSegueWithIdentifier:identifier sender:sender];
+    }
+    return YES;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
 }
 
 @end

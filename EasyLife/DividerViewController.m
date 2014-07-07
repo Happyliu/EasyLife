@@ -193,7 +193,7 @@
     [self.dividerScrollView addSubview:[self.singleExpenseRecordViews lastObject]];
     [self.dividerScrollView setContentSize:CGSizeMake(self.dividerScrollView.frame.size.width, [self.singleExpenseRecordViews count] * 164 + 1)];
     
-    if (serv.tag > 2) {
+    if (self.dividerScrollView.contentSize.height > self.dividerScrollView.frame.size.height) {
         [self setContentOffsetAnimationToTheBottom];
     }
     [UIView beginAnimations:nil context:nil];

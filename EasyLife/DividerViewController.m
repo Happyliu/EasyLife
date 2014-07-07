@@ -10,7 +10,7 @@
 #import "EasyLifeAppDelegate.h"
 #import "SingleExpenseRecordView.h"
 #import "UIScrollView+UITouchEvent.h"
-
+#import "AMSmoothAlertConstants.h"
 
 @interface DividerViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
@@ -145,7 +145,7 @@
     if (textField.superview.tag != self.currentViewTag) {
         self.currentViewTag = textField.superview.tag;
         self.currentPoint = self.dividerScrollView.contentOffset;
-        [self setContentOffsetAnimation:((SingleExpenseRecordView *)self.singleExpenseRecordViews[textField.superview.tag - 1]).frame.origin.y];
+        [self setContentOffsetAnimation:((SingleExpenseRecordView *)self.singleExpenseRecordViews[self.currentViewTag - 1]).frame.origin.y];
     }
     return YES;
 }
@@ -162,27 +162,47 @@
 
 - (void)setContentOffsetAnimation:(CGFloat)offsetY
 {
-    [UIView animateWithDuration:.3 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         self.dividerScrollView.contentOffset = CGPointMake(0, offsetY);
+    }];
+}
+
+- (void)setContentOffsetAnimationToTheBottom
+{
+    [UIView animateWithDuration:0.4 animations:^{
+        self.dividerScrollView.contentOffset = CGPointMake(0,  self.dividerScrollView.contentSize.height - self.dividerScrollView.frame.size.height );
     }];
 }
 
 #pragma mark - AddNewRecordView
 
 - (IBAction)addNewSingleRecordView:(id)sender {
+    
     SingleExpenseRecordView *lastView = [self.singleExpenseRecordViews lastObject];
-    SingleExpenseRecordView *serv = [[SingleExpenseRecordView alloc] initWithFrame:CGRectMake(0, lastView.frame.origin.y + lastView.frame.size.height - 1, self.dividerScrollView.frame.size.width, lastView.frame.size.height)];
+    SingleExpenseRecordView *serv = [[SingleExpenseRecordView alloc] initWithFrame:CGRectMake(self.dividerScrollView.frame.size.width, lastView.frame.origin.y + lastView.frame.size.height - 1, self.dividerScrollView.frame.size.width, lastView.frame.size.height)];
     serv.layer.borderWidth = 1.0;
-    serv.layer.borderColor = [UIColor blackColor].CGColor;
+    serv.layer.borderColor = self.appBlackColor.CGColor;
     serv.expensePayerTextField.delegate = self;
     serv.expenseAmountTextField.delegate = self;
     serv.expenseDescriptionTextField.delegate = self;
     
     [self.singleExpenseRecordViews addObject:serv];
+
     serv.tag = [self.singleExpenseRecordViews count];
     
     [self.dividerScrollView addSubview:[self.singleExpenseRecordViews lastObject]];
     [self.dividerScrollView setContentSize:CGSizeMake(self.dividerScrollView.frame.size.width, [self.singleExpenseRecordViews count] * 164 + 1)];
+    
+    if (serv.tag > 2) {
+        [self setContentOffsetAnimationToTheBottom];
+    }
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationDuration:0.3];
+    [serv setFrame:CGRectMake(0, lastView.frame.origin.y + lastView.frame.size.height - 1, self.dividerScrollView.frame.size.width, lastView.frame.size.height)];
+    [UIView commitAnimations];
+    
+
 }
 
 #pragma mark - ButtonBackgroundImage
@@ -200,6 +220,13 @@
         UIGraphicsEndImageContext();
     }
     return _calculateButtonBackgroundImage;
+}
+
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
 }
 
 @end

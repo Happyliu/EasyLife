@@ -28,6 +28,8 @@ const static CGFloat marginBetweenTextField = 2.5f;
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        
         EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         
         self.datePicker.selectedDateBottomLineColor = appDelegate.appSecondColor;

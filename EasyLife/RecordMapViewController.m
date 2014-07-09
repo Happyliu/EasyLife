@@ -9,12 +9,14 @@
 #import "RecordMapViewController.h"
 #import <MapKit/MapKit.h>
 #import "EasyLifeAppDelegate.h"
+#import "CATextLayer+NumberJump.h"
 
 @interface RecordMapViewController () <MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segements;
-@property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
+@property (strong, nonatomic) UIView *totalAmountBackgroundView;
+@property (strong, nonatomic) CATextLayer *totalAmountLayer;
 @property (strong, nonatomic) NSArray *records;
 @property double totalAmount;
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
@@ -69,17 +71,46 @@
     self.mapView.showsPointsOfInterest = YES;
     self.mapView.showsBuildings = YES;
     self.segements.selectedSegmentIndex = 0;
-    self.totalAmountLabel.text = [NSString stringWithFormat:@"$%.2f", self.totalAmount];
     self.totalLabel.backgroundColor = self.appTintColor;
     self.totalLabel.textColor = [UIColor whiteColor];
-    self.totalAmountLabel.backgroundColor = self.appTintColor;
-    self.totalAmountLabel.textColor = [UIColor whiteColor];
+    [self.view addSubview:self.totalAmountBackgroundView];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
+    [super viewWillAppear:animated];
+    [self.view.layer addSublayer:self.totalAmountLayer];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.totalAmountLayer removeFromSuperlayer];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+}
+
+- (UIView *)totalAmountBackgroundView
+{
+    if (!_totalAmountBackgroundView) {
+        UIView *view = [[UIView alloc] init];
+        view.frame = CGRectMake(self.view.frame.size.width / 2, self.view.frame.size.height - self.totalLabel.frame.size.height, self.view.frame.size.width / 2, self.totalLabel.frame.size.height);
+        view.backgroundColor = self.appTintColor;
+        _totalAmountBackgroundView = view;
+    }
+    return _totalAmountBackgroundView;
+}
+
+- (CATextLayer *)totalAmountLayer
+{
+    if (!_totalAmountLayer) {
+        _totalAmountLayer = [[CATextLayer alloc] init];
+        _totalAmountLayer.frame = CGRectMake(self.totalAmountBackgroundView.frame.origin.x + 10, self.totalAmountBackgroundView.frame.origin.y + 15, self.totalAmountBackgroundView.frame.size.width - 20, self.totalAmountBackgroundView.frame.size.height);
+        _totalAmountLayer.backgroundColor = [UIColor clearColor].CGColor;
+        _totalAmountLayer.contentsScale = [UIScreen mainScreen].scale;
+        _totalAmountLayer.fontSize = 24;
+        
+    }
+    return _totalAmountLayer;
 }
 
 - (void)setMapView:(MKMapView *)mapView
@@ -105,7 +136,7 @@
     for (Record *record in self.records) {
         self.totalAmount += [record.amount doubleValue];
     }
-    self.totalAmountLabel.text = [NSString stringWithFormat:@"$%.2f", self.totalAmount];
+    [self.totalAmountLayer jumpNumberWithDuration:1.5 fromNumber:0 toNumber:self.totalAmount];
     self.records = nil;
 }
 

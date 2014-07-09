@@ -376,6 +376,9 @@
 		50D60BF5195A984A00A9F628 /* GPUImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D60BED195A984A00A9F628 /* GPUImageView.m */; };
 		50D60BFD195AA19700A9F628 /* Xpence.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50D60BFB195AA19700A9F628 /* Xpence.xcdatamodeld */; };
 		50D60C00195AA24500A9F628 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D60BFF195AA24500A9F628 /* Record.m */; };
+		50D6DBE1196D1404002CA9F6 /* CATextLayer+NumberJump.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D6DBDE196D1404002CA9F6 /* CATextLayer+NumberJump.m */; };
+		50D6DBE2196D1404002CA9F6 /* NJDBezierCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D6DBE0196D1404002CA9F6 /* NJDBezierCurve.m */; };
+		50D6DBE6196D26EE002CA9F6 /* RQShineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D6DBE5196D26EE002CA9F6 /* RQShineLabel.m */; };
 		50EB007F1952EEA7009C346D /* DividerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB007E1952EEA7009C346D /* DividerViewController.m */; };
 		50EB008519555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */; };
 		50EB008619555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */; };
@@ -791,6 +794,12 @@
 		50D60BFC195AA19700A9F628 /* Xpence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Xpence.xcdatamodel; sourceTree = "<group>"; };
 		50D60BFE195AA24500A9F628 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
 		50D60BFF195AA24500A9F628 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
+		50D6DBDD196D1404002CA9F6 /* CATextLayer+NumberJump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CATextLayer+NumberJump.h"; sourceTree = "<group>"; };
+		50D6DBDE196D1404002CA9F6 /* CATextLayer+NumberJump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CATextLayer+NumberJump.m"; sourceTree = "<group>"; };
+		50D6DBDF196D1404002CA9F6 /* NJDBezierCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJDBezierCurve.h; sourceTree = "<group>"; };
+		50D6DBE0196D1404002CA9F6 /* NJDBezierCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJDBezierCurve.m; sourceTree = "<group>"; };
+		50D6DBE4196D26EE002CA9F6 /* RQShineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RQShineLabel.h; sourceTree = "<group>"; };
+		50D6DBE5196D26EE002CA9F6 /* RQShineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RQShineLabel.m; sourceTree = "<group>"; };
 		50EB007D1952EEA7009C346D /* DividerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DividerViewController.h; sourceTree = "<group>"; };
 		50EB007E1952EEA7009C346D /* DividerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DividerViewController.m; sourceTree = "<group>"; };
 		50EB008319555FFE009C346D /* UIColor+MLPFlatColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MLPFlatColors.h"; sourceTree = "<group>"; };
@@ -969,6 +978,8 @@
 		50C40411192510790099FAFD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				50D6DBE7196D2A24002CA9F6 /* ShineLabel */,
+				50D6DBE3196D140A002CA9F6 /* NJDNumberJump */,
 				50D6096B195A981C00A9F628 /* GPUImage */,
 				50183B271955B2580012E0B2 /* JVFloatLabeledTextField */,
 				50183B1819559D6C0012E0B2 /* OpenCVForUIImage */,
@@ -1365,6 +1376,26 @@
 			name = GPUImage;
 			sourceTree = "<group>";
 		};
+		50D6DBE3196D140A002CA9F6 /* NJDNumberJump */ = {
+			isa = PBXGroup;
+			children = (
+				50D6DBDD196D1404002CA9F6 /* CATextLayer+NumberJump.h */,
+				50D6DBDE196D1404002CA9F6 /* CATextLayer+NumberJump.m */,
+				50D6DBDF196D1404002CA9F6 /* NJDBezierCurve.h */,
+				50D6DBE0196D1404002CA9F6 /* NJDBezierCurve.m */,
+			);
+			name = NJDNumberJump;
+			sourceTree = "<group>";
+		};
+		50D6DBE7196D2A24002CA9F6 /* ShineLabel */ = {
+			isa = PBXGroup;
+			children = (
+				50D6DBE4196D26EE002CA9F6 /* RQShineLabel.h */,
+				50D6DBE5196D26EE002CA9F6 /* RQShineLabel.m */,
+			);
+			name = ShineLabel;
+			sourceTree = "<group>";
+		};
 		50EB009E19556D52009C346D /* BlurryModalSegue */ = {
 			isa = PBXGroup;
 			children = (
@@ -1527,6 +1558,7 @@
 				50D60B03195A983200A9F628 /* GPUImageFramebuffer.m in Sources */,
 				50D60BA9195A983200A9F628 /* GPUImageSolidColorGenerator.m in Sources */,
 				50D60AF9195A983200A9F628 /* GPUImageFalseColorFilter.m in Sources */,
+				50D6DBE6196D26EE002CA9F6 /* RQShineLabel.m in Sources */,
 				50D60BA3195A983200A9F628 /* GPUImageSobelEdgeDetectionFilter.m in Sources */,
 				50D6044C195A8ADA00A9F628 /* AMBouncingView.m in Sources */,
 				50D60AFB195A983200A9F628 /* GPUImageFASTCornerDetectionFilter.m in Sources */,
@@ -1556,6 +1588,7 @@
 				50D60B07195A983200A9F628 /* GPUImageGammaFilter.m in Sources */,
 				50D60BA5195A983200A9F628 /* GPUImageSoftEleganceFilter.m in Sources */,
 				50D60B8D195A983200A9F628 /* GPUImageRGBFilter.m in Sources */,
+				50D6DBE1196D1404002CA9F6 /* CATextLayer+NumberJump.m in Sources */,
 				50D60AEF195A983200A9F628 /* GPUImageDivideBlendFilter.m in Sources */,
 				50D60ACF195A983200A9F628 /* GPUImageColorBlendFilter.m in Sources */,
 				50D60AAF195A983200A9F628 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
@@ -1650,6 +1683,7 @@
 				50D60B55195A983200A9F628 /* GPUImageMosaicFilter.m in Sources */,
 				50D60AF3195A983200A9F628 /* GPUImageErosionFilter.m in Sources */,
 				50D60B17195A983200A9F628 /* GPUImageHarrisCornerDetectionFilter.m in Sources */,
+				50D6DBE2196D1404002CA9F6 /* NJDBezierCurve.m in Sources */,
 				50D60BF0195A984A00A9F628 /* GPUImageMovieWriter.m in Sources */,
 				50D60B45195A983200A9F628 /* GPUImageLuminanceRangeFilter.m in Sources */,
 				50D60B83195A983200A9F628 /* GPUImageRawDataInput.m in Sources */,

@@ -7,9 +7,10 @@
 //
 
 #import "DividerCalculateResultViewController.h"
+#import "RQShineLabel.h"
 
 @interface DividerCalculateResultViewController ()
-
+@property (strong, nonatomic) RQShineLabel *label;
 @end
 
 @implementation DividerCalculateResultViewController
@@ -18,7 +19,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    _label = [[RQShineLabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    _label.backgroundColor = [UIColor blackColor];
+    _label.text = @"This is a test. Hello world!";
+    _label.textColor = [UIColor whiteColor];
+    [self.view addSubview:_label];
+    [_label shine];
 }
 
 

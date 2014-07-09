@@ -59,10 +59,10 @@
             </objects>
             <point key="canvasLocation" x="1839" y="-1020"/>
         </scene>
-        <!--View Controller-->
+        <!--Divider Calculate Result View Controller-->
         <scene sceneID="jkn-OD-d5M">
             <objects>
-                <viewController id="YfK-ZZ-xt1" sceneMemberID="viewController">
+                <viewController id="YfK-ZZ-xt1" customClass="DividerCalculateResultViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QAJ-EA-9bQ"/>
                         <viewControllerLayoutGuide type="bottom" id="nsN-as-Onl"/>
@@ -364,13 +364,10 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:        " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxB-Ll-lMb">
                                 <rect key="frame" x="0.0" y="508" width="160" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="f1c-61-n9F"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAT-BN-yc3">
-                                <rect key="frame" x="160" y="508" width="160" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -387,17 +384,11 @@
                             <constraint firstItem="Lbn-Z8-Dhi" firstAttribute="leading" secondItem="vTC-2Q-7uo" secondAttribute="leading" id="msT-5o-naY"/>
                             <constraint firstAttribute="bottom" secondItem="KCT-vg-dLA" secondAttribute="bottom" constant="80" id="oT7-JZ-TIg"/>
                             <constraint firstItem="Lbn-Z8-Dhi" firstAttribute="top" secondItem="vTC-2Q-7uo" secondAttribute="top" id="ppT-e5-g0s"/>
-                            <constraint firstItem="XAT-BN-yc3" firstAttribute="top" secondItem="KCT-vg-dLA" secondAttribute="bottom" constant="20" id="qtY-PL-E4v"/>
-                            <constraint firstItem="XAT-BN-yc3" firstAttribute="trailing" secondItem="Lbn-Z8-Dhi" secondAttribute="trailing" id="uVS-aL-OSW"/>
-                            <constraint firstItem="mxB-Ll-lMb" firstAttribute="width" secondItem="XAT-BN-yc3" secondAttribute="width" id="y4b-Hy-KAt"/>
-                            <constraint firstItem="XAT-BN-yc3" firstAttribute="leading" secondItem="mxB-Ll-lMb" secondAttribute="trailing" id="yG3-We-cDY"/>
-                            <constraint firstItem="eRJ-tC-uyN" firstAttribute="top" secondItem="XAT-BN-yc3" secondAttribute="bottom" id="yS2-aH-NCQ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="Lbn-Z8-Dhi" id="FQD-os-cGi"/>
                         <outlet property="segements" destination="KCT-vg-dLA" id="FSm-E2-G0t"/>
-                        <outlet property="totalAmountLabel" destination="XAT-BN-yc3" id="XAW-aM-hIg"/>
                         <outlet property="totalLabel" destination="mxB-Ll-lMb" id="SPF-nL-EMf"/>
                     </connections>
                 </viewController>

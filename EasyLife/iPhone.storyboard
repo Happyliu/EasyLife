@@ -364,31 +364,41 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:        " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxB-Ll-lMb">
                                 <rect key="frame" x="0.0" y="508" width="160" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="160" id="f1c-61-n9F"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vgu-yW-lSD">
+                                <rect key="frame" x="160" y="508" width="160" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="Vgu-yW-lSD" firstAttribute="leading" secondItem="mxB-Ll-lMb" secondAttribute="trailing" id="Mad-IO-WB4"/>
                             <constraint firstAttribute="trailing" secondItem="Lbn-Z8-Dhi" secondAttribute="trailing" id="NFO-0P-3td"/>
                             <constraint firstAttribute="bottom" secondItem="mxB-Ll-lMb" secondAttribute="bottom" id="P9f-VP-itL"/>
                             <constraint firstItem="mxB-Ll-lMb" firstAttribute="leading" secondItem="Lbn-Z8-Dhi" secondAttribute="leading" id="PYC-Km-ZBk"/>
                             <constraint firstAttribute="trailing" secondItem="KCT-vg-dLA" secondAttribute="trailing" constant="20" symbolic="YES" id="RSI-dE-sPl"/>
                             <constraint firstItem="mxB-Ll-lMb" firstAttribute="top" secondItem="KCT-vg-dLA" secondAttribute="bottom" constant="20" id="RyI-Wt-ba5"/>
                             <constraint firstItem="KCT-vg-dLA" firstAttribute="leading" secondItem="vTC-2Q-7uo" secondAttribute="leading" constant="20" symbolic="YES" id="S90-9f-fpv"/>
+                            <constraint firstItem="mxB-Ll-lMb" firstAttribute="centerY" secondItem="Vgu-yW-lSD" secondAttribute="centerY" id="Wnt-Dw-1cp"/>
+                            <constraint firstAttribute="trailing" secondItem="Vgu-yW-lSD" secondAttribute="trailing" id="XLv-3E-7CG"/>
                             <constraint firstItem="KCT-vg-dLA" firstAttribute="top" secondItem="Lbn-Z8-Dhi" secondAttribute="bottom" constant="20" id="lQb-ze-R6n"/>
                             <constraint firstItem="Lbn-Z8-Dhi" firstAttribute="leading" secondItem="vTC-2Q-7uo" secondAttribute="leading" id="msT-5o-naY"/>
+                            <constraint firstItem="mxB-Ll-lMb" firstAttribute="width" secondItem="Vgu-yW-lSD" secondAttribute="width" id="n7W-cB-Vf4"/>
                             <constraint firstAttribute="bottom" secondItem="KCT-vg-dLA" secondAttribute="bottom" constant="80" id="oT7-JZ-TIg"/>
                             <constraint firstItem="Lbn-Z8-Dhi" firstAttribute="top" secondItem="vTC-2Q-7uo" secondAttribute="top" id="ppT-e5-g0s"/>
+                            <constraint firstItem="mxB-Ll-lMb" firstAttribute="height" secondItem="Vgu-yW-lSD" secondAttribute="height" id="tdv-x8-b15"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="Lbn-Z8-Dhi" id="FQD-os-cGi"/>
                         <outlet property="segements" destination="KCT-vg-dLA" id="FSm-E2-G0t"/>
+                        <outlet property="totalAmountLabel" destination="Vgu-yW-lSD" id="VAu-lc-qMf"/>
                         <outlet property="totalLabel" destination="mxB-Ll-lMb" id="SPF-nL-EMf"/>
                     </connections>
                 </viewController>

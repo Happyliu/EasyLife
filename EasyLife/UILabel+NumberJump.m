@@ -1,16 +1,16 @@
 //
-//  CATextLayer+NumberJump.m
-//  BZNumberJumpDemo
+//  UILabel+NumberJump.m
+//  EasyLife
 //
-//  Created by Bruce on 14-7-1.
-//  Copyright (c) 2014年 com.Bruce.Number. All rights reserved.
+//  Created by 张 子豪 on 7/9/14.
+//  Copyright (c) 2014 Albert. All rights reserved.
 //
 
-#import "CATextLayer+NumberJump.h"
+#import "UILabel+NumberJump.h"
 
-#define kPointsNumber 100
+#define kPointsNumber 75
 
-@implementation CATextLayer (NumberJump)
+@implementation UILabel (NumberJump)
 
 NSMutableArray *numberPoints;//记录每次textLayer更改值的间隔时间及输出值。
 float lastTime;
@@ -28,7 +28,7 @@ double _endNumber;
 - (void)cleanUpValue {
     lastTime = 0;
     indexNumber = 0;
-    self.string = [NSString stringWithFormat:@"$%.2f",_startNumber];
+    self.text = [NSString stringWithFormat:@"$%.2f",_startNumber];
 }
 
 - (void)jumpNumberWithDuration:(int)duration
@@ -74,7 +74,7 @@ double _endNumber;
 
 - (void)changeNumberBySelector {
     if (indexNumber >= kPointsNumber) {
-        self.string = [NSString stringWithFormat:@"$%.2f",_endNumber];
+        self.text = [NSString stringWithFormat:@"$%.2f",_endNumber];
         return;
     } else {
         NSArray *pointValues = [numberPoints objectAtIndex:indexNumber];
@@ -83,7 +83,7 @@ double _endNumber;
         float currentTime = [(NSNumber *)[pointValues objectAtIndex:0] floatValue];
         float timeDuration = currentTime - lastTime;
         lastTime = currentTime;
-        self.string = [NSString stringWithFormat:@"$%.0f",value];
+        self.text = [NSString stringWithFormat:@"$%.0f",value];
         [self performSelector:@selector(changeNumberBySelector) withObject:nil afterDelay:timeDuration];
     }
 }

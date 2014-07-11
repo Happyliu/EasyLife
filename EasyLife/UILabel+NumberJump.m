@@ -8,7 +8,7 @@
 
 #import "UILabel+NumberJump.h"
 
-#define kPointsNumber 75
+#define kPointsNumber 100
 
 @implementation UILabel (NumberJump)
 
@@ -52,8 +52,8 @@ double _endNumber;
     for (int i = 0; i < kPointsNumber; i++) {
         Point2D point = PointOnCubicBezier(bezierCurvePoints, i*dt);
         float durationTime = point.x * _duration;
-        float value = point.y * (_endNumber - _startNumber) + _startNumber;
-        [numberPoints addObject:[NSArray arrayWithObjects:[NSNumber numberWithFloat:durationTime], [NSNumber numberWithFloat:value], nil]];
+        double value = point.y * (_endNumber - _startNumber) + _startNumber;
+        [numberPoints addObject:[NSArray arrayWithObjects:[NSNumber numberWithFloat:durationTime], [NSNumber numberWithDouble:value], nil]];
     }
 }
 
@@ -79,11 +79,11 @@ double _endNumber;
     } else {
         NSArray *pointValues = [numberPoints objectAtIndex:indexNumber];
         indexNumber++;
-        float value = [(NSNumber *)[pointValues objectAtIndex:1] intValue];
+        double value = [(NSNumber *)[pointValues objectAtIndex:1] doubleValue];
         float currentTime = [(NSNumber *)[pointValues objectAtIndex:0] floatValue];
         float timeDuration = currentTime - lastTime;
         lastTime = currentTime;
-        self.text = [NSString stringWithFormat:@"$%.0f",value];
+        self.text = [NSString stringWithFormat:@"$%.2f",value];
         [self performSelector:@selector(changeNumberBySelector) withObject:nil afterDelay:timeDuration];
     }
 }

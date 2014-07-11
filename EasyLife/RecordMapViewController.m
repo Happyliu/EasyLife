@@ -79,7 +79,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.totalAmountLabel jumpNumberWithDuration:1.5 fromNumber:0 toNumber:self.totalAmount];
+    [self.totalAmountLabel jumpNumberWithDuration:2 fromNumber:0 toNumber:self.totalAmount];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

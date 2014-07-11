@@ -19,10 +19,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _label = [[RQShineLabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    _label = [[RQShineLabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    _label.numberOfLines = 0;
     _label.backgroundColor = [UIColor blackColor];
     _label.text = @"This is a test. Hello world!";
     _label.textColor = [UIColor whiteColor];
+    
     [self.view addSubview:_label];
     [_label shine];
 }

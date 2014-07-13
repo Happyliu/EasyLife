@@ -44,6 +44,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Expense Divider" id="lMQ-7g-MbR">
+                        <barButtonItem key="leftBarButtonItem" title="Delete" id="ONO-PS-bL1">
+                            <connections>
+                                <action selector="deleteLastSingleRecordView:" destination="GBg-Ng-o8A" id="GWi-25-L94"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4LE-4h-AVt">
                             <connections>
                                 <action selector="addNewSingleRecordView:" destination="GBg-Ng-o8A" id="bx4-rm-Zl6"/>
@@ -52,6 +57,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="calculateButton" destination="WEK-8L-Mb5" id="tKf-br-CwI"/>
+                        <outlet property="deleteButton" destination="ONO-PS-bL1" id="jjN-kS-d1m"/>
                         <outlet property="dividerScrollView" destination="Qxs-nk-IyG" id="KzU-sh-Bk3"/>
                     </connections>
                 </viewController>

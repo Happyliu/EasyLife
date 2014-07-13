@@ -45,10 +45,8 @@
     [self.doneButton.layer setBorderWidth:0.5];
     [self.doneButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
     [self.doneButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
-    self.numberLabel.backgroundColor = self.appSecondColor;
-    self.numberLabel.textColor = [UIColor whiteColor];
-    self.numberLabel.layer.borderColor = self.appSecondColor.CGColor;
-    self.numberLabel.layer.borderWidth = 0.5;
+    self.numberLabel.backgroundColor = self.sharedResultDisplayTableView.backgroundColor;
+    self.numberLabel.textColor = [UIColor grayColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *dividerScrollView;
 @property CGPoint currentPoint;
 @property (weak, nonatomic) IBOutlet UIButton *calculateButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteButton;
 @property (strong, nonatomic) UIImage *calculateButtonBackgroundImage;
 @property NSInteger currentViewTag;
 @property BOOL isSameTag;
@@ -97,6 +98,8 @@
     
     [self.singleExpenseRecordViews addObject:firstExpenseView];
     firstExpenseView.tag = [self.singleExpenseRecordViews count];
+    UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipe)];
+    [firstExpenseView addGestureRecognizer:leftSwipe];
 
     [self.dividerScrollView addSubview:firstExpenseView];
     [self.dividerScrollView setContentSize:CGSizeMake(self.dividerScrollView.frame.size.width, [self.singleExpenseRecordViews count] * 164 + 1)];
@@ -104,6 +107,8 @@
     self.currentViewTag = 0;
     self.currentPoint = CGPointMake(0, 0);self.currentViewTag = 0;
     [self setContentOffsetAnimation:self.currentPoint.y];
+    
+    [self.deleteButton setEnabled:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -123,6 +128,11 @@
         _singleExpenseRecordViews = [[NSMutableArray alloc] init];
     }
     return _singleExpenseRecordViews;
+}
+
+- (void)leftSwipe
+{
+    NSLog(@"in");
 }
 
 #pragma mark - TouchGestureForScrollView
@@ -174,7 +184,14 @@
     }];
 }
 
-#pragma mark - AddNewRecordView
+- (void)setContentOffsetAnimationToCustomBottom:(NSInteger)newContentSize
+{
+    [UIView animateWithDuration:0.4 animations:^{
+        self.dividerScrollView.contentOffset = CGPointMake(0,  newContentSize - self.dividerScrollView.frame.size.height );
+    }];
+}
+
+#pragma mark - AddAndDeleteRecordView
 
 - (IBAction)addNewSingleRecordView:(id)sender {
     
@@ -198,11 +215,37 @@
     }
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationDelay:0.2];
     [UIView setAnimationDuration:0.3];
     [serv setFrame:CGRectMake(0, lastView.frame.origin.y + lastView.frame.size.height - 1, self.dividerScrollView.frame.size.width, lastView.frame.size.height)];
     [UIView commitAnimations];
     
+    if ([self.singleExpenseRecordViews count] > 1) {
+        [self.deleteButton setEnabled:YES];
+    }
+    
 
+}
+- (IBAction)deleteLastSingleRecordView:(id)sender {
+    SingleExpenseRecordView *lastView = [self.singleExpenseRecordViews lastObject];
+    [self.singleExpenseRecordViews removeLastObject];
+    if ([self.singleExpenseRecordViews count] <= 1) {
+        [sender setEnabled:NO];
+    }
+    
+    NSInteger newContentSize = [self.singleExpenseRecordViews count] * 164 + 1;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        [lastView setFrame:CGRectMake(lastView.frame.origin.x - lastView.frame.size.width, lastView.frame.origin.y, lastView.frame.size.width, lastView.frame.size.height)];
+    } completion:^(BOOL finished) {
+        [lastView removeFromSuperview];
+        if (newContentSize > self.dividerScrollView.frame.size.height) {
+            [self setContentOffsetAnimationToCustomBottom:newContentSize];
+        } else {
+            [self setContentOffsetAnimation:0];
+        }
+        [self.dividerScrollView setContentSize:CGSizeMake(self.dividerScrollView.frame.size.width, [self.singleExpenseRecordViews count] * 164 + 1)];
+    }];
 }
 
 #pragma mark - ButtonBackgroundImage
@@ -233,6 +276,7 @@
                 [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Error" andText:[NSString stringWithFormat:@"Record No.%@ is empty!", [NSNumber numberWithInteger:view.tag]] andCancelButton:NO forAlertType:AlertFailure andColor:self.appTintColor] show];
                 return NO;
             } else if (![view isValid]) {
+                [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Sorry" andText:[NSString stringWithFormat:@"Record content in No.%@ is not valid!", [NSNumber numberWithInteger:view.tag]] andCancelButton:NO forAlertType:AlertFailure andColor:self.appTintColor] show];
                 return NO;
             }
         }

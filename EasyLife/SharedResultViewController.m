@@ -40,13 +40,16 @@
     self.peopleAmountPickerView.dataSource = self;
     self.numberOfPeopleToShare = 2;
 
-    [self.doneButton setBackgroundImage:self.doneButtonBackgroundImage forState:UIControlStateNormal];
-    [self.doneButton setBackgroundColor:[UIColor whiteColor]];
+    [self.doneButton.layer setBorderColor:self.appBlackColor.CGColor];
     [self.doneButton.layer setBorderWidth:0.5];
-    [self.doneButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
+    [self.doneButton setBackgroundImage:self.doneButtonBackgroundImage forState:UIControlStateNormal];
+
+    [self.doneButton setBackgroundColor:[UIColor whiteColor]];
     [self.doneButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
     self.numberLabel.backgroundColor = self.sharedResultDisplayTableView.backgroundColor;
     self.numberLabel.textColor = [UIColor grayColor];
+    [self.peopleAmountPickerView.layer setBorderWidth:0.5];
+    [self.peopleAmountPickerView.layer setBorderColor:[self.appTintColor CGColor]];
 }
 
 - (void)viewWillAppear:(BOOL)animated

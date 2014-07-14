@@ -15,6 +15,7 @@
 #import "RecordViewController.h"
 #import "RecognitionCameraOverlayView.h"
 #import "AMSmoothAlertView.h"
+#import "UIColor+MLPFlatColors.h"
 
 @interface TipsCalViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
@@ -25,7 +26,7 @@
 @property BOOL isDoted, isAddedRecord, isSuccessAddedRecord;
 @property double currentResult;
 @property (strong, nonatomic) UIImage *resetButtonBackgroundImage, *normalButtonBackgroundImage, *calculateButtonBackgroundImage;
-@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appBlackColor;
+@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appRedColor, *appBlackColor;
 @property (strong, nonatomic) UIImagePickerController *picker;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSString *detectedResult;
@@ -61,14 +62,14 @@
     self.navigationController.navigationBar.translucent = NO;
 
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    self.tabBarController.tabBar.barTintColor = self.appTintColor;
+    self.tabBarController.tabBar.barTintColor = self.appBlackColor;
     self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
     self.tabBarController.tabBar.translucent = NO;
     
     [self.resetButton.layer setBorderWidth:0.5];
     [self.resetButton setBackgroundImage:self.resetButtonBackgroundImage forState:UIControlStateNormal];
     [self.resetButton setBackgroundColor:self.appSecondColor];
-    [self.resetButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
+    [self.resetButton.layer setBorderColor:[[UIColor grayColor] CGColor]];
     [self.resetButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
     
     [self.calculateButton setBackgroundImage:self.calculateButtonBackgroundImage forState:UIControlStateNormal];
@@ -78,7 +79,7 @@
         [numberButton.layer setBorderWidth:0.5];
         [numberButton setBackgroundImage:self.normalButtonBackgroundImage forState:UIControlStateNormal];
         [numberButton.layer setBackgroundColor:[self.appTintColor CGColor]];
-        [numberButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
+        [numberButton.layer setBorderColor:[[UIColor grayColor] CGColor]];
         [numberButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
     }
 }
@@ -120,7 +121,7 @@
 - (UIImage *)resetButtonBackgroundImage
 {
     if (!_resetButtonBackgroundImage) {
-        UIColor *color = [UIColor grayColor];
+        UIColor *color = [UIColor flatDarkGrayColor];
         CGRect rect = CGRectMake(0, 0, 1, 1);
         UIGraphicsBeginImageContext(rect.size);
         CGContextRef context = UIGraphicsGetCurrentContext();
@@ -135,7 +136,7 @@
 - (UIImage *)normalButtonBackgroundImage
 {
     if (!_normalButtonBackgroundImage) {
-        UIColor *color = [UIColor lightGrayColor];
+        UIColor *color = [UIColor flatDarkWhiteColor];
         CGRect rect = CGRectMake(0, 0, 1, 1);
         UIGraphicsBeginImageContext(rect.size);
         CGContextRef context = UIGraphicsGetCurrentContext();
@@ -182,6 +183,24 @@
     return _appSecondColor;
 }
 
+- (UIColor *)appThirdColor
+{
+    if (!_appThirdColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appThirdColor = appDelegate.appThirdColor;
+    }
+    return _appThirdColor;
+}
+
+- (UIColor *)appRedColor
+{
+    if (!_appRedColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appRedColor = appDelegate.appRedColor;
+    }
+    return _appRedColor;
+}
+
 - (UIColor *)appBlackColor
 {
     if (!_appBlackColor) {
@@ -189,13 +208,6 @@
         _appBlackColor = appDelegate.appBlackColor;
     }
     return _appBlackColor;
-}
-
-- (UIColor *)transColor {
-    
-    UIColor *transColor = [UIColor colorWithRed:20/255.0 green:20/255.0 blue:20/255.0 alpha:0.3];
-
-    return transColor;
 }
 
 - (NSMutableString *)currentDisplayResult
@@ -280,12 +292,12 @@
 
 - (void)successAlert:(NSString *)message
 {
-    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Add Record" andText:message andCancelButton:NO forAlertType:AlertSuccess andColor:self.appSecondColor] show];
+    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Add Record" andText:message andCancelButton:NO forAlertType:AlertSuccess andColor:self.appThirdColor] show];
 }
 
 - (void)failAlert:(NSString *)message
 {
-    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Add Record" andText:message andCancelButton:NO forAlertType:AlertFailure andColor:self.appTintColor] show];
+    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Add Record" andText:message andCancelButton:NO forAlertType:AlertFailure andColor:self.appRedColor] show];
 }
 
 - (void)fatalAlert:(NSString *)message

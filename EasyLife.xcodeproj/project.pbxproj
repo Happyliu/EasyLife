@@ -12,7 +12,6 @@
 		50183B1A19559FA50012E0B2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50183B1919559FA50012E0B2 /* CoreData.framework */; };
 		50183B251955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
 		50183B261955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
-		5030BE3B19582E1000985DEC /* SingleExpenseRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030BE3A19582E1000985DEC /* SingleExpenseRecord.m */; };
 		505D88FF1966D64600AE335D /* DividerCalculateResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505D88FE1966D64600AE335D /* DividerCalculateResultViewController.m */; };
 		508B84C1195DA21B0056ABE1 /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84BE195DA21B0056ABE1 /* DIDatepicker.m */; };
 		508B84C2195DA21B0056ABE1 /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84BE195DA21B0056ABE1 /* DIDatepicker.m */; };
@@ -408,8 +407,6 @@
 		50183B1919559FA50012E0B2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		50183B1F1955B24B0012E0B2 /* NSString+TextDirectionality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TextDirectionality.h"; sourceTree = "<group>"; };
 		50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TextDirectionality.m"; sourceTree = "<group>"; };
-		5030BE3919582E1000985DEC /* SingleExpenseRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleExpenseRecord.h; sourceTree = "<group>"; };
-		5030BE3A19582E1000985DEC /* SingleExpenseRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleExpenseRecord.m; sourceTree = "<group>"; };
 		505D88FD1966D64600AE335D /* DividerCalculateResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DividerCalculateResultViewController.h; sourceTree = "<group>"; };
 		505D88FE1966D64600AE335D /* DividerCalculateResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DividerCalculateResultViewController.m; sourceTree = "<group>"; };
 		508B84BD195DA21B0056ABE1 /* DIDatepicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepicker.h; sourceTree = "<group>"; };
@@ -986,8 +983,6 @@
 				50183B1719559D570012E0B2 /* CoreDataModel */,
 				50183B1619559D450012E0B2 /* FlatColors */,
 				50EB009E19556D52009C346D /* BlurryModalSegue */,
-				5030BE3919582E1000985DEC /* SingleExpenseRecord.h */,
-				5030BE3A19582E1000985DEC /* SingleExpenseRecord.m */,
 				5091AB7D1962FB4B00B626B3 /* UIScrollView+UITouchEvent.h */,
 				5091AB7E1962FB4B00B626B3 /* UIScrollView+UITouchEvent.m */,
 			);
@@ -1567,7 +1562,6 @@
 				50D60B31195A983200A9F628 /* GPUImageKuwaharaRadius3Filter.m in Sources */,
 				50D60B29195A983200A9F628 /* GPUImageHueFilter.m in Sources */,
 				50148628196D6D620000203B /* UILabel+NumberJump.m in Sources */,
-				5030BE3B19582E1000985DEC /* SingleExpenseRecord.m in Sources */,
 				50D60B49195A983200A9F628 /* GPUImageLuminosity.m in Sources */,
 				50D60B57195A983200A9F628 /* GPUImageMotionBlurFilter.m in Sources */,
 				50D60BBD195A983200A9F628 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
@@ -2023,6 +2017,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EasyLife/EasyLife-Prefix.pch";
 				INFOPLIST_FILE = "EasyLife/EasyLife-Info.plist";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2066,6 +2061,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EasyLife/EasyLife-Prefix.pch";
 				INFOPLIST_FILE = "EasyLifeTests/EasyLifeTests-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

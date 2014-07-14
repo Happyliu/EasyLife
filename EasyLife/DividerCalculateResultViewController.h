@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface DividerCalculateResultViewController : UIViewController
-
+@property (strong, nonatomic) NSArray *expenceRecords;
 @end

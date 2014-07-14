@@ -425,7 +425,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EY0-Kk-iiP">
-                                <rect key="frame" x="0.0" y="40" width="320" height="55"/>
+                                <rect key="frame" x="0.0" y="50" width="320" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="v3c-vB-5HU"/>
                                 </constraints>
@@ -438,7 +438,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="oDg-A8-95L">
-                                <rect key="frame" x="0.0" y="95" width="320" height="473"/>
+                                <rect key="frame" x="0.0" y="105" width="320" height="463"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Record" textLabel="kms-BZ-En6" detailTextLabel="qgV-TO-RC7" style="IBUITableViewCellStyleSubtitle" id="t2o-9i-wcf">
@@ -480,7 +480,7 @@
                             <constraint firstAttribute="trailing" secondItem="oDg-A8-95L" secondAttribute="trailing" id="gDT-C2-6Ot"/>
                             <constraint firstItem="oDg-A8-95L" firstAttribute="leading" secondItem="rUM-Xz-zdS" secondAttribute="leading" id="hU3-Pi-6Ec"/>
                             <constraint firstItem="WZW-Ow-mKe" firstAttribute="top" secondItem="oDg-A8-95L" secondAttribute="bottom" id="jXU-Kd-TJ8"/>
-                            <constraint firstItem="EY0-Kk-iiP" firstAttribute="top" secondItem="xH5-Mq-kto" secondAttribute="bottom" constant="20" id="xsX-ah-ApY"/>
+                            <constraint firstItem="EY0-Kk-iiP" firstAttribute="top" secondItem="xH5-Mq-kto" secondAttribute="bottom" constant="30" id="xsX-ah-ApY"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Zvs-Ku-TeI" appends="YES" id="EWu-5Y-4Vh"/>
@@ -588,14 +588,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="tP4-1l-r9D">
-                                <rect key="frame" x="0.0" y="234" width="320" height="216"/>
+                                <rect key="frame" x="0.0" y="285" width="320" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="181" id="vIm-kB-efe"/>
+                                </constraints>
                             </pickerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="d8D-dk-uPm">
-                                <rect key="frame" x="0.0" y="64" width="320" height="120"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="191"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="BJN-vc-3SD"/>
-                                    <constraint firstAttribute="height" constant="120" id="NKI-sH-1ft"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="price" id="fCx-19-k4T">
@@ -620,13 +622,13 @@
                                     <segue destination="1Xm-Pb-jGs" kind="unwind" identifier="Do Added Record" unwindAction="addedRecord:" id="2vL-Ig-mHg"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="   Number of People:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVB-ud-N79">
-                                <rect key="frame" x="0.0" y="184" width="320" height="50"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="    NUMBER OF PEOPLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVB-ud-N79">
+                                <rect key="frame" x="0.0" y="255" width="320" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Ink-13-EKS"/>
+                                    <constraint firstAttribute="height" constant="30" id="Ink-13-EKS"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -635,7 +637,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="TVB-ud-N79" secondAttribute="trailing" id="4G4-g8-gEm"/>
                             <constraint firstItem="tP4-1l-r9D" firstAttribute="top" secondItem="TVB-ud-N79" secondAttribute="bottom" id="DLs-c1-sLU"/>
-                            <constraint firstItem="kLt-kg-CoK" firstAttribute="top" secondItem="tP4-1l-r9D" secondAttribute="bottom" id="GQ9-je-1tC"/>
+                            <constraint firstItem="kLt-kg-CoK" firstAttribute="top" secondItem="tP4-1l-r9D" secondAttribute="bottom" constant="-2" id="GQ9-je-1tC"/>
                             <constraint firstAttribute="trailing" secondItem="tP4-1l-r9D" secondAttribute="trailing" id="JX9-r4-0Tf"/>
                             <constraint firstItem="tP4-1l-r9D" firstAttribute="leading" secondItem="MVf-hg-OuI" secondAttribute="leading" id="MIa-ry-Wjq"/>
                             <constraint firstItem="lxp-6b-Djh" firstAttribute="top" secondItem="kLt-kg-CoK" secondAttribute="bottom" id="esp-3V-gAp"/>

@@ -42,7 +42,7 @@
 #pragma mark - Blue
 + (UIColor *)flatBlueColor
 {
-    return UIColorFromRGB(0x3498DB);
+    return UIColorFromRGB(0x38A2DF);
 }
 + (UIColor *)flatDarkBlueColor
 {

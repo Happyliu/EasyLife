@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @property (strong, nonatomic) UIImage *mapButtonBackgroundImage;
+@property (nonatomic, strong) UIView *horizontalLine, *downArrow;
 @end
 
 @implementation RecordViewController
@@ -40,20 +41,49 @@
     [self.mapButton.layer setBorderWidth:0.5];
     [self.mapButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
     [self.mapButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
-    }
+    [self.view addSubview:self.horizontalLine];
+    [self.view addSubview:self.downArrow];
+}
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self.records removeAllObjects];
+    [self.horizontalLine removeFromSuperview];
+    [self.downArrow removeFromSuperview];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
+
+- (UIView *)horizontalLine
+{
+    if (!_horizontalLine) {
+        _horizontalLine = [[UIView alloc] init];
+        _horizontalLine.frame = CGRectMake(0, [[UIApplication sharedApplication] statusBarFrame].size.height,
+                                           self.view.frame.size.width, 0.5f);
+        _horizontalLine.backgroundColor = [UIColor darkGrayColor];
+    }
+    return _horizontalLine;
+}
+
+- (UIView *)downArrow
+{
+    if (!_downArrow) {
+        _downArrow = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 15, self.horizontalLine.frame.origin.y + self.horizontalLine.frame.size.height, 30, self.mapButton.frame.origin.y - self.horizontalLine.frame.origin.y - self.horizontalLine.frame.size.height)];
+        UIColor *downArrow = [UIColor colorWithPatternImage:[UIImage imageNamed:@"downArrow.png"]];
+        [_downArrow setBackgroundColor:downArrow];
+        UITapGestureRecognizer *touch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(swipeDown:)];
+        [_downArrow addGestureRecognizer:touch];
+    }
+    return _downArrow;
+}
+
 
 #pragma mark - ButtonBackgroundImage
 
 - (UIImage *)mapButtonBackgroundImage
 {
     if (!_mapButtonBackgroundImage) {
-        UIColor *color = self.appThirdColor;
+        UIColor *color = self.appSecondColor;
         CGRect rect = CGRectMake(0, 0, 1, 1);
         UIGraphicsBeginImageContext(rect.size);
         CGContextRef context = UIGraphicsGetCurrentContext();

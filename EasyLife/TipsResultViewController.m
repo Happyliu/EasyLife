@@ -275,7 +275,7 @@
             
             self.addedRecord = record;
             
-            self.tipsResults = nil;
+            [self.tipsResults removeAllObjects];
         }
     }
 }

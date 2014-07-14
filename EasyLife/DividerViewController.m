@@ -13,7 +13,7 @@
 #import "AMSmoothAlertView.h"
 
 @interface DividerViewController () <UITextFieldDelegate>
-@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
+@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appRedColor, *appBlackColor;
 @property (strong, nonatomic) NSMutableArray *singleExpenseRecordViews;
 @property (weak, nonatomic) IBOutlet UIScrollView *dividerScrollView;
 @property CGPoint currentPoint;
@@ -22,6 +22,7 @@
 @property (strong, nonatomic) UIImage *calculateButtonBackgroundImage;
 @property NSInteger currentViewTag;
 @property BOOL isSameTag;
+@property (strong, nonatomic) NSMutableDictionary *expenseRecordsByPayer;
 @end
 
 @implementation DividerViewController
@@ -64,6 +65,15 @@
     return _appBlackColor;
 }
 
+- (UIColor *)appRedColor
+{
+    if (!_appRedColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appRedColor = appDelegate.appRedColor;
+    }
+    return _appRedColor;
+}
+
 #pragma mark - ViewLifeCycle
 
 - (void)viewDidLoad
@@ -75,7 +85,7 @@
     self.navigationController.navigationBar.translucent = NO;
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    self.tabBarController.tabBar.barTintColor = self.appTintColor;
+    self.tabBarController.tabBar.barTintColor = self.appBlackColor;
     self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
     self.tabBarController.tabBar.translucent = NO;
     
@@ -98,8 +108,6 @@
     
     [self.singleExpenseRecordViews addObject:firstExpenseView];
     firstExpenseView.tag = [self.singleExpenseRecordViews count];
-    UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipe)];
-    [firstExpenseView addGestureRecognizer:leftSwipe];
 
     [self.dividerScrollView addSubview:firstExpenseView];
     [self.dividerScrollView setContentSize:CGSizeMake(self.dividerScrollView.frame.size.width, [self.singleExpenseRecordViews count] * 164 + 1)];
@@ -117,7 +125,7 @@
     for (SingleExpenseRecordView *view in self.singleExpenseRecordViews) {
         [view removeFromSuperview];
     }
-    self.singleExpenseRecordViews = nil;
+    [self.singleExpenseRecordViews removeAllObjects];
 }
 
 #pragma mark - SingleExpenseRecordViewsInit
@@ -128,11 +136,6 @@
         _singleExpenseRecordViews = [[NSMutableArray alloc] init];
     }
     return _singleExpenseRecordViews;
-}
-
-- (void)leftSwipe
-{
-    NSLog(@"in");
 }
 
 #pragma mark - TouchGestureForScrollView
@@ -193,8 +196,8 @@
 
 #pragma mark - AddAndDeleteRecordView
 
-- (IBAction)addNewSingleRecordView:(id)sender {
-    
+- (IBAction)addNewSingleRecordView:(id)sender
+{
     SingleExpenseRecordView *lastView = [self.singleExpenseRecordViews lastObject];
     SingleExpenseRecordView *serv = [[SingleExpenseRecordView alloc] initWithFrame:CGRectMake(self.dividerScrollView.frame.size.width, lastView.frame.origin.y + lastView.frame.size.height - 1, self.dividerScrollView.frame.size.width, lastView.frame.size.height)];
     serv.layer.borderWidth = 1.0;
@@ -215,7 +218,6 @@
     }
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    [UIView setAnimationDelay:0.2];
     [UIView setAnimationDuration:0.3];
     [serv setFrame:CGRectMake(0, lastView.frame.origin.y + lastView.frame.size.height - 1, self.dividerScrollView.frame.size.width, lastView.frame.size.height)];
     [UIView commitAnimations];
@@ -223,8 +225,6 @@
     if ([self.singleExpenseRecordViews count] > 1) {
         [self.deleteButton setEnabled:YES];
     }
-    
-
 }
 - (IBAction)deleteLastSingleRecordView:(id)sender {
     SingleExpenseRecordView *lastView = [self.singleExpenseRecordViews lastObject];
@@ -265,25 +265,32 @@
     return _calculateButtonBackgroundImage;
 }
 
+- (NSMutableDictionary *)expenseRecordsByPayer
+{
+    if (!_expenseRecordsByPayer) {
+        _expenseRecordsByPayer = [[NSMutableDictionary alloc] init];
+    }
+    return _expenseRecordsByPayer;
+}
+
 #pragma mark - Segue
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    
     if ([identifier isEqualToString:@"Calculate Expense"]) {
         for (SingleExpenseRecordView *view in self.singleExpenseRecordViews) {
             if ([view isEmpty]) {
-                [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Error" andText:[NSString stringWithFormat:@"Record No.%@ is empty!", [NSNumber numberWithInteger:view.tag]] andCancelButton:NO forAlertType:AlertFailure andColor:self.appTintColor] show];
+                [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Error" andText:[NSString stringWithFormat:@"Record No.%@ is empty!", [NSNumber numberWithInteger:view.tag]] andCancelButton:NO forAlertType:AlertFailure andColor:self.appRedColor] show];
                 return NO;
             } else if (![view isValid]) {
-                [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Sorry" andText:[NSString stringWithFormat:@"Record content in No.%@ is not valid!", [NSNumber numberWithInteger:view.tag]] andCancelButton:NO forAlertType:AlertFailure andColor:self.appTintColor] show];
+                [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Sorry" andText:[NSString stringWithFormat:@"Record content in No.%@ is not valid!", [NSNumber numberWithInteger:view.tag]] andCancelButton:NO forAlertType:AlertFailure andColor:self.appRedColor] show];
                 return NO;
             }
         }
+        return YES;
     } else {
-        [super shouldPerformSegueWithIdentifier:identifier sender:sender];
+        return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
     }
-    return YES;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

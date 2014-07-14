@@ -20,7 +20,7 @@
 - (UIColor *)appTintColor {
     if (!_appTintColor) {
         //_appTintColor = [UIColor colorWithRed:222/255.0 green:74/255.0 blue:44/255.0 alpha:1.0];
-        _appTintColor = [UIColor flatRedColor];
+        _appTintColor = [UIColor flatBlueColor];
     }
     return _appTintColor;
 }
@@ -28,7 +28,7 @@
 - (UIColor *)appSecondColor {
     if (!_appSecondColor) {
         //_appSecondColor = [UIColor colorWithRed:95/255.0 green:180/255.0 blue:180/255.0 alpha:1.0];
-        _appSecondColor = [UIColor flatTealColor];
+        _appSecondColor = [UIColor flatYellowColor];
     }
     return _appSecondColor;
 }
@@ -36,18 +36,25 @@
 - (UIColor *)appThirdColor {
     if (!_appThirdColor) {
         //_appThirdColor = [UIColor colorWithRed:247/255.0 green:193/255.0 blue:62/255.0 alpha:1.0];
-        _appThirdColor = [UIColor flatYellowColor];
+        _appThirdColor = [UIColor flatTealColor];
     }
     return _appThirdColor;
 }
 
+
+- (UIColor *)appRedColor {
+    if (!_appRedColor) {
+        _appRedColor = [UIColor flatRedColor];
+    }
+    return _appRedColor;
+}
+
 - (UIColor *)appBlackColor {
     if (!_appBlackColor) {
-        _appBlackColor = [UIColor colorWithRed:55/255.0 green:55/255.0 blue:55/255.0 alpha:1.0];
+        _appBlackColor = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:1.0];
     }
     return _appBlackColor;
 }
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

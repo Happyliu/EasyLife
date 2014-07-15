@@ -12,6 +12,7 @@
 		50183B1A19559FA50012E0B2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50183B1919559FA50012E0B2 /* CoreData.framework */; };
 		50183B251955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
 		50183B261955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
+		50278A021974FDD100D0A6BB /* ExpenseRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 50278A011974FDD100D0A6BB /* ExpenseRecord.m */; };
 		505D88FF1966D64600AE335D /* DividerCalculateResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505D88FE1966D64600AE335D /* DividerCalculateResultViewController.m */; };
 		508B84C1195DA21B0056ABE1 /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84BE195DA21B0056ABE1 /* DIDatepicker.m */; };
 		508B84C2195DA21B0056ABE1 /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84BE195DA21B0056ABE1 /* DIDatepicker.m */; };
@@ -407,6 +408,8 @@
 		50183B1919559FA50012E0B2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		50183B1F1955B24B0012E0B2 /* NSString+TextDirectionality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TextDirectionality.h"; sourceTree = "<group>"; };
 		50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TextDirectionality.m"; sourceTree = "<group>"; };
+		50278A001974FDD100D0A6BB /* ExpenseRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseRecord.h; sourceTree = "<group>"; };
+		50278A011974FDD100D0A6BB /* ExpenseRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseRecord.m; sourceTree = "<group>"; };
 		505D88FD1966D64600AE335D /* DividerCalculateResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DividerCalculateResultViewController.h; sourceTree = "<group>"; };
 		505D88FE1966D64600AE335D /* DividerCalculateResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DividerCalculateResultViewController.m; sourceTree = "<group>"; };
 		508B84BD195DA21B0056ABE1 /* DIDatepicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepicker.h; sourceTree = "<group>"; };
@@ -975,6 +978,8 @@
 		50C40411192510790099FAFD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				50278A001974FDD100D0A6BB /* ExpenseRecord.h */,
+				50278A011974FDD100D0A6BB /* ExpenseRecord.m */,
 				50D6DBE7196D2A24002CA9F6 /* ShineLabel */,
 				50D6DBE3196D140A002CA9F6 /* NJDNumberJump */,
 				50D6096B195A981C00A9F628 /* GPUImage */,
@@ -1521,6 +1526,7 @@
 				50D60AD3195A983200A9F628 /* GPUImageColorDodgeBlendFilter.m in Sources */,
 				50C403F319250FA00099FAFD /* EasyLifeAppDelegate.m in Sources */,
 				505D88FF1966D64600AE335D /* DividerCalculateResultViewController.m in Sources */,
+				50278A021974FDD100D0A6BB /* ExpenseRecord.m in Sources */,
 				50D60ADF195A983200A9F628 /* GPUImageCrosshairGenerator.m in Sources */,
 				50D60B5D195A983200A9F628 /* GPUImageMovieComposition.m in Sources */,
 				50D60B7B195A983200A9F628 /* GPUImagePolarPixellateFilter.m in Sources */,

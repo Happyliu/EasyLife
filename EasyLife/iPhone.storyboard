@@ -44,7 +44,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Expense Divider" id="lMQ-7g-MbR">
-                        <barButtonItem key="leftBarButtonItem" title="Delete" id="ONO-PS-bL1">
+                        <barButtonItem key="leftBarButtonItem" tag="2" image="minus" id="ONO-PS-bL1">
                             <connections>
                                 <action selector="deleteLastSingleRecordView:" destination="GBg-Ng-o8A" id="GWi-25-L94"/>
                             </connections>
@@ -65,7 +65,7 @@
             </objects>
             <point key="canvasLocation" x="1839" y="-1020"/>
         </scene>
-        <!--Divider Calculate Result View Controller-->
+        <!--Divider Calculate Result View Controller - Divider Result-->
         <scene sceneID="jkn-OD-d5M">
             <objects>
                 <viewController id="YfK-ZZ-xt1" customClass="DividerCalculateResultViewController" sceneMemberID="viewController">
@@ -76,9 +76,26 @@
                     <view key="view" contentMode="scaleToFill" id="HvW-AA-7NS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Z6x-9o-XTX">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="nT1-4i-dKl">
+                                <rect key="frame" x="220" y="405" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </pageControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Z6x-9o-XTX" firstAttribute="centerX" secondItem="HvW-AA-7NS" secondAttribute="centerX" id="WJ7-a7-2b9"/>
+                            <constraint firstItem="Z6x-9o-XTX" firstAttribute="centerY" secondItem="HvW-AA-7NS" secondAttribute="centerY" id="qTQ-Rr-nh0"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="KHM-uO-ngr"/>
+                    <navigationItem key="navigationItem" title="Divider Result" id="KHM-uO-ngr"/>
+                    <connections>
+                        <outlet property="indicator" destination="Z6x-9o-XTX" id="Zb0-bq-5lz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uJJ-lH-qLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -425,7 +442,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EY0-Kk-iiP">
-                                <rect key="frame" x="0.0" y="50" width="320" height="55"/>
+                                <rect key="frame" x="0.0" y="45" width="320" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="v3c-vB-5HU"/>
                                 </constraints>
@@ -438,7 +455,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="oDg-A8-95L">
-                                <rect key="frame" x="0.0" y="105" width="320" height="463"/>
+                                <rect key="frame" x="0.0" y="100" width="320" height="468"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Record" textLabel="kms-BZ-En6" detailTextLabel="qgV-TO-RC7" style="IBUITableViewCellStyleSubtitle" id="t2o-9i-wcf">
@@ -480,7 +497,7 @@
                             <constraint firstAttribute="trailing" secondItem="oDg-A8-95L" secondAttribute="trailing" id="gDT-C2-6Ot"/>
                             <constraint firstItem="oDg-A8-95L" firstAttribute="leading" secondItem="rUM-Xz-zdS" secondAttribute="leading" id="hU3-Pi-6Ec"/>
                             <constraint firstItem="WZW-Ow-mKe" firstAttribute="top" secondItem="oDg-A8-95L" secondAttribute="bottom" id="jXU-Kd-TJ8"/>
-                            <constraint firstItem="EY0-Kk-iiP" firstAttribute="top" secondItem="xH5-Mq-kto" secondAttribute="bottom" constant="30" id="xsX-ah-ApY"/>
+                            <constraint firstItem="EY0-Kk-iiP" firstAttribute="top" secondItem="xH5-Mq-kto" secondAttribute="bottom" constant="25" id="xsX-ah-ApY"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Zvs-Ku-TeI" appends="YES" id="EWu-5Y-4Vh"/>
@@ -588,13 +605,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="tP4-1l-r9D">
-                                <rect key="frame" x="0.0" y="285" width="320" height="180"/>
+                                <rect key="frame" x="0.0" y="284" width="320" height="180"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="181" id="vIm-kB-efe"/>
+                                    <constraint firstAttribute="height" constant="180" id="vIm-kB-efe"/>
                                 </constraints>
                             </pickerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="d8D-dk-uPm">
-                                <rect key="frame" x="0.0" y="64" width="320" height="191"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="190"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="BJN-vc-3SD"/>
@@ -623,7 +640,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="    NUMBER OF PEOPLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVB-ud-N79">
-                                <rect key="frame" x="0.0" y="255" width="320" height="30"/>
+                                <rect key="frame" x="0.0" y="254" width="320" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ink-13-EKS"/>
@@ -637,7 +654,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="TVB-ud-N79" secondAttribute="trailing" id="4G4-g8-gEm"/>
                             <constraint firstItem="tP4-1l-r9D" firstAttribute="top" secondItem="TVB-ud-N79" secondAttribute="bottom" id="DLs-c1-sLU"/>
-                            <constraint firstItem="kLt-kg-CoK" firstAttribute="top" secondItem="tP4-1l-r9D" secondAttribute="bottom" constant="-2" id="GQ9-je-1tC"/>
+                            <constraint firstItem="kLt-kg-CoK" firstAttribute="top" secondItem="tP4-1l-r9D" secondAttribute="bottom" id="GQ9-je-1tC"/>
                             <constraint firstAttribute="trailing" secondItem="tP4-1l-r9D" secondAttribute="trailing" id="JX9-r4-0Tf"/>
                             <constraint firstItem="tP4-1l-r9D" firstAttribute="leading" secondItem="MVf-hg-OuI" secondAttribute="leading" id="MIa-ry-Wjq"/>
                             <constraint firstItem="lxp-6b-Djh" firstAttribute="top" secondItem="kLt-kg-CoK" secondAttribute="bottom" id="esp-3V-gAp"/>
@@ -725,6 +742,7 @@
     <resources>
         <image name="Eagle" width="60" height="60"/>
         <image name="Pie" width="60" height="60"/>
+        <image name="minus" width="48" height="48"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

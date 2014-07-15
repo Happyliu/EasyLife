@@ -40,8 +40,6 @@
     self.peopleAmountPickerView.dataSource = self;
     self.numberOfPeopleToShare = 2;
 
-    [self.doneButton.layer setBorderColor:self.appBlackColor.CGColor];
-    [self.doneButton.layer setBorderWidth:0.5];
     [self.doneButton setBackgroundImage:self.doneButtonBackgroundImage forState:UIControlStateNormal];
 
     [self.doneButton setBackgroundColor:[UIColor whiteColor]];

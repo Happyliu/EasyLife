@@ -11,6 +11,8 @@
 #import "SingleExpenseRecordView.h"
 #import "UIScrollView+UITouchEvent.h"
 #import "AMSmoothAlertView.h"
+#import "DividerCalculateResultViewController.h"
+#import "ExpenseRecord.h"
 
 @interface DividerViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appRedColor, *appBlackColor;
@@ -22,7 +24,6 @@
 @property (strong, nonatomic) UIImage *calculateButtonBackgroundImage;
 @property NSInteger currentViewTag;
 @property BOOL isSameTag;
-@property (strong, nonatomic) NSMutableDictionary *expenseRecordsByPayer;
 @end
 
 @implementation DividerViewController
@@ -265,14 +266,6 @@
     return _calculateButtonBackgroundImage;
 }
 
-- (NSMutableDictionary *)expenseRecordsByPayer
-{
-    if (!_expenseRecordsByPayer) {
-        _expenseRecordsByPayer = [[NSMutableDictionary alloc] init];
-    }
-    return _expenseRecordsByPayer;
-}
-
 #pragma mark - Segue
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
@@ -295,6 +288,22 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if ([segue.identifier isEqualToString:@"Calculate Expense"]) {
+        if ([segue.destinationViewController isKindOfClass:[DividerCalculateResultViewController class]]) {
+            NSMutableArray *expenseRecordsTemp = [[NSMutableArray alloc] initWithCapacity:[self.singleExpenseRecordViews count]];
+            for (SingleExpenseRecordView *record in self.singleExpenseRecordViews) {
+                ExpenseRecord *expenseRecord = [[ExpenseRecord alloc] init];
+                expenseRecord.expenseDate = record.datePicker.selectedDate;
+                expenseRecord.expensePayerName = record.expensePayerTextField.text;
+                expenseRecord.expenseDescription = record.expenseDescriptionTextField.text;
+                expenseRecord.expenseAmount = [NSNumber numberWithDouble:[record.expenseAmountTextField.text doubleValue]];
+                [expenseRecordsTemp addObject:expenseRecord];
+            }
+            
+            ((DividerCalculateResultViewController *)segue.destinationViewController).expenseRecords = [expenseRecordsTemp copy];
+            [expenseRecordsTemp removeAllObjects];
+        }
+    }
 }
 
 @end

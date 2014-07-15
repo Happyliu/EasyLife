@@ -43,14 +43,10 @@
     /* set the style of buttons */
     [self.doneButton setBackgroundImage:self.doneButtonBackgroundImage forState:UIControlStateNormal];
     [self.doneButton setBackgroundColor:[UIColor whiteColor]];
-    [self.doneButton.layer setBorderWidth:0.5];
-    [self.doneButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
     [self.doneButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
     
     [self.goDutchButton setBackgroundImage:self.goDutchButtonBackgroundImage forState:UIControlStateNormal];
     [self.goDutchButton setBackgroundColor:[UIColor whiteColor]];
-    [self.goDutchButton.layer setBorderWidth:0.5];
-    [self.goDutchButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
     [self.goDutchButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
 }
 

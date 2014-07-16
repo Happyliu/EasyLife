@@ -41,7 +41,6 @@
     return _appThirdColor;
 }
 
-
 - (UIColor *)appRedColor {
     if (!_appRedColor) {
         _appRedColor = [UIColor flatRedColor];
@@ -51,7 +50,7 @@
 
 - (UIColor *)appBlackColor {
     if (!_appBlackColor) {
-        _appBlackColor = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:1.0];
+        _appBlackColor = [UIColor colorWithRed:45/255.0 green:45/255.0 blue:45/255.0 alpha:1.0];
     }
     return _appBlackColor;
 }
@@ -64,7 +63,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{ // multithread to do the file work
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSURL *documentsDirectory = [[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
-        NSString *documentName = @"MyXpence";
+        NSString *documentName = @"MyXpense";
         NSURL *url = [documentsDirectory URLByAppendingPathComponent:documentName];
         UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
         self.document = document;

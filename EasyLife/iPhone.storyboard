@@ -77,24 +77,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Z6x-9o-XTX">
-                                <rect key="frame" x="150" y="274" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="nT1-4i-dKl">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="nT1-4i-dKl">
                                 <rect key="frame" x="220" y="405" width="39" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </pageControl>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="LYv-dB-eRd">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Z6x-9o-XTX" firstAttribute="centerX" secondItem="HvW-AA-7NS" secondAttribute="centerX" id="WJ7-a7-2b9"/>
-                            <constraint firstItem="Z6x-9o-XTX" firstAttribute="centerY" secondItem="HvW-AA-7NS" secondAttribute="centerY" id="qTQ-Rr-nh0"/>
+                            <constraint firstItem="LYv-dB-eRd" firstAttribute="centerX" secondItem="HvW-AA-7NS" secondAttribute="centerX" id="TjO-eZ-ueM"/>
+                            <constraint firstItem="nsN-as-Onl" firstAttribute="top" secondItem="nT1-4i-dKl" secondAttribute="bottom" constant="77" id="VQD-ah-c9J"/>
+                            <constraint firstItem="LYv-dB-eRd" firstAttribute="centerY" secondItem="HvW-AA-7NS" secondAttribute="centerY" id="ufG-0r-WgX"/>
+                            <constraint firstAttribute="trailing" secondItem="nT1-4i-dKl" secondAttribute="trailing" constant="61" id="zka-as-Wkw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Divider Result" id="KHM-uO-ngr"/>
                     <connections>
-                        <outlet property="indicator" destination="Z6x-9o-XTX" id="Zb0-bq-5lz"/>
+                        <outlet property="indicator" destination="LYv-dB-eRd" id="UfZ-9d-7Dr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uJJ-lH-qLm" userLabel="First Responder" sceneMemberID="firstResponder"/>

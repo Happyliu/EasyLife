@@ -13,27 +13,36 @@
 @interface DividerCalculateResultViewController ()
 @property (strong, nonatomic) RQShineLabel *resultLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
+@property (strong, nonatomic) UIScrollView *resultScrollView;
 @property BOOL isComplete;
-@property (strong, nonatomic) NSMutableDictionary *payerAmountDict;
+@property (strong, nonatomic) NSMutableDictionary *payerAmountDict, *payerInformationDict;
+@property double totalAmount;
 @end
 
 @implementation DividerCalculateResultViewController
 
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.totalAmount = 0;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (!self.isComplete) {
-        [self.indicator startAnimating];
-    } else {
+    if (self.isComplete)
         [self.indicator stopAnimating];
-        [self.indicator removeFromSuperview];
-    }
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.resultLabel removeFromSuperview];
+    [self.resultScrollView removeFromSuperview];
+    [self.payerInformationDict removeAllObjects];
+    [self.payerAmountDict removeAllObjects];
 }
 
 
@@ -42,7 +51,6 @@
     [self.indicator startAnimating];
     
     if (_expenseRecords != expenseRecords) {
-        _expenseRecords = nil;
         _expenseRecords = expenseRecords;
     }
     
@@ -61,28 +69,40 @@
         NSMutableString *resultText = [[NSMutableString alloc] init];
         
         for (NSString *key in self.payerAmountDict) {
+            self.totalAmount += [[self.payerAmountDict valueForKey:key] doubleValue];
             [resultText appendString:[NSString stringWithFormat:@"Total Amount for %@ is %.2f", key, [[self.payerAmountDict valueForKey:key] doubleValue]]];
+            [resultText appendString:@"\n"];
+            [resultText appendString:[NSString stringWithFormat:@"%f", self.totalAmount]];
             [resultText appendString:@"\n"];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.resultLabel.text = [resultText copy];
-            [self.resultLabel sizeToFit];
             self.isComplete = YES;
+            self.resultLabel.text = [resultText copy];
             [self.indicator stopAnimating];
-            [self.indicator removeFromSuperview];
-            [self.view addSubview:self.resultLabel];
+            [self.view addSubview:self.resultScrollView];
+            [self.resultScrollView addSubview:self.resultLabel];
+            [self.resultLabel sizeToFit];
             [self.resultLabel shine];
         });
     });
 }
 
+- (UIScrollView *)resultScrollView
+{
+    if (!_resultScrollView) {
+        _resultScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    }
+    return _resultScrollView;
+}
+
 - (RQShineLabel *)resultLabel
 {
     if (!_resultLabel) {
-        _resultLabel = [[RQShineLabel alloc] initWithFrame:CGRectMake(self.view.frame.origin.x + 10, self.view.frame.origin.y + 10, self.view.frame.size.width - 20, self.view.frame.size.height - 20)];
+        _resultLabel = [[RQShineLabel alloc] initWithFrame:CGRectMake(self.resultScrollView.frame.origin.x + 10, self.resultScrollView.frame.origin.y + 10, self.resultScrollView.frame.size.width - 20, self.resultScrollView.frame.size.height - 20)];
         _resultLabel.textColor = [UIColor blackColor];
         _resultLabel.numberOfLines = 0;
+        [_resultLabel.layer setBorderWidth:1.0];
     }
     return _resultLabel;
 }
@@ -93,6 +113,14 @@
         _payerAmountDict = [[NSMutableDictionary alloc] initWithCapacity:[self.expenseRecords count]];
     }
     return _payerAmountDict;
+}
+
+- (NSMutableDictionary *)payerInformationDict
+{
+    if (!_payerInformationDict) {
+        _payerInformationDict = [[NSMutableDictionary alloc] initWithCapacity:[self.expenseRecords count]];
+    }
+    return _payerInformationDict;
 }
 
 

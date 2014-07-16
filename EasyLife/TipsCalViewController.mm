@@ -99,6 +99,7 @@
         self.currentResult = 0;
         self.isDoted = NO;
     }
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 
 - (void)viewDidLayoutSubviews
@@ -340,22 +341,21 @@
     tvc.managedObjectContext = context;
 }
 
-- (void)setManagedObjectContextForViewController:(RecordViewController *)rvc withManagedObjectContext:(NSManagedObjectContext *)context
-{ // send the database context to record map controller
-    rvc.managedObjectContext = context;
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"Calculate Tips"]) {
         if ([segue.destinationViewController isKindOfClass:[TipsResultViewController class]]) {
             [self setTotalAmountTipsForViewController:segue.destinationViewController withTotalAmount:self.currentResult andManagedObjectContext:self.managedObjectContext];
         }
-    } else if ([segue.identifier isEqualToString:@"Check History"]) {
-        if ([segue.destinationViewController isKindOfClass:[RecordViewController class]]) {
-            [self setManagedObjectContextForViewController:segue.destinationViewController withManagedObjectContext:self.managedObjectContext];
-        }
     }
+}
+- (IBAction)recordPressed:(id)sender {
+    RecordViewController *rvc = [self.storyboard instantiateViewControllerWithIdentifier:@"RecordViewController"];
+    [rvc setManagedObjectContext:self.managedObjectContext];
+    rvc.title = @"Slide Down to Close";
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:rvc];
+    [nav.navigationBar setHidden:YES];
+    [self presentViewController:nav animated:YES completion:NULL];
 }
 
 @end

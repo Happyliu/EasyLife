@@ -11,6 +11,7 @@
 #import "EasyLifeAppDelegate.h"
 #import "UILabel+NumberJump.h"
 
+
 @interface RecordMapViewController () <MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segements;
@@ -86,6 +87,7 @@
 {
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    
 }
 
 - (void)setMapView:(MKMapView *)mapView

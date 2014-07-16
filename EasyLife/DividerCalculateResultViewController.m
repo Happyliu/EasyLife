@@ -16,25 +16,9 @@
 @property (strong, nonatomic) UIScrollView *resultScrollView;
 @property BOOL isComplete;
 @property (strong, nonatomic) NSMutableDictionary *payerAmountDict, *payerInformationDict;
-@property double totalAmount;
 @end
 
 @implementation DividerCalculateResultViewController
-
-
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    self.totalAmount = 0;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    if (self.isComplete)
-        [self.indicator stopAnimating];
-
-}
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -49,30 +33,39 @@
 - (void)setExpenseRecords:(NSArray *)expenseRecords
 {
     [self.indicator startAnimating];
-    
     if (_expenseRecords != expenseRecords) {
         _expenseRecords = expenseRecords;
     }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        double totalAmount = 0;
         for (ExpenseRecord *record in self.expenseRecords) {
             if (![[self.payerAmountDict allKeys] containsObject:record.expensePayerName]) {
                 [self.payerAmountDict setValue:record.expenseAmount forKey:record.expensePayerName];
+                totalAmount += [record.expenseAmount doubleValue];
             } else {
                 double currentAmount = [[self.payerAmountDict valueForKey:record.expensePayerName] doubleValue];
                 double newAmount = [record.expenseAmount doubleValue];
+                totalAmount += newAmount;
                 newAmount += currentAmount;
                 [self.payerAmountDict setValue:[NSNumber numberWithDouble:newAmount] forKey:record.expensePayerName];
             }
         }
         
+        double averageAmount = totalAmount / [self.payerAmountDict count];
+        
         NSMutableString *resultText = [[NSMutableString alloc] init];
         
-        for (NSString *key in self.payerAmountDict) {
-            self.totalAmount += [[self.payerAmountDict valueForKey:key] doubleValue];
-            [resultText appendString:[NSString stringWithFormat:@"Total Amount for %@ is %.2f", key, [[self.payerAmountDict valueForKey:key] doubleValue]]];
-            [resultText appendString:@"\n"];
-            [resultText appendString:[NSString stringWithFormat:@"%f", self.totalAmount]];
+        NSArray *sortedKeys = [self.payerAmountDict keysSortedByValueUsingSelector:@selector(compare:)];
+        
+        for (NSString *sortedKey in sortedKeys) {
+            if ([[self.payerAmountDict valueForKey:sortedKey] doubleValue] > averageAmount) {
+                NSLog(@"big");
+            } else {
+                NSLog(@"small");
+            }
+            
+            [resultText appendString:[NSString stringWithFormat:@"key %@, value %.2f", sortedKey, [[self.payerAmountDict valueForKey:sortedKey] doubleValue]]];
             [resultText appendString:@"\n"];
         }
         

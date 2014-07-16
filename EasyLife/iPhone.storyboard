@@ -49,7 +49,7 @@
                                 <action selector="deleteLastSingleRecordView:" destination="GBg-Ng-o8A" id="GWi-25-L94"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4LE-4h-AVt">
+                        <barButtonItem key="rightBarButtonItem" image="plus" id="4LE-4h-AVt">
                             <connections>
                                 <action selector="addNewSingleRecordView:" destination="GBg-Ng-o8A" id="bx4-rm-Zl6"/>
                             </connections>
@@ -295,9 +295,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Calculate Tips" id="XM0-RE-3vb">
-                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="cJZ-AA-yv2">
+                        <barButtonItem key="leftBarButtonItem" image="tipRecord" id="cJZ-AA-yv2">
                             <connections>
-                                <segue destination="KLK-OS-Gqs" kind="custom" identifier="Check History" customClass="BlurryModalSegue" id="H88-Ww-xcR"/>
+                                <action selector="recordPressed:" destination="I5L-QQ-gdF" id="WRr-sV-hob"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="PLT-py-AHl">
@@ -434,7 +434,7 @@
         <!--Record View Controller-->
         <scene sceneID="U1a-Mx-Feu">
             <objects>
-                <viewController id="KLK-OS-Gqs" customClass="RecordViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecordViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KLK-OS-Gqs" customClass="RecordViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xH5-Mq-kto"/>
                         <viewControllerLayoutGuide type="bottom" id="WZW-Ow-mKe"/>
@@ -443,28 +443,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EY0-Kk-iiP">
-                                <rect key="frame" x="0.0" y="45" width="320" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="v3c-vB-5HU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="View All Records on Map">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="lLE-IB-Gup" kind="modal" identifier="Check History On Map" modalTransitionStyle="partialCurl" id="aQl-xV-Ekc"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="oDg-A8-95L">
-                                <rect key="frame" x="0.0" y="100" width="320" height="468"/>
+                                <rect key="frame" x="0.0" y="75" width="320" height="493"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Record" textLabel="kms-BZ-En6" detailTextLabel="qgV-TO-RC7" style="IBUITableViewCellStyleSubtitle" id="t2o-9i-wcf">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" showsReorderControl="YES" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Record" textLabel="kms-BZ-En6" detailTextLabel="igS-9a-u6V" style="IBUITableViewCellStyleSubtitle" id="t2o-9i-wcf">
                                         <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t2o-9i-wcf" id="Ic3-Q4-jfj">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kms-BZ-En6">
@@ -474,7 +461,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qgV-TO-RC7">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="igS-9a-u6V">
                                                     <rect key="frame" x="15" y="25" width="43" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -489,35 +476,41 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZ8-qy-j6T">
+                                <rect key="frame" x="0.0" y="20" width="320" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="RAs-HU-JcF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="View All Records on Map">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="lLE-IB-Gup" kind="modal" identifier="Check History On Map" modalTransitionStyle="partialCurl" id="weI-Ke-Hft"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="oDg-A8-95L" firstAttribute="top" secondItem="EY0-Kk-iiP" secondAttribute="bottom" id="CvC-fv-K4f"/>
-                            <constraint firstItem="EY0-Kk-iiP" firstAttribute="leading" secondItem="rUM-Xz-zdS" secondAttribute="leading" id="K5C-Ew-Oh9"/>
-                            <constraint firstAttribute="trailing" secondItem="EY0-Kk-iiP" secondAttribute="trailing" id="Pic-ke-R1e"/>
-                            <constraint firstAttribute="trailing" secondItem="oDg-A8-95L" secondAttribute="trailing" id="gDT-C2-6Ot"/>
-                            <constraint firstItem="oDg-A8-95L" firstAttribute="leading" secondItem="rUM-Xz-zdS" secondAttribute="leading" id="hU3-Pi-6Ec"/>
-                            <constraint firstItem="WZW-Ow-mKe" firstAttribute="top" secondItem="oDg-A8-95L" secondAttribute="bottom" id="jXU-Kd-TJ8"/>
-                            <constraint firstItem="EY0-Kk-iiP" firstAttribute="top" secondItem="xH5-Mq-kto" secondAttribute="bottom" constant="25" id="xsX-ah-ApY"/>
+                            <constraint firstItem="oDg-A8-95L" firstAttribute="top" secondItem="yZ8-qy-j6T" secondAttribute="bottom" id="0Yk-dE-t6j"/>
+                            <constraint firstAttribute="trailing" secondItem="oDg-A8-95L" secondAttribute="trailing" id="1pr-ip-Xhg"/>
+                            <constraint firstItem="oDg-A8-95L" firstAttribute="leading" secondItem="rUM-Xz-zdS" secondAttribute="leading" id="2mi-fM-VLO"/>
+                            <constraint firstItem="yZ8-qy-j6T" firstAttribute="top" secondItem="xH5-Mq-kto" secondAttribute="bottom" id="Chq-Gc-gz5"/>
+                            <constraint firstAttribute="trailing" secondItem="yZ8-qy-j6T" secondAttribute="trailing" id="Vdn-2e-PFz"/>
+                            <constraint firstItem="yZ8-qy-j6T" firstAttribute="leading" secondItem="rUM-Xz-zdS" secondAttribute="leading" id="aoK-bi-gv0"/>
+                            <constraint firstItem="WZW-Ow-mKe" firstAttribute="top" secondItem="oDg-A8-95L" secondAttribute="bottom" id="xnO-Uk-Ltc"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="Zvs-Ku-TeI" appends="YES" id="EWu-5Y-4Vh"/>
-                        </connections>
                     </view>
                     <connections>
-                        <outlet property="mapButton" destination="EY0-Kk-iiP" id="nty-Ow-npD"/>
+                        <outlet property="mapButton" destination="yZ8-qy-j6T" id="TGH-wY-Dxg"/>
                         <outlet property="tableView" destination="oDg-A8-95L" id="nzC-7N-T5j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryU-ed-fYy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="down" id="Zvs-Ku-TeI">
-                    <connections>
-                        <action selector="swipeDown:" destination="KLK-OS-Gqs" id="FNF-z4-yh1"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2357" y="53"/>
+            <point key="canvasLocation" x="2357" y="108"/>
         </scene>
         <!--Tips Result View Controller - Tips Result-->
         <scene sceneID="Yn9-uu-p0X">
@@ -745,6 +738,8 @@
         <image name="Eagle" width="60" height="60"/>
         <image name="Pie" width="60" height="60"/>
         <image name="minus" width="48" height="48"/>
+        <image name="plus" width="48" height="48"/>
+        <image name="tipRecord" width="48" height="48"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

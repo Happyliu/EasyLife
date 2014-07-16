@@ -22,6 +22,7 @@
 		5091AB7F1962FB4B00B626B3 /* UIScrollView+UITouchEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5091AB7E1962FB4B00B626B3 /* UIScrollView+UITouchEvent.m */; };
 		5091AB851963C8E400B626B3 /* JVFloatLabeledTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5091AB841963C8E400B626B3 /* JVFloatLabeledTextField.m */; };
 		50A761C8197611B400D73ED4 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A761C7197611B400D73ED4 /* Record.m */; };
+		50A761CB1976660700D73ED4 /* UINavigationController+MHDismissModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A761CA1976660700D73ED4 /* UINavigationController+MHDismissModalView.m */; };
 		50C1A6A019267C3400525552 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */; };
 		50C403E319250FA00099FAFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E219250FA00099FAFD /* Foundation.framework */; };
 		50C403E519250FA00099FAFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E419250FA00099FAFD /* CoreGraphics.framework */; };
@@ -382,12 +383,8 @@
 		50EB007F1952EEA7009C346D /* DividerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB007E1952EEA7009C346D /* DividerViewController.m */; };
 		50EB008519555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */; };
 		50EB008619555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */; };
-		50EB009019556BF0009C346D /* BlurryModalSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008F19556BF0009C346D /* BlurryModalSegue.m */; };
-		50EB009119556BF0009C346D /* BlurryModalSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008F19556BF0009C346D /* BlurryModalSegue.m */; };
 		50EB009819556C79009C346D /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB009719556C79009C346D /* UIImage+ImageEffects.m */; };
 		50EB009919556C79009C346D /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB009719556C79009C346D /* UIImage+ImageEffects.m */; };
-		50EB009C19556D23009C346D /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB009B19556D23009C346D /* MZAppearance.m */; };
-		50EB009D19556D23009C346D /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB009B19556D23009C346D /* MZAppearance.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -424,6 +421,8 @@
 		5091AB841963C8E400B626B3 /* JVFloatLabeledTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatLabeledTextField.m; sourceTree = "<group>"; };
 		50A761C6197611B400D73ED4 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
 		50A761C7197611B400D73ED4 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
+		50A761C91976660700D73ED4 /* UINavigationController+MHDismissModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MHDismissModalView.h"; sourceTree = "<group>"; };
+		50A761CA1976660700D73ED4 /* UINavigationController+MHDismissModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MHDismissModalView.m"; sourceTree = "<group>"; };
 		50C1A69E19267C3400525552 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
 		50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		50C403DF19250FA00099FAFD /* EasyLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -804,12 +803,8 @@
 		50EB007E1952EEA7009C346D /* DividerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DividerViewController.m; sourceTree = "<group>"; };
 		50EB008319555FFE009C346D /* UIColor+MLPFlatColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MLPFlatColors.h"; sourceTree = "<group>"; };
 		50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MLPFlatColors.m"; sourceTree = "<group>"; };
-		50EB008E19556BF0009C346D /* BlurryModalSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurryModalSegue.h; sourceTree = "<group>"; };
-		50EB008F19556BF0009C346D /* BlurryModalSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurryModalSegue.m; sourceTree = "<group>"; };
 		50EB009619556C79009C346D /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		50EB009719556C79009C346D /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
-		50EB009A19556D23009C346D /* MZAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZAppearance.h; sourceTree = "<group>"; };
-		50EB009B19556D23009C346D /* MZAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZAppearance.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -892,6 +887,17 @@
 				508B84C0195DA21B0056ABE1 /* DIDatepickerDateView.m */,
 			);
 			name = DatePicker;
+			sourceTree = "<group>";
+		};
+		50A761CC197670A500D73ED4 /* BlurryModalView */ = {
+			isa = PBXGroup;
+			children = (
+				50A761C91976660700D73ED4 /* UINavigationController+MHDismissModalView.h */,
+				50A761CA1976660700D73ED4 /* UINavigationController+MHDismissModalView.m */,
+				50EB009619556C79009C346D /* UIImage+ImageEffects.h */,
+				50EB009719556C79009C346D /* UIImage+ImageEffects.m */,
+			);
+			name = BlurryModalView;
 			sourceTree = "<group>";
 		};
 		50C403D619250FA00099FAFD = {
@@ -978,6 +984,7 @@
 		50C40411192510790099FAFD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				50A761CC197670A500D73ED4 /* BlurryModalView */,
 				50278A001974FDD100D0A6BB /* ExpenseRecord.h */,
 				50278A011974FDD100D0A6BB /* ExpenseRecord.m */,
 				50D6DBE7196D2A24002CA9F6 /* ShineLabel */,
@@ -987,7 +994,6 @@
 				50183B1819559D6C0012E0B2 /* OpenCVForUIImage */,
 				50183B1719559D570012E0B2 /* CoreDataModel */,
 				50183B1619559D450012E0B2 /* FlatColors */,
-				50EB009E19556D52009C346D /* BlurryModalSegue */,
 				5091AB7D1962FB4B00B626B3 /* UIScrollView+UITouchEvent.h */,
 				5091AB7E1962FB4B00B626B3 /* UIScrollView+UITouchEvent.m */,
 			);
@@ -1396,19 +1402,6 @@
 			name = ShineLabel;
 			sourceTree = "<group>";
 		};
-		50EB009E19556D52009C346D /* BlurryModalSegue */ = {
-			isa = PBXGroup;
-			children = (
-				50EB009619556C79009C346D /* UIImage+ImageEffects.h */,
-				50EB009719556C79009C346D /* UIImage+ImageEffects.m */,
-				50EB009A19556D23009C346D /* MZAppearance.h */,
-				50EB009B19556D23009C346D /* MZAppearance.m */,
-				50EB008E19556BF0009C346D /* BlurryModalSegue.h */,
-				50EB008F19556BF0009C346D /* BlurryModalSegue.m */,
-			);
-			name = BlurryModalSegue;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1510,7 +1503,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				50EB009819556C79009C346D /* UIImage+ImageEffects.m in Sources */,
-				50EB009C19556D23009C346D /* MZAppearance.m in Sources */,
 				50D60B59195A983200A9F628 /* GPUImageMotionDetector.m in Sources */,
 				50D60BB9195A983200A9F628 /* GPUImageTextureOutput.m in Sources */,
 				50D60B51195A983200A9F628 /* GPUImageMissEtikateFilter.m in Sources */,
@@ -1541,6 +1533,7 @@
 				50C4042C192511540099FAFD /* TipsCalViewController.mm in Sources */,
 				50D60AD7195A983200A9F628 /* GPUImageColorMatrixFilter.m in Sources */,
 				50D60B75195A983200A9F628 /* GPUImagePixellateFilter.m in Sources */,
+				50A761CB1976660700D73ED4 /* UINavigationController+MHDismissModalView.m in Sources */,
 				50D60B73195A983200A9F628 /* GPUImagePinchDistortionFilter.m in Sources */,
 				50D60B3D195A983200A9F628 /* GPUImageLineGenerator.m in Sources */,
 				50D60B5F195A983200A9F628 /* GPUImageMultiplyBlendFilter.m in Sources */,
@@ -1634,7 +1627,6 @@
 				50D60B67195A983200A9F628 /* GPUImageOpacityFilter.m in Sources */,
 				50D60B6F195A983200A9F628 /* GPUImageParallelCoordinateLineTransformFilter.m in Sources */,
 				50183B12195587190012E0B2 /* RecognitionCameraOverlayView.m in Sources */,
-				50EB009019556BF0009C346D /* BlurryModalSegue.m in Sources */,
 				50D60BC1195A983200A9F628 /* GPUImageThresholdSketchFilter.m in Sources */,
 				50D60BD1195A983200A9F628 /* GPUImageTwoPassTextureSamplingFilter.m in Sources */,
 				50D60B21195A983200A9F628 /* GPUImageHistogramGenerator.m in Sources */,
@@ -1854,7 +1846,6 @@
 				50D60B30195A983200A9F628 /* GPUImageKuwaharaFilter.m in Sources */,
 				50D60AF2195A983200A9F628 /* GPUImageEmbossFilter.m in Sources */,
 				50D60B9C195A983200A9F628 /* GPUImageShiTomasiFeatureDetectionFilter.m in Sources */,
-				50EB009D19556D23009C346D /* MZAppearance.m in Sources */,
 				50D60AF8195A983200A9F628 /* GPUImageExposureFilter.m in Sources */,
 				50D60B3E195A983200A9F628 /* GPUImageLineGenerator.m in Sources */,
 				50D60B82195A983200A9F628 /* GPUImagePrewittEdgeDetectionFilter.m in Sources */,
@@ -1870,7 +1861,6 @@
 				50D60BE4195A983200A9F628 /* GPUImageZoomBlurFilter.m in Sources */,
 				50D60B80195A983200A9F628 /* GPUImagePosterizeFilter.m in Sources */,
 				50D60AE2195A983200A9F628 /* GPUImageCrosshatchFilter.m in Sources */,
-				50EB009119556BF0009C346D /* BlurryModalSegue.m in Sources */,
 				50D60BF5195A984A00A9F628 /* GPUImageView.m in Sources */,
 				50D60B60195A983200A9F628 /* GPUImageMultiplyBlendFilter.m in Sources */,
 				50D60BBC195A983200A9F628 /* GPUImageThreeInputFilter.m in Sources */,

@@ -11,6 +11,7 @@
 #import "Record.h"
 #import "EasyLifeAppDelegate.h"
 #import "SingleRecordMapViewController.h"
+#import "UINavigationController+MHDismissModalView.h"
 
 @interface RecordViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *mapButton;
@@ -19,7 +20,7 @@
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @property (strong, nonatomic) UIImage *mapButtonBackgroundImage;
-@property (nonatomic, strong) UIView *downArrow;
+//@property (nonatomic, strong) UIView *downArrow;
 @end
 
 @implementation RecordViewController
@@ -41,28 +42,14 @@
     //[self.mapButton.layer setBorderWidth:0.5];
     [self.mapButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
     [self.mapButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
-    [self.view addSubview:self.downArrow];
+    [self.navigationController installMHDismissModalViewWithOptions:[[MHDismissModalViewOptions alloc] initWithScrollView:self.tableView theme:MHModalThemeWhite]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.records removeAllObjects];
-    [self.downArrow removeFromSuperview];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
-
-- (UIView *)downArrow
-{
-    if (!_downArrow) {
-        _downArrow = [[UIView alloc] initWithFrame:CGRectMake(0, [[UIApplication sharedApplication] statusBarFrame].size.height, self.view.frame.size.width, self.mapButton.frame.origin.y - [[UIApplication sharedApplication] statusBarFrame].size.height)];
-        [_downArrow setBackgroundColor:self.appBlackColor];
-        UITapGestureRecognizer *touch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(swipeDown:)];
-        [_downArrow addGestureRecognizer:touch];
-    }
-    return _downArrow;
-}
-
 
 #pragma mark - ButtonBackgroundImage
 
@@ -228,13 +215,9 @@
             NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
             ((SingleRecordMapViewController *)segue.destinationViewController).displayRecord = [self.records objectAtIndex:indexPath.row];
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+
         }
     }
 }
-
-- (IBAction)swipeDown:(UISwipeGestureRecognizer *)sender {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
-}
-
 
 @end

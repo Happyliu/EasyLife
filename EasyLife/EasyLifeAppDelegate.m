@@ -50,7 +50,7 @@
 
 - (UIColor *)appBlackColor {
     if (!_appBlackColor) {
-        _appBlackColor = [UIColor colorWithRed:45/255.0 green:45/255.0 blue:45/255.0 alpha:1.0];
+        _appBlackColor = [UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:1.0];
     }
     return _appBlackColor;
 }

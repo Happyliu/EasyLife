@@ -54,20 +54,27 @@
         
         double averageAmount = totalAmount / [self.payerAmountDict count];
         
-        NSMutableString *resultText = [[NSMutableString alloc] init];
-        
-        NSArray *sortedKeys = [self.payerAmountDict keysSortedByValueUsingSelector:@selector(compare:)];
+        NSArray *sortedKeys = [self.payerAmountDict keysSortedByValueUsingSelector:@selector(compare:)]; // sort the dictionary
         
         for (NSString *sortedKey in sortedKeys) {
-            if ([[self.payerAmountDict valueForKey:sortedKey] doubleValue] > averageAmount) {
-                NSLog(@"big");
-            } else {
-                NSLog(@"small");
-            }
-            
+            /* calculate the amount with the average value */
+            [self.payerAmountDict setValue:[NSNumber numberWithDouble:averageAmount - [[self.payerAmountDict valueForKey:sortedKey] doubleValue]] forKey:sortedKey];
+        }
+        
+        
+        NSMutableString *resultText = [[NSMutableString alloc] init];
+        
+//        while ([sortedKeys count]) {
+//            ;
+//        }
+        
+        
+        for (NSString *sortedKey in sortedKeys) {
             [resultText appendString:[NSString stringWithFormat:@"key %@, value %.2f", sortedKey, [[self.payerAmountDict valueForKey:sortedKey] doubleValue]]];
             [resultText appendString:@"\n"];
         }
+        
+        
         
         dispatch_async(dispatch_get_main_queue(), ^{
             self.isComplete = YES;

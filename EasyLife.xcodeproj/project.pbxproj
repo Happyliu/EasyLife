@@ -900,6 +900,24 @@
 			name = BlurryModalView;
 			sourceTree = "<group>";
 		};
+		50A761D51977B49900D73ED4 /* ExpenseRecord */ = {
+			isa = PBXGroup;
+			children = (
+				50278A001974FDD100D0A6BB /* ExpenseRecord.h */,
+				50278A011974FDD100D0A6BB /* ExpenseRecord.m */,
+			);
+			name = ExpenseRecord;
+			sourceTree = "<group>";
+		};
+		50A761D61977B4A600D73ED4 /* UIScrollViewTouchEvent */ = {
+			isa = PBXGroup;
+			children = (
+				5091AB7D1962FB4B00B626B3 /* UIScrollView+UITouchEvent.h */,
+				5091AB7E1962FB4B00B626B3 /* UIScrollView+UITouchEvent.m */,
+			);
+			name = UIScrollViewTouchEvent;
+			sourceTree = "<group>";
+		};
 		50C403D619250FA00099FAFD = {
 			isa = PBXGroup;
 			children = (
@@ -984,9 +1002,9 @@
 		50C40411192510790099FAFD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				50A761D61977B4A600D73ED4 /* UIScrollViewTouchEvent */,
+				50A761D51977B49900D73ED4 /* ExpenseRecord */,
 				50A761CC197670A500D73ED4 /* BlurryModalView */,
-				50278A001974FDD100D0A6BB /* ExpenseRecord.h */,
-				50278A011974FDD100D0A6BB /* ExpenseRecord.m */,
 				50D6DBE7196D2A24002CA9F6 /* ShineLabel */,
 				50D6DBE3196D140A002CA9F6 /* NJDNumberJump */,
 				50D6096B195A981C00A9F628 /* GPUImage */,
@@ -994,8 +1012,6 @@
 				50183B1819559D6C0012E0B2 /* OpenCVForUIImage */,
 				50183B1719559D570012E0B2 /* CoreDataModel */,
 				50183B1619559D450012E0B2 /* FlatColors */,
-				5091AB7D1962FB4B00B626B3 /* UIScrollView+UITouchEvent.h */,
-				5091AB7E1962FB4B00B626B3 /* UIScrollView+UITouchEvent.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";

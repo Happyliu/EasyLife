@@ -43,12 +43,12 @@ NSString * const HAS_SCROLLVIEW = @"HAS_SCROLLVIEW";
 
 @implementation MHDismissModalViewOptions
 
-- (id)initWithScrollView:(UIScrollView*)scrollView
+- (id)initWithTableView:(UITableView*)tableView
                    theme:(MHModalTheme)theme{
     self = [super init];
     if (!self)
         return nil;
-    self.scrollView = scrollView;
+    self.tableView = tableView;
     self.screenShot = nil;
     self.theme = theme;
     self.customColor =nil;
@@ -59,7 +59,7 @@ NSString * const HAS_SCROLLVIEW = @"HAS_SCROLLVIEW";
 
 @interface MHDismissSharedManager()
 @property (nonatomic, strong) UINavigationController *currentNav;
-@property (assign) id<UIScrollViewDelegate> scrollViewDelegate;
+@property (assign) id<UITableViewDelegate> tableViewDelegate;
 @end
 
 
@@ -76,7 +76,7 @@ NSString * const HAS_SCROLLVIEW = @"HAS_SCROLLVIEW";
 }
 -(void)installWithCustomColor:(UIColor *)blurColor  withIgnoreObjects:(NSArray *)ignoreObjects{
     
-    MHDismissModalViewOptions *options = [[MHDismissModalViewOptions alloc]initWithScrollView:nil theme:MHModalThemeCustomBlurColor];
+    MHDismissModalViewOptions *options = [[MHDismissModalViewOptions alloc]initWithTableView:nil theme:MHModalThemeCustomBlurColor];
     options.customColor = blurColor;
     [self addObserverToInstallMHDismissWithOptions:options ignoreObjects:ignoreObjects];
 }
@@ -137,7 +137,7 @@ NSString * const HAS_SCROLLVIEW = @"HAS_SCROLLVIEW";
                 firstObject =[[viewController view].subviews objectAtIndex:0];
             }
             [MHDismissSharedManager sharedDismissManager].currentNav =viewController.navigationController;
-            MHDismissModalViewOptions *newOptions = [[MHDismissModalViewOptions alloc] initWithScrollView:firstObject
+            MHDismissModalViewOptions *newOptions = [[MHDismissModalViewOptions alloc] initWithTableView:firstObject
                                                                                                     theme:MHModalThemeWhite];
             newOptions.ignore = ignoreObject;
             newOptions.theme = options.theme;
@@ -145,7 +145,7 @@ NSString * const HAS_SCROLLVIEW = @"HAS_SCROLLVIEW";
             if ([firstObject isKindOfClass:[UIScrollView class]]) {
                 [viewController.navigationController installMHDismissModalViewWithOptions:newOptions];
             }else{
-                newOptions.scrollView = nil;
+                newOptions.tableView = nil;
                 [viewController.navigationController installMHDismissModalViewWithOptions:newOptions];
             }
         }else{
@@ -156,7 +156,7 @@ NSString * const HAS_SCROLLVIEW = @"HAS_SCROLLVIEW";
 }
 
 -(void)installWithTheme:(MHModalTheme)theme withIgnoreObjects:(NSArray *)ignoreObjects{
-    MHDismissModalViewOptions *options = [[MHDismissModalViewOptions alloc]initWithScrollView:nil theme:theme];
+    MHDismissModalViewOptions *options = [[MHDismissModalViewOptions alloc]initWithTableView:nil theme:theme];
     [self addObserverToInstallMHDismissWithOptions:options ignoreObjects:ignoreObjects];
 }
 
@@ -233,13 +233,13 @@ NSString * const HAS_SCROLLVIEW = @"HAS_SCROLLVIEW";
         if (scrollView.contentOffset.y<=0) {
             [scrollView setContentOffset:CGPointMake(0,  0)];
         }else{
-            scrollView.delegate = [MHDismissSharedManager sharedDismissManager].scrollViewDelegate;
+            scrollView.delegate = [MHDismissSharedManager sharedDismissManager].tableViewDelegate;
         }
     }
 }
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    scrollView.delegate = [MHDismissSharedManager sharedDismissManager].scrollViewDelegate;
+    scrollView.delegate = [MHDismissSharedManager sharedDismissManager].tableViewDelegate;
 }
 
 
@@ -271,15 +271,15 @@ NSString * const HAS_SCROLLVIEW = @"HAS_SCROLLVIEW";
     }
     backGroundView.tag = 203;
     if (options.theme != MHModalThemeNoBlur) {
-        [options.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-        options.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        options.scrollView.backgroundColor = [UIColor clearColor];
+        [options.tableView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+        options.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        options.tableView.backgroundColor = [UIColor clearColor];
         if (!options.ignore.ignoreBlurEffect) {
-            if (!options.scrollView) {
+            if (!options.tableView) {
                 [[[self.viewControllers objectAtIndex:0] view] addSubview:backGroundView];
                 [[[self.viewControllers objectAtIndex:0] view] sendSubviewToBack:backGroundView];
             }else{
-                [[[self.viewControllers objectAtIndex:0] view] insertSubview:backGroundView belowSubview:options.scrollView];
+                [[[self.viewControllers objectAtIndex:0] view] insertSubview:backGroundView belowSubview:options.tableView];
             }
         }
     }
@@ -296,8 +296,8 @@ NSString * const HAS_SCROLLVIEW = @"HAS_SCROLLVIEW";
     }
     
     
-    if (options.scrollView) {
-        [MHDismissSharedManager sharedDismissManager].scrollViewDelegate = options.scrollView.delegate;
+    if (options.tableView) {
+        [MHDismissSharedManager sharedDismissManager].tableViewDelegate = options.tableView.delegate;
         self.hasScrollView =YES;
         MHGestureRecognizerWithOptions *panRecognizer = [[MHGestureRecognizerWithOptions alloc] initWithTarget:self action:@selector(scrollRecognizerNavbar:)];
         panRecognizer.options = options;
@@ -335,7 +335,7 @@ NSString * const HAS_SCROLLVIEW = @"HAS_SCROLLVIEW";
 - (void)scrollRecognizerView:(MHGestureRecognizerWithOptions *)recognizer{
     [self setImageToWindow:recognizer];
     MHDismissModalViewOptions *options = recognizer.options;
-    if (options.scrollView.contentOffset.y==0 || !options.scrollView) {
+    if (options.tableView.contentOffset.y==0 || !options.tableView) {
         [self changeFrameWithRecognizer:recognizer];
     }
 }
@@ -346,10 +346,13 @@ NSString * const HAS_SCROLLVIEW = @"HAS_SCROLLVIEW";
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         self.wasUnderZero = NO;
         self.lastPoint = [(UIPanGestureRecognizer*)recognizer translationInView:self.view].y;
-        
+        if (options.tableView.isEditing) {
+            [options.tableView setEditing:NO animated:YES];
+        }
     }
     if (recognizer.state == UIGestureRecognizerStateChanged) {
-        [options.scrollView setScrollEnabled:NO];
+        [options.tableView setScrollEnabled:NO];
+        
         if (self.view.frame.origin.y>=0 || !self.wasUnderZero) {
             
             options.bluredBackground.frame = CGRectMake(0, -(translatedPoint.y-self.lastPoint), options.bluredBackground.frame.size.width, options.bluredBackground.frame.size.height);
@@ -363,9 +366,9 @@ NSString * const HAS_SCROLLVIEW = @"HAS_SCROLLVIEW";
         }
     }
     if (recognizer.state == UIGestureRecognizerStateEnded) {
-        [options.scrollView setScrollEnabled:YES];
-        if (options.scrollView) {
-            options.scrollView.delegate = [MHDismissSharedManager sharedDismissManager].scrollViewDelegate;
+        [options.tableView setScrollEnabled:YES];
+        if (options.tableView) {
+            options.tableView.delegate = [MHDismissSharedManager sharedDismissManager].tableViewDelegate;
         }
         
         [UIView animateWithDuration:0.4 animations:^{

@@ -42,7 +42,7 @@
     //[self.mapButton.layer setBorderWidth:0.5];
     [self.mapButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
     [self.mapButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
-    [self.navigationController installMHDismissModalViewWithOptions:[[MHDismissModalViewOptions alloc] initWithScrollView:self.tableView theme:MHModalThemeWhite]];
+    [self.navigationController installMHDismissModalViewWithOptions:[[MHDismissModalViewOptions alloc] initWithTableView:self.tableView theme:MHModalThemeWhite]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

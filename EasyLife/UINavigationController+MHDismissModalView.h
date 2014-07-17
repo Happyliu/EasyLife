@@ -33,9 +33,9 @@ typedef NS_ENUM(NSUInteger, MHModalTheme) {
 
 
 @interface MHDismissModalViewOptions : NSObject
-@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic) MHModalTheme theme;
-- (id)initWithScrollView:(UIScrollView*)scrollView
+- (id)initWithTableView:(UITableView*)tableView
                    theme:(MHModalTheme)theme;
 @end
 
@@ -55,7 +55,7 @@ typedef NS_ENUM(NSUInteger, MHModalTheme) {
 
 
 
-@interface UINavigationController (MHDismissModalView)<UIGestureRecognizerDelegate,UIScrollViewDelegate>
+@interface UINavigationController (MHDismissModalView)<UIGestureRecognizerDelegate,UITableViewDelegate>
 @property (nonatomic) BOOL wasUnderZero;
 @property (nonatomic) BOOL hasScrollView;
 @property CGFloat lastPoint;

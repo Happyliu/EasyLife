@@ -9,16 +9,28 @@
 #import "DividerCalculateResultViewController.h"
 #import "RQShineLabel.h"
 #import "ExpenseRecord.h"
+#import "EasyLifeAppDelegate.h"
 
 @interface DividerCalculateResultViewController ()
 @property (strong, nonatomic) RQShineLabel *resultLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 @property (strong, nonatomic) UIScrollView *resultScrollView;
-@property BOOL isComplete;
 @property (strong, nonatomic) NSMutableDictionary *payerAmountDict, *payerInformationDict;
+@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @end
 
 @implementation DividerCalculateResultViewController
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.isComplete) {
+        [self.view addSubview:self.resultScrollView];
+        [self.resultScrollView addSubview:self.resultLabel];
+        [self.resultLabel sizeToFit];
+    }
+}
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -27,6 +39,44 @@
     [self.resultScrollView removeFromSuperview];
     [self.payerInformationDict removeAllObjects];
     [self.payerAmountDict removeAllObjects];
+}
+
+#pragma mark - Initialize app colors
+
+- (UIColor *)appTintColor
+{
+    if (!_appTintColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appTintColor = appDelegate.appTintColor;
+    }
+    return _appTintColor;
+}
+
+- (UIColor *)appSecondColor
+{
+    if (!_appSecondColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appSecondColor = appDelegate.appSecondColor;
+    }
+    return _appSecondColor;
+}
+
+- (UIColor *)appThirdColor
+{
+    if (!_appThirdColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appThirdColor = appDelegate.appThirdColor;
+    }
+    return _appThirdColor;
+}
+
+- (UIColor *)appBlackColor
+{
+    if (!_appBlackColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appBlackColor = appDelegate.appBlackColor;
+    }
+    return _appBlackColor;
 }
 
 
@@ -39,6 +89,8 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         double totalAmount = 0;
+        NSMutableString *resultText = [[NSMutableString alloc] init];
+        
         for (ExpenseRecord *record in self.expenseRecords) {
             if (![[self.payerAmountDict allKeys] containsObject:record.expensePayerName]) {
                 [self.payerAmountDict setValue:record.expenseAmount forKey:record.expensePayerName];
@@ -52,36 +104,54 @@
             }
         }
         
-        double averageAmount = totalAmount / [self.payerAmountDict count];
+        double averageAmount = [[NSString stringWithFormat:@"%.2f", totalAmount / [self.payerAmountDict count]] doubleValue];
         
-        NSArray *sortedKeys = [self.payerAmountDict keysSortedByValueUsingSelector:@selector(compare:)]; // sort the dictionary
+        NSMutableArray *sortedKeys = [[self.payerAmountDict keysSortedByValueUsingSelector:@selector(compare:)] mutableCopy]; // sort the dictionary
         
         for (NSString *sortedKey in sortedKeys) {
             /* calculate the amount with the average value */
             [self.payerAmountDict setValue:[NSNumber numberWithDouble:averageAmount - [[self.payerAmountDict valueForKey:sortedKey] doubleValue]] forKey:sortedKey];
         }
-        
-        
-        NSMutableString *resultText = [[NSMutableString alloc] init];
-        
-//        while ([sortedKeys count]) {
-//            ;
-//        }
-        
-        
-        for (NSString *sortedKey in sortedKeys) {
-            [resultText appendString:[NSString stringWithFormat:@"key %@, value %.2f", sortedKey, [[self.payerAmountDict valueForKey:sortedKey] doubleValue]]];
-            [resultText appendString:@"\n"];
+
+        while ([sortedKeys count]) {
+            double positiveValue = [[self.payerAmountDict valueForKey:[sortedKeys firstObject]] doubleValue];
+            double negativeValue = [[self.payerAmountDict valueForKey:[sortedKeys lastObject]] doubleValue];
+            
+            if (positiveValue == 0) {
+                [sortedKeys removeObject:[sortedKeys firstObject]];
+                continue;
+            } else if (negativeValue == 0) {
+                [sortedKeys removeObject:[sortedKeys lastObject]];
+                continue;
+            } else if ([[sortedKeys firstObject] isEqualToString:[sortedKeys lastObject]]) {
+                [sortedKeys removeAllObjects];
+                continue;
+            }
+            
+            if (negativeValue + positiveValue > 0) {
+                [resultText appendString:[NSString stringWithFormat:@"%@ please give $%.2f to %@.\n", [sortedKeys firstObject], -negativeValue, [sortedKeys lastObject]]];
+                positiveValue += negativeValue;
+                [self.payerAmountDict setValue:[NSNumber numberWithDouble:positiveValue] forKey:[sortedKeys firstObject]];
+                [sortedKeys removeObject:[sortedKeys lastObject]];
+            } else if (negativeValue + positiveValue < 0) {
+                [resultText appendString:[NSString stringWithFormat:@"%@ please give $%.2f to %@.\n", [sortedKeys firstObject], positiveValue, [sortedKeys lastObject]]];
+                negativeValue += positiveValue;
+                [self.payerAmountDict setValue:[NSNumber numberWithDouble:negativeValue] forKey:[sortedKeys lastObject]];
+                [sortedKeys removeObject:[sortedKeys firstObject]];
+            } else {
+                [resultText appendString:[NSString stringWithFormat:@"%@ please give $%.2f to %@.\n", [sortedKeys firstObject], positiveValue, [sortedKeys lastObject]]];
+                [sortedKeys removeObject:[sortedKeys firstObject]];
+                [sortedKeys removeObject:[sortedKeys lastObject]];
+            }
         }
-        
-        
-        
+
         dispatch_async(dispatch_get_main_queue(), ^{
             self.isComplete = YES;
             self.resultLabel.text = [resultText copy];
             [self.indicator stopAnimating];
             [self.view addSubview:self.resultScrollView];
             [self.resultScrollView addSubview:self.resultLabel];
+            [self.resultLabel setBackgroundColor:self.appThirdColor];
             [self.resultLabel sizeToFit];
             [self.resultLabel shine];
         });
@@ -102,7 +172,6 @@
         _resultLabel = [[RQShineLabel alloc] initWithFrame:CGRectMake(self.resultScrollView.frame.origin.x + 10, self.resultScrollView.frame.origin.y + 10, self.resultScrollView.frame.size.width - 20, self.resultScrollView.frame.size.height - 20)];
         _resultLabel.textColor = [UIColor blackColor];
         _resultLabel.numberOfLines = 0;
-        [_resultLabel.layer setBorderWidth:1.0];
     }
     return _resultLabel;
 }

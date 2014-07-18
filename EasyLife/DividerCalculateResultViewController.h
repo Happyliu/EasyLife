@@ -10,4 +10,5 @@
 
 @interface DividerCalculateResultViewController : UIViewController
 @property (strong, nonatomic) NSArray *expenseRecords;
+@property BOOL isComplete;
 @end

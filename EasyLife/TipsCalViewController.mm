@@ -62,9 +62,20 @@
     self.navigationController.navigationBar.translucent = NO;
 
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 2);
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.6
+    ;
+    self.navigationController.navigationBar.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.navigationController.navigationBar.bounds].CGPath;    
+    
     self.tabBarController.tabBar.barTintColor = self.appBlackColor;
     self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
     self.tabBarController.tabBar.translucent = NO;
+    
+    self.tabBarController.tabBar.layer.shadowOffset = CGSizeMake(0, -2);
+    self.tabBarController.tabBar.layer.shadowOpacity = 0.6
+    
+    ;
+    self.tabBarController.tabBar.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.tabBarController.tabBar.bounds].CGPath;
     
     [self.resetButton.layer setBorderWidth:0.5];
     [self.resetButton setBackgroundImage:self.resetButtonBackgroundImage forState:UIControlStateNormal];

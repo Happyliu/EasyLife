@@ -86,6 +86,11 @@
     self.navigationController.navigationBar.translucent = NO;
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 2);
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.6;
+    self.navigationController.navigationBar.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.navigationController.navigationBar.bounds].CGPath;
+
+    
     self.tabBarController.tabBar.barTintColor = self.appBlackColor;
     self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
     self.tabBarController.tabBar.translucent = NO;
@@ -273,10 +278,13 @@
     if ([identifier isEqualToString:@"Calculate Expense"]) {
         for (SingleExpenseRecordView *view in self.singleExpenseRecordViews) {
             if ([view isEmpty]) {
-                [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Error" andText:[NSString stringWithFormat:@"Record No.%@ is empty!", [NSNumber numberWithInteger:view.tag]] andCancelButton:NO forAlertType:AlertFailure andColor:self.appRedColor] show];
+                [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"ERROR" andText:[NSString stringWithFormat:@"Record No.%@ is empty!", [NSNumber numberWithInteger:view.tag]] andCancelButton:NO forAlertType:AlertFailure andColor:self.appRedColor] show];
                 return NO;
             } else if (![view isValid]) {
-                [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Sorry" andText:[NSString stringWithFormat:@"Record content in No.%@ is not valid!", [NSNumber numberWithInteger:view.tag]] andCancelButton:NO forAlertType:AlertFailure andColor:self.appRedColor] show];
+                [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"ERROR" andText:[NSString stringWithFormat:@"Record content in No.%@ is not valid!", [NSNumber numberWithInteger:view.tag]] andCancelButton:NO forAlertType:AlertFailure andColor:self.appRedColor] show];
+                return NO;
+            } else if ([self.singleExpenseRecordViews count] == 1) {
+                [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"ERROR" andText:@"You only input one expense record, please try again!"  andCancelButton:NO forAlertType:AlertFailure andColor:self.appRedColor] show];
                 return NO;
             }
         }
@@ -299,7 +307,7 @@
                 expenseRecord.expenseAmount = [NSNumber numberWithDouble:[record.expenseAmountTextField.text doubleValue]];
                 [expenseRecordsTemp addObject:expenseRecord];
             }
-            
+            ((DividerCalculateResultViewController *)segue.destinationViewController).isComplete = NO;
             ((DividerCalculateResultViewController *)segue.destinationViewController).expenseRecords = [expenseRecordsTemp copy];
             [expenseRecordsTemp removeAllObjects];
         }

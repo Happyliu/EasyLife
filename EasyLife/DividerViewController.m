@@ -86,10 +86,6 @@
     self.navigationController.navigationBar.translucent = NO;
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 2);
-    self.navigationController.navigationBar.layer.shadowOpacity = 0.6;
-    self.navigationController.navigationBar.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.navigationController.navigationBar.bounds].CGPath;
-
     
     self.tabBarController.tabBar.barTintColor = self.appBlackColor;
     self.tabBarController.tabBar.tintColor = [UIColor whiteColor];

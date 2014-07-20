@@ -10,13 +10,13 @@
 #import "SharedResultViewController.h"
 #import "EasyLifeAppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
+#import "WGS84ToGCJ02.h"
 
 @interface TipsResultViewController () <UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (weak, nonatomic) IBOutlet UIButton *goDutchButton;
 @property (nonatomic, strong) NSMutableArray *tipsResults;
-@property (nonatomic, strong) NSIndexPath *currentSelectedIndexPath;
 @property NSInteger currentSelectedSection;
 @property (strong, nonatomic) UIImage *goDutchButtonBackgroundImage, *doneButtonBackgroundImage;
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
@@ -97,7 +97,10 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    self.location = [locations lastObject];
+    CLLocation *loc = [locations lastObject];
+    if (![WGS84ToGCJ02 isLocationOutOfChina:[loc coordinate]])
+        loc = [WGS84ToGCJ02 transformFromWGSToGCJ:loc];
+    self.location = loc;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -193,13 +196,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *selectedCell = [self.tableView cellForRowAtIndexPath:indexPath];
-    NSIndexPath *currentSelectedIndexPath = self.currentSelectedIndexPath;
+    NSIndexPath *currentSelectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:self.currentSelectedSection];
     if (selectedCell.accessoryType != UITableViewCellAccessoryCheckmark) {
         UITableViewCell *currentSelectedCell = [self.tableView cellForRowAtIndexPath:currentSelectedIndexPath];
         currentSelectedCell.accessoryType = UITableViewCellAccessoryNone;
         selectedCell.accessoryType = UITableViewCellAccessoryCheckmark;
         self.currentSelectedSection = indexPath.section;
-        self.currentSelectedIndexPath = indexPath;
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -214,7 +216,6 @@
     if (indexPath.section == 0 && self.currentSelectedSection == -1) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         self.currentSelectedSection = 0;
-        self.currentSelectedIndexPath = indexPath;
     } else if (self.currentSelectedSection == indexPath.section) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {

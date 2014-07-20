@@ -39,7 +39,6 @@
     
     [self.mapButton setBackgroundImage:self.mapButtonBackgroundImage forState:UIControlStateNormal];
     [self.mapButton setBackgroundColor:[UIColor whiteColor]];
-    //[self.mapButton.layer setBorderWidth:0.5];
     [self.mapButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
     [self.mapButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
     [self.navigationController installMHDismissModalViewWithOptions:[[MHDismissModalViewOptions alloc] initWithTableView:self.tableView theme:MHModalThemeWhite]];

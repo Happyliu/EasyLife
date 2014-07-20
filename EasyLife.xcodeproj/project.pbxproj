@@ -14,6 +14,7 @@
 		50183B261955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
 		50278A021974FDD100D0A6BB /* ExpenseRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 50278A011974FDD100D0A6BB /* ExpenseRecord.m */; };
 		505D88FF1966D64600AE335D /* DividerCalculateResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505D88FE1966D64600AE335D /* DividerCalculateResultViewController.m */; };
+		5081FD7B197B8B0F00B7CA32 /* WGS84ToGCJ02.m in Sources */ = {isa = PBXBuildFile; fileRef = 5081FD7A197B8B0F00B7CA32 /* WGS84ToGCJ02.m */; };
 		508B84C1195DA21B0056ABE1 /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84BE195DA21B0056ABE1 /* DIDatepicker.m */; };
 		508B84C2195DA21B0056ABE1 /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84BE195DA21B0056ABE1 /* DIDatepicker.m */; };
 		508B84C3195DA21B0056ABE1 /* DIDatepickerDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508B84C0195DA21B0056ABE1 /* DIDatepickerDateView.m */; };
@@ -409,6 +410,8 @@
 		50278A011974FDD100D0A6BB /* ExpenseRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseRecord.m; sourceTree = "<group>"; };
 		505D88FD1966D64600AE335D /* DividerCalculateResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DividerCalculateResultViewController.h; sourceTree = "<group>"; };
 		505D88FE1966D64600AE335D /* DividerCalculateResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DividerCalculateResultViewController.m; sourceTree = "<group>"; };
+		5081FD79197B8B0F00B7CA32 /* WGS84ToGCJ02.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGS84ToGCJ02.h; sourceTree = "<group>"; };
+		5081FD7A197B8B0F00B7CA32 /* WGS84ToGCJ02.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGS84ToGCJ02.m; sourceTree = "<group>"; };
 		508B84BD195DA21B0056ABE1 /* DIDatepicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepicker.h; sourceTree = "<group>"; };
 		508B84BE195DA21B0056ABE1 /* DIDatepicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepicker.m; sourceTree = "<group>"; };
 		508B84BF195DA21B0056ABE1 /* DIDatepickerDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepickerDateView.h; sourceTree = "<group>"; };
@@ -1012,6 +1015,8 @@
 				50183B1819559D6C0012E0B2 /* OpenCVForUIImage */,
 				50183B1719559D570012E0B2 /* CoreDataModel */,
 				50183B1619559D450012E0B2 /* FlatColors */,
+				5081FD79197B8B0F00B7CA32 /* WGS84ToGCJ02.h */,
+				5081FD7A197B8B0F00B7CA32 /* WGS84ToGCJ02.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1662,6 +1667,7 @@
 				50D60AE9195A983200A9F628 /* GPUImageDirectionalNonMaximumSuppressionFilter.m in Sources */,
 				50C4041C192511210099FAFD /* Record+Annotation.m in Sources */,
 				50D60BBF195A983200A9F628 /* GPUImageThresholdedNonMaximumSuppressionFilter.m in Sources */,
+				5081FD7B197B8B0F00B7CA32 /* WGS84ToGCJ02.m in Sources */,
 				50D60AE7195A983200A9F628 /* GPUImageDilationFilter.m in Sources */,
 				50D60B95195A983200A9F628 /* GPUImageScreenBlendFilter.m in Sources */,
 				50EB008519555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */,

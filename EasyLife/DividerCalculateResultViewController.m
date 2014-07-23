@@ -10,11 +10,13 @@
 #import "RQShineLabel.h"
 #import "ExpenseRecord.h"
 #import "EasyLifeAppDelegate.h"
+#import "PNChart.h"
 
 @interface DividerCalculateResultViewController ()
 @property (strong, nonatomic) RQShineLabel *resultLabel;
+@property (strong, nonatomic) PNBarChart *barChart;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
-@property (strong, nonatomic) UIScrollView *resultScrollView;
+@property (strong, nonatomic) UIScrollView *resultScrollView, *chartScrollView;
 @property (strong, nonatomic) NSMutableDictionary *payerAmountDict, *payerInformationDict;
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @end
@@ -27,8 +29,10 @@
     [super viewWillAppear:animated];
     if (self.isComplete) {
         [self.view addSubview:self.resultScrollView];
+        [self.resultScrollView addSubview:self.chartScrollView];
+        [self.barChart strokeChart];
+        [self.chartScrollView addSubview:self.barChart];
         [self.resultScrollView addSubview:self.resultLabel];
-        [self.resultLabel sizeToFit];
     }
 }
 
@@ -36,6 +40,8 @@
 {
     [super viewWillDisappear:animated];
     [self.resultLabel removeFromSuperview];
+    [self.barChart removeFromSuperview];
+    [self.chartScrollView removeFromSuperview];
     [self.resultScrollView removeFromSuperview];
     [self.payerInformationDict removeAllObjects];
     [self.payerAmountDict removeAllObjects];
@@ -90,6 +96,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         double totalAmount = 0;
         NSMutableString *resultText = [[NSMutableString alloc] init];
+        NSMutableArray *chartKeys, *chartValues;
         
         for (ExpenseRecord *record in self.expenseRecords) {
             if (![[self.payerAmountDict allKeys] containsObject:record.expensePayerName]) {
@@ -108,7 +115,11 @@
         
         NSMutableArray *sortedKeys = [[self.payerAmountDict keysSortedByValueUsingSelector:@selector(compare:)] mutableCopy]; // sort the dictionary
         
+        chartKeys = [[NSMutableArray alloc] initWithCapacity:[sortedKeys count]];
+        chartValues = [[NSMutableArray alloc] initWithCapacity:[chartKeys count]];
         for (NSString *sortedKey in sortedKeys) {
+            [chartKeys addObject:sortedKey];
+            [chartValues addObject:[self.payerAmountDict valueForKey:sortedKey]];
             /* calculate the amount with the average value */
             [self.payerAmountDict setValue:[NSNumber numberWithDouble:averageAmount - [[self.payerAmountDict valueForKey:sortedKey] doubleValue]] forKey:sortedKey];
         }
@@ -144,16 +155,27 @@
                 [sortedKeys removeObject:[sortedKeys lastObject]];
             }
         }
-
+        if ([resultText isEqualToString:@""]) {
+            [resultText appendString:@"None should pay ^_^.\n"];
+        }
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             self.isComplete = YES;
             self.resultLabel.text = [resultText copy];
             [self.indicator stopAnimating];
             [self.view addSubview:self.resultScrollView];
-            [self.resultScrollView addSubview:self.resultLabel];
-            [self.resultLabel setBackgroundColor:self.appThirdColor];
             [self.resultLabel sizeToFit];
             [self.resultLabel shine];
+            [self.resultScrollView addSubview:self.resultLabel];
+            [self.barChart setXLabels:chartKeys];
+            [self.barChart setYValues:chartValues];
+            [self.barChart strokeChart];
+            [self.barChart setBackgroundColor:[UIColor clearColor]];
+            [self.resultScrollView addSubview:self.chartScrollView];
+            [self.resultScrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.chartScrollView.frame.size.height + self.resultLabel.frame.size.height)];
+            [self.chartScrollView addSubview:self.barChart];
+            [self.chartScrollView setContentSize:CGSizeMake(self.barChart.frame.size.width, self.barChart.frame.size.height)];
+            [self.chartScrollView setScrollEnabled:YES];
         });
     });
 }
@@ -162,14 +184,24 @@
 {
     if (!_resultScrollView) {
         _resultScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+        [_resultScrollView setScrollEnabled:YES];
     }
     return _resultScrollView;
+}
+
+- (UIScrollView *)chartScrollView
+{
+    if (!_chartScrollView) {
+        _chartScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 230)];
+        [_chartScrollView setBackgroundColor:self.appBlackColor];
+    }
+    return _chartScrollView;
 }
 
 - (RQShineLabel *)resultLabel
 {
     if (!_resultLabel) {
-        _resultLabel = [[RQShineLabel alloc] initWithFrame:CGRectMake(self.resultScrollView.frame.origin.x + 10, self.resultScrollView.frame.origin.y + 10, self.resultScrollView.frame.size.width - 20, self.resultScrollView.frame.size.height - 20)];
+        _resultLabel = [[RQShineLabel alloc] initWithFrame:CGRectMake(self.resultScrollView.frame.origin.x + 10, self.barChart.frame.size.height + 10, self.resultScrollView.frame.size.width - 20, self.resultScrollView.frame.size.height - 20)];
         _resultLabel.textColor = [UIColor blackColor];
         _resultLabel.numberOfLines = 0;
     }
@@ -190,6 +222,16 @@
         _payerInformationDict = [[NSMutableDictionary alloc] initWithCapacity:[self.expenseRecords count]];
     }
     return _payerInformationDict;
+}
+
+- (PNBarChart *)barChart {
+    if (!_barChart) {
+        _barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, [self.payerAmountDict count] * 80, 230)];
+        [_barChart setStrokeColor:self.appSecondColor];
+        [_barChart setBarBackgroundColor:[UIColor grayColor]];
+        [_barChart setLabelTextColor:[UIColor whiteColor]];
+    }
+    return _barChart;
 }
 
 

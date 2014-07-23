@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *characterAnimationDelays;
 @property (strong, nonatomic) CADisplayLink *displaylink;
 @property (assign, nonatomic) CFTimeInterval beginTime;
-@property (assign, nonatomic, getter = isFadedOut) BOOL fadedOut;
+@property (assign, nonatomic, getter = isFadedOut, setter = fadedOut:) BOOL fadedOut;
 @property (nonatomic, copy) void (^completion)();
 
 @end
@@ -62,7 +62,7 @@
 {
   // Defaults
   _shineDuration   = 2.5;
-  _fadeoutDuration = 2.5;
+  _fadeoutDuration = 0.1;
   _autoStart       = NO;
   _fadedOut        = YES;
   self.textColor  = [UIColor whiteColor];

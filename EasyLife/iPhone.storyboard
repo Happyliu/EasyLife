@@ -376,10 +376,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="440"/>
                             </mapView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KCT-vg-dLA">
-                                <rect key="frame" x="20" y="460" width="280" height="29"/>
+                                <rect key="frame" x="5" y="460" width="310" height="29"/>
                                 <segments>
-                                    <segment title="Last 3 Months"/>
-                                    <segment title="Last Month"/>
+                                    <segment title="All"/>
+                                    <segment title="In 3 Months"/>
+                                    <segment title="In 1 Month"/>
                                     <segment title="Last Week"/>
                                 </segments>
                                 <connections>
@@ -407,9 +408,9 @@
                             <constraint firstAttribute="trailing" secondItem="Lbn-Z8-Dhi" secondAttribute="trailing" id="NFO-0P-3td"/>
                             <constraint firstAttribute="bottom" secondItem="mxB-Ll-lMb" secondAttribute="bottom" id="P9f-VP-itL"/>
                             <constraint firstItem="mxB-Ll-lMb" firstAttribute="leading" secondItem="Lbn-Z8-Dhi" secondAttribute="leading" id="PYC-Km-ZBk"/>
-                            <constraint firstAttribute="trailing" secondItem="KCT-vg-dLA" secondAttribute="trailing" constant="20" symbolic="YES" id="RSI-dE-sPl"/>
+                            <constraint firstAttribute="trailing" secondItem="KCT-vg-dLA" secondAttribute="trailing" constant="5" id="RSI-dE-sPl"/>
                             <constraint firstItem="mxB-Ll-lMb" firstAttribute="top" secondItem="KCT-vg-dLA" secondAttribute="bottom" constant="20" id="RyI-Wt-ba5"/>
-                            <constraint firstItem="KCT-vg-dLA" firstAttribute="leading" secondItem="vTC-2Q-7uo" secondAttribute="leading" constant="20" symbolic="YES" id="S90-9f-fpv"/>
+                            <constraint firstItem="KCT-vg-dLA" firstAttribute="leading" secondItem="vTC-2Q-7uo" secondAttribute="leading" constant="5" id="S90-9f-fpv"/>
                             <constraint firstItem="mxB-Ll-lMb" firstAttribute="centerY" secondItem="Vgu-yW-lSD" secondAttribute="centerY" id="Wnt-Dw-1cp"/>
                             <constraint firstAttribute="trailing" secondItem="Vgu-yW-lSD" secondAttribute="trailing" id="XLv-3E-7CG"/>
                             <constraint firstItem="KCT-vg-dLA" firstAttribute="top" secondItem="Lbn-Z8-Dhi" secondAttribute="bottom" constant="20" id="lQb-ze-R6n"/>

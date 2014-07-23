@@ -10,7 +10,6 @@
 #import <MapKit/MapKit.h>
 
 @interface SingleRecordMapViewController () <MKMapViewDelegate>
-
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @end
 

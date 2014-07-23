@@ -381,6 +381,16 @@
 		50D60BFD195AA19700A9F628 /* Xpense.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50D60BFB195AA19700A9F628 /* Xpense.xcdatamodeld */; };
 		50D6DBE2196D1404002CA9F6 /* NJDBezierCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D6DBE0196D1404002CA9F6 /* NJDBezierCurve.m */; };
 		50D6DBE6196D26EE002CA9F6 /* RQShineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D6DBE5196D26EE002CA9F6 /* RQShineLabel.m */; };
+		50DD834D197F539D00D78143 /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DD834A197F539D00D78143 /* PNBar.m */; };
+		50DD834E197F539D00D78143 /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DD834C197F539D00D78143 /* PNBarChart.m */; };
+		50DD835A197F53D000D78143 /* PNLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DD8355197F53D000D78143 /* PNLineChart.m */; };
+		50DD835B197F53D000D78143 /* PNLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DD8357197F53D000D78143 /* PNLineChartData.m */; };
+		50DD835C197F53D000D78143 /* PNLineChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DD8359197F53D000D78143 /* PNLineChartDataItem.m */; };
+		50DD8362197F53E900D78143 /* PNPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DD835F197F53E900D78143 /* PNPieChart.m */; };
+		50DD8363197F53E900D78143 /* PNPieChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DD8361197F53E900D78143 /* PNPieChartDataItem.m */; };
+		50DD8368197F53F800D78143 /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DD8367197F53F800D78143 /* PNChartLabel.m */; };
+		50DD836B197F53FF00D78143 /* PNColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DD836A197F53FF00D78143 /* PNColor.m */; };
+		50DD836E197F57B900D78143 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DD836D197F57B900D78143 /* QuartzCore.framework */; };
 		50EB007F1952EEA7009C346D /* DividerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB007E1952EEA7009C346D /* DividerViewController.m */; };
 		50EB008519555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */; };
 		50EB008619555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EB008419555FFE009C346D /* UIColor+MLPFlatColors.m */; };
@@ -802,6 +812,27 @@
 		50D6DBE0196D1404002CA9F6 /* NJDBezierCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJDBezierCurve.m; sourceTree = "<group>"; };
 		50D6DBE4196D26EE002CA9F6 /* RQShineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RQShineLabel.h; sourceTree = "<group>"; };
 		50D6DBE5196D26EE002CA9F6 /* RQShineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RQShineLabel.m; sourceTree = "<group>"; };
+		50DD8349197F539D00D78143 /* PNBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBar.h; sourceTree = "<group>"; };
+		50DD834A197F539D00D78143 /* PNBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBar.m; sourceTree = "<group>"; };
+		50DD834B197F539D00D78143 /* PNBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBarChart.h; sourceTree = "<group>"; };
+		50DD834C197F539D00D78143 /* PNBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBarChart.m; sourceTree = "<group>"; };
+		50DD8354197F53D000D78143 /* PNLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChart.h; sourceTree = "<group>"; };
+		50DD8355197F53D000D78143 /* PNLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChart.m; sourceTree = "<group>"; };
+		50DD8356197F53D000D78143 /* PNLineChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartData.h; sourceTree = "<group>"; };
+		50DD8357197F53D000D78143 /* PNLineChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartData.m; sourceTree = "<group>"; };
+		50DD8358197F53D000D78143 /* PNLineChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartDataItem.h; sourceTree = "<group>"; };
+		50DD8359197F53D000D78143 /* PNLineChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartDataItem.m; sourceTree = "<group>"; };
+		50DD835E197F53E900D78143 /* PNPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPieChart.h; sourceTree = "<group>"; };
+		50DD835F197F53E900D78143 /* PNPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPieChart.m; sourceTree = "<group>"; };
+		50DD8360197F53E900D78143 /* PNPieChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPieChartDataItem.h; sourceTree = "<group>"; };
+		50DD8361197F53E900D78143 /* PNPieChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPieChartDataItem.m; sourceTree = "<group>"; };
+		50DD8364197F53F800D78143 /* PNChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChart.h; sourceTree = "<group>"; };
+		50DD8365197F53F800D78143 /* PNChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartDelegate.h; sourceTree = "<group>"; };
+		50DD8366197F53F800D78143 /* PNChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartLabel.h; sourceTree = "<group>"; };
+		50DD8367197F53F800D78143 /* PNChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNChartLabel.m; sourceTree = "<group>"; };
+		50DD8369197F53FF00D78143 /* PNColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNColor.h; sourceTree = "<group>"; };
+		50DD836A197F53FF00D78143 /* PNColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNColor.m; sourceTree = "<group>"; };
+		50DD836D197F57B900D78143 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		50EB007D1952EEA7009C346D /* DividerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DividerViewController.h; sourceTree = "<group>"; };
 		50EB007E1952EEA7009C346D /* DividerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DividerViewController.m; sourceTree = "<group>"; };
 		50EB008319555FFE009C346D /* UIColor+MLPFlatColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MLPFlatColors.h"; sourceTree = "<group>"; };
@@ -815,6 +846,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50DD836E197F57B900D78143 /* QuartzCore.framework in Frameworks */,
 				50183B1A19559FA50012E0B2 /* CoreData.framework in Frameworks */,
 				50C403E519250FA00099FAFD /* CoreGraphics.framework in Frameworks */,
 				50C4043E192514EA0099FAFD /* libstdc++.6.0.9.dylib in Frameworks */,
@@ -943,6 +975,7 @@
 		50C403E119250FA00099FAFD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50DD836D197F57B900D78143 /* QuartzCore.framework */,
 				50183B1919559FA50012E0B2 /* CoreData.framework */,
 				50C4043D192514EA0099FAFD /* libstdc++.6.0.9.dylib */,
 				50C4043B192514E40099FAFD /* MapKit.framework */,
@@ -1005,6 +1038,8 @@
 		50C40411192510790099FAFD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				50DD836C197F540A00D78143 /* ChinaCoordinateConverter */,
+				50DD8347197F537300D78143 /* PNChart */,
 				50A761D61977B4A600D73ED4 /* UIScrollViewTouchEvent */,
 				50A761D51977B49900D73ED4 /* ExpenseRecord */,
 				50A761CC197670A500D73ED4 /* BlurryModalView */,
@@ -1015,8 +1050,6 @@
 				50183B1819559D6C0012E0B2 /* OpenCVForUIImage */,
 				50183B1719559D570012E0B2 /* CoreDataModel */,
 				50183B1619559D450012E0B2 /* FlatColors */,
-				5081FD79197B8B0F00B7CA32 /* WGS84ToGCJ02.h */,
-				5081FD7A197B8B0F00B7CA32 /* WGS84ToGCJ02.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1423,6 +1456,66 @@
 			name = ShineLabel;
 			sourceTree = "<group>";
 		};
+		50DD8347197F537300D78143 /* PNChart */ = {
+			isa = PBXGroup;
+			children = (
+				50DD8369197F53FF00D78143 /* PNColor.h */,
+				50DD836A197F53FF00D78143 /* PNColor.m */,
+				50DD8364197F53F800D78143 /* PNChart.h */,
+				50DD8365197F53F800D78143 /* PNChartDelegate.h */,
+				50DD8366197F53F800D78143 /* PNChartLabel.h */,
+				50DD8367197F53F800D78143 /* PNChartLabel.m */,
+				50DD835D197F53DA00D78143 /* PNPieChart */,
+				50DD8353197F53C000D78143 /* PNLineChart */,
+				50DD8348197F539100D78143 /* PNBarChart */,
+			);
+			name = PNChart;
+			sourceTree = "<group>";
+		};
+		50DD8348197F539100D78143 /* PNBarChart */ = {
+			isa = PBXGroup;
+			children = (
+				50DD8349197F539D00D78143 /* PNBar.h */,
+				50DD834A197F539D00D78143 /* PNBar.m */,
+				50DD834B197F539D00D78143 /* PNBarChart.h */,
+				50DD834C197F539D00D78143 /* PNBarChart.m */,
+			);
+			name = PNBarChart;
+			sourceTree = "<group>";
+		};
+		50DD8353197F53C000D78143 /* PNLineChart */ = {
+			isa = PBXGroup;
+			children = (
+				50DD8354197F53D000D78143 /* PNLineChart.h */,
+				50DD8355197F53D000D78143 /* PNLineChart.m */,
+				50DD8356197F53D000D78143 /* PNLineChartData.h */,
+				50DD8357197F53D000D78143 /* PNLineChartData.m */,
+				50DD8358197F53D000D78143 /* PNLineChartDataItem.h */,
+				50DD8359197F53D000D78143 /* PNLineChartDataItem.m */,
+			);
+			name = PNLineChart;
+			sourceTree = "<group>";
+		};
+		50DD835D197F53DA00D78143 /* PNPieChart */ = {
+			isa = PBXGroup;
+			children = (
+				50DD835E197F53E900D78143 /* PNPieChart.h */,
+				50DD835F197F53E900D78143 /* PNPieChart.m */,
+				50DD8360197F53E900D78143 /* PNPieChartDataItem.h */,
+				50DD8361197F53E900D78143 /* PNPieChartDataItem.m */,
+			);
+			name = PNPieChart;
+			sourceTree = "<group>";
+		};
+		50DD836C197F540A00D78143 /* ChinaCoordinateConverter */ = {
+			isa = PBXGroup;
+			children = (
+				5081FD79197B8B0F00B7CA32 /* WGS84ToGCJ02.h */,
+				5081FD7A197B8B0F00B7CA32 /* WGS84ToGCJ02.m */,
+			);
+			name = ChinaCoordinateConverter;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1472,7 +1565,7 @@
 				ORGANIZATIONNAME = Albert;
 				TargetAttributes = {
 					50C403DE19250FA00099FAFD = {
-						DevelopmentTeam = 84TB9682NH;
+						DevelopmentTeam = 5ZW86EQHQ2;
 					};
 					50C403F919250FA00099FAFD = {
 						TestTargetID = 50C403DE19250FA00099FAFD;
@@ -1542,6 +1635,7 @@
 				50278A021974FDD100D0A6BB /* ExpenseRecord.m in Sources */,
 				50D60ADF195A983200A9F628 /* GPUImageCrosshairGenerator.m in Sources */,
 				50D60B5D195A983200A9F628 /* GPUImageMovieComposition.m in Sources */,
+				50DD835A197F53D000D78143 /* PNLineChart.m in Sources */,
 				50D60B7B195A983200A9F628 /* GPUImagePolarPixellateFilter.m in Sources */,
 				50D60BD3195A983200A9F628 /* GPUImageUIElement.m in Sources */,
 				50D60AE5195A983200A9F628 /* GPUImageDifferenceBlendFilter.m in Sources */,
@@ -1551,7 +1645,9 @@
 				50D6044E195A8ADA00A9F628 /* AMSmoothAlertView.m in Sources */,
 				50D60BAB195A983200A9F628 /* GPUImageSourceOverBlendFilter.m in Sources */,
 				50D60ADD195A983200A9F628 /* GPUImageCropFilter.m in Sources */,
+				50DD8362197F53E900D78143 /* PNPieChart.m in Sources */,
 				50C4042C192511540099FAFD /* TipsCalViewController.mm in Sources */,
+				50DD835B197F53D000D78143 /* PNLineChartData.m in Sources */,
 				50D60AD7195A983200A9F628 /* GPUImageColorMatrixFilter.m in Sources */,
 				50D60B75195A983200A9F628 /* GPUImagePixellateFilter.m in Sources */,
 				50A761CB1976660700D73ED4 /* UINavigationController+MHDismissModalView.m in Sources */,
@@ -1583,6 +1679,7 @@
 				50D60B29195A983200A9F628 /* GPUImageHueFilter.m in Sources */,
 				50148628196D6D620000203B /* UILabel+NumberJump.m in Sources */,
 				50D60B49195A983200A9F628 /* GPUImageLuminosity.m in Sources */,
+				50DD836B197F53FF00D78143 /* PNColor.m in Sources */,
 				50D60B57195A983200A9F628 /* GPUImageMotionBlurFilter.m in Sources */,
 				50D60BBD195A983200A9F628 /* GPUImageThresholdEdgeDetectionFilter.m in Sources */,
 				50D60B19195A983200A9F628 /* GPUImageHazeFilter.m in Sources */,
@@ -1608,6 +1705,7 @@
 				50D60AAF195A983200A9F628 /* GPUImageAdaptiveThresholdFilter.m in Sources */,
 				50C40431192511540099FAFD /* RecordMapViewController.m in Sources */,
 				508B84C1195DA21B0056ABE1 /* DIDatepicker.m in Sources */,
+				50DD834E197F539D00D78143 /* PNBarChart.m in Sources */,
 				50D60B65195A983200A9F628 /* GPUImageNormalBlendFilter.m in Sources */,
 				50D60B79195A983200A9F628 /* GPUImagePoissonBlendFilter.m in Sources */,
 				50D60BC3195A983200A9F628 /* GPUImageTiltShiftFilter.m in Sources */,
@@ -1673,10 +1771,12 @@
 				50EB008519555FFE009C346D /* UIColor+MLPFlatColors.m in Sources */,
 				50D60AAB195A983200A9F628 /* GPUImage3x3ConvolutionFilter.m in Sources */,
 				50D60ABB195A983200A9F628 /* GPUImageBilateralFilter.m in Sources */,
+				50DD8368197F53F800D78143 /* PNChartLabel.m in Sources */,
 				50D60AED195A983200A9F628 /* GPUImageDissolveBlendFilter.m in Sources */,
 				50D60AC7195A983200A9F628 /* GPUImageCGAColorspaceFilter.m in Sources */,
 				50D60B9F195A983200A9F628 /* GPUImageSketchFilter.m in Sources */,
 				50D60B27195A983200A9F628 /* GPUImageHueBlendFilter.m in Sources */,
+				50DD835C197F53D000D78143 /* PNLineChartDataItem.m in Sources */,
 				50C40430192511540099FAFD /* SingleRecordMapViewController.m in Sources */,
 				50D60ACB195A983200A9F628 /* GPUImageChromaKeyFilter.m in Sources */,
 				50D60BCD195A983200A9F628 /* GPUImageTwoInputFilter.m in Sources */,
@@ -1694,6 +1794,7 @@
 				50D60B63195A983200A9F628 /* GPUImageNonMaximumSuppressionFilter.m in Sources */,
 				50D60AD5195A983200A9F628 /* GPUImageColorInvertFilter.m in Sources */,
 				50D60B55195A983200A9F628 /* GPUImageMosaicFilter.m in Sources */,
+				50DD8363197F53E900D78143 /* PNPieChartDataItem.m in Sources */,
 				50D60AF3195A983200A9F628 /* GPUImageErosionFilter.m in Sources */,
 				50D60B17195A983200A9F628 /* GPUImageHarrisCornerDetectionFilter.m in Sources */,
 				50D6DBE2196D1404002CA9F6 /* NJDBezierCurve.m in Sources */,
@@ -1706,6 +1807,7 @@
 				50A761C8197611B400D73ED4 /* Record.m in Sources */,
 				5091AB851963C8E400B626B3 /* JVFloatLabeledTextField.m in Sources */,
 				50D60B77195A983200A9F628 /* GPUImagePixellatePositionFilter.m in Sources */,
+				50DD834D197F539D00D78143 /* PNBar.m in Sources */,
 				50D60B85195A983200A9F628 /* GPUImageRawDataOutput.m in Sources */,
 				50D60B99195A983200A9F628 /* GPUImageSharpenFilter.m in Sources */,
 				50D60B39195A983200A9F628 /* GPUImageLightenBlendFilter.m in Sources */,
@@ -1943,7 +2045,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2005,7 +2107,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zihao Zhang (QYW8UT22S8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2026,7 +2128,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zihao Zhang (QYW8UT22S8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

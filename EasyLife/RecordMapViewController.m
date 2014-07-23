@@ -126,12 +126,14 @@
         NSDate *backDate, *backDateCurrentTime;
         NSError *error;
 
-        if (self.segements.selectedSegmentIndex == 0) {
+        if (self.segements.selectedSegmentIndex == 1) {
             backDate = [NSDate dateWithTimeIntervalSinceNow:-60*60*24*90]; // 90 days before
-        } else if (self.segements.selectedSegmentIndex == 1) {
+        } else if (self.segements.selectedSegmentIndex == 2) {
             backDate = [NSDate dateWithTimeIntervalSinceNow:-60*60*24*30]; // 30 days before
-        } else {
+        } else if (self.segements.selectedSegmentIndex == 3){
             backDate = [NSDate dateWithTimeIntervalSinceNow:-60*60*24*7]; // 7 days before
+        } else {
+            backDate = [NSDate dateWithTimeIntervalSince1970:0];
         }
         
         backDateCurrentTime = [backDate dateByAddingTimeInterval:interval];

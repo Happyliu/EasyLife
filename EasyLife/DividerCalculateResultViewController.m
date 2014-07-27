@@ -165,8 +165,8 @@
             [self.indicator stopAnimating];
             [self.view addSubview:self.resultScrollView];
             [self.resultLabel sizeToFit];
-            [self.resultLabel shine];
             [self.resultScrollView addSubview:self.resultLabel];
+            [self.resultLabel shine];
             [self.barChart setXLabels:chartKeys];
             [self.barChart setYValues:chartValues];
             [self.barChart strokeChart];

@@ -52,8 +52,10 @@ const static CGFloat marginBetweenTextField = 2.5f;
 {
     if (!_datePicker) {
         _datePicker = [[DIDatepicker alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 55)];
-        [_datePicker fillCurrentMonth];
-        [_datePicker selectDateAtIndex:1];
+        NSDate *today = [NSDate date];
+        NSDate *startDate = [today dateByAddingTimeInterval:-60*60*24*60];
+        [_datePicker fillDatesFromDate:startDate numberOfDays:63];
+        [_datePicker selectDateAtIndex:[_datePicker.dates  count] - 3];
     }
     return _datePicker;
 }

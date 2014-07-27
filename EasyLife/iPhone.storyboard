@@ -297,7 +297,7 @@
                     <navigationItem key="navigationItem" title="Calculate Tips" id="XM0-RE-3vb">
                         <barButtonItem key="leftBarButtonItem" image="tipRecord" id="cJZ-AA-yv2">
                             <connections>
-                                <action selector="recordPressed:" destination="I5L-QQ-gdF" id="WRr-sV-hob"/>
+                                <action selector="recordButtonIsPressed:" destination="I5L-QQ-gdF" id="jA9-2N-1Tx"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="PLT-py-AHl">

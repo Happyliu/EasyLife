@@ -22,11 +22,11 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *numberButtons;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
 @property (weak, nonatomic) IBOutlet UIButton *calculateButton;
+@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appRedColor, *appBlackColor;
 @property (strong, nonatomic) NSMutableString *currentDisplayResult;
 @property BOOL isDoted, isAddedRecord, isSuccessAddedRecord;
 @property double currentResult;
 @property (strong, nonatomic) UIImage *resetButtonBackgroundImage, *normalButtonBackgroundImage, *calculateButtonBackgroundImage;
-@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appRedColor, *appBlackColor;
 @property (strong, nonatomic) UIImagePickerController *picker;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSString *detectedResult;
@@ -40,7 +40,7 @@
 {
     [super awakeFromNib];
     
-    // listen to the notification center to update the database context
+    /* listen to the notification center to update the database context */
     [[NSNotificationCenter defaultCenter] addObserverForName:DatabaseAvailabilityNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         self.managedObjectContext = note.userInfo[DatabaseAvailabilityContext];
     }];
@@ -50,34 +50,37 @@
 {
     [super viewDidLoad];
     
-    //[NSThread sleepForTimeInterval:1.0];
+    //[NSThread sleepForTimeInterval:1.0]; // time interval for demonstration launch image
 
     /* initialize the UIImagePickerController */
     self.navigationItem.rightBarButtonItem.enabled = false; // disable the button before initialized
     self.picker = [[UIImagePickerController alloc] init];
     self.navigationItem.rightBarButtonItem.enabled = true;
-
+    
+    /* setup the naviagtion bar */
     self.navigationController.navigationBar.barTintColor = self.appTintColor;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor]; // color of the back button
     self.navigationController.navigationBar.translucent = NO;
-
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}]; 
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}]; // color of the title
     
+    /* setup the tab bar */
     self.tabBarController.tabBar.barTintColor = self.appBlackColor;
     self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
     self.tabBarController.tabBar.translucent = NO;
-
     
+    /* setup the calculate button */
+    [self.calculateButton setBackgroundImage:self.calculateButtonBackgroundImage forState:UIControlStateNormal];
+    [self.calculateButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
+
+    /* setup the reset button */
     [self.resetButton.layer setBorderWidth:0.5];
     [self.resetButton setBackgroundImage:self.resetButtonBackgroundImage forState:UIControlStateNormal];
     [self.resetButton setBackgroundColor:self.appSecondColor];
     [self.resetButton.layer setBorderColor:[[UIColor grayColor] CGColor]];
     [self.resetButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
-    
-    [self.calculateButton setBackgroundImage:self.calculateButtonBackgroundImage forState:UIControlStateNormal];
-    [self.calculateButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
-    
-    for (UIButton *numberButton in self.numberButtons) { // set the style of each number button
+
+    /* setup the normal number button */
+    for (UIButton *numberButton in self.numberButtons) {
         [numberButton.layer setBorderWidth:0.5];
         [numberButton setBackgroundImage:self.normalButtonBackgroundImage forState:UIControlStateNormal];
         [numberButton.layer setBackgroundColor:[self.appTintColor CGColor]];
@@ -90,7 +93,8 @@
 {
     [super viewWillAppear:animated];
     
-    if (self.detectedResult) { // display the tesseractORC result to user
+    /* address the image recognition */
+    if (self.detectedResult) { // detect result is set
         [self.currentDisplayResult setString:self.detectedResult];
         self.displayLabel.text = [self.currentDisplayResult copy];
         self.currentResult = [self.detectedResult doubleValue];
@@ -101,13 +105,13 @@
         self.currentResult = 0;
         self.isDoted = NO;
     }
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     
+    /* gurantee the background of the alert is the main window and the speed of appearance */
     if (self.isAddedRecord) {
         if (self.isSuccessAddedRecord) {
             [self successAlert:@"Success"];
@@ -117,53 +121,6 @@
     }
     self.isAddedRecord = NO;
     self.isSuccessAddedRecord = NO;
-}
-
-#pragma mark - ButtonBackgroundImage
-
-- (UIImage *)resetButtonBackgroundImage
-{
-    if (!_resetButtonBackgroundImage) {
-        UIColor *color = [UIColor flatDarkGrayColor];
-        CGRect rect = CGRectMake(0, 0, 1, 1);
-        UIGraphicsBeginImageContext(rect.size);
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [color CGColor]);
-        CGContextFillRect(context, rect);
-        _resetButtonBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    }
-    return _resetButtonBackgroundImage;
-}
-
-- (UIImage *)normalButtonBackgroundImage
-{
-    if (!_normalButtonBackgroundImage) {
-        UIColor *color = [UIColor flatDarkWhiteColor];
-        CGRect rect = CGRectMake(0, 0, 1, 1);
-        UIGraphicsBeginImageContext(rect.size);
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [color CGColor]);
-        CGContextFillRect(context, rect);
-        _normalButtonBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    }
-    return _normalButtonBackgroundImage;
-}
-
-- (UIImage *)calculateButtonBackgroundImage
-{
-    if (!_calculateButtonBackgroundImage) {
-        UIColor *color = self.appSecondColor;
-        CGRect rect = CGRectMake(0, 0, 1, 1);
-        UIGraphicsBeginImageContext(rect.size);
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [color CGColor]);
-        CGContextFillRect(context, rect);
-        _calculateButtonBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    }
-    return _calculateButtonBackgroundImage;
 }
 
 #pragma mark - AppColor
@@ -213,6 +170,53 @@
     return _appBlackColor;
 }
 
+#pragma mark - ButtonBackgroundImage
+
+- (UIImage *)resetButtonBackgroundImage
+{
+    if (!_resetButtonBackgroundImage) {
+        UIColor *color = [UIColor flatDarkGrayColor];
+        CGRect rect = CGRectMake(0, 0, 1, 1);
+        UIGraphicsBeginImageContext(rect.size);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetFillColorWithColor(context, [color CGColor]);
+        CGContextFillRect(context, rect);
+        _resetButtonBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+    return _resetButtonBackgroundImage;
+}
+
+- (UIImage *)normalButtonBackgroundImage
+{
+    if (!_normalButtonBackgroundImage) {
+        UIColor *color = [UIColor flatDarkWhiteColor];
+        CGRect rect = CGRectMake(0, 0, 1, 1);
+        UIGraphicsBeginImageContext(rect.size);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetFillColorWithColor(context, [color CGColor]);
+        CGContextFillRect(context, rect);
+        _normalButtonBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+    return _normalButtonBackgroundImage;
+}
+
+- (UIImage *)calculateButtonBackgroundImage
+{
+    if (!_calculateButtonBackgroundImage) {
+        UIColor *color = self.appSecondColor;
+        CGRect rect = CGRectMake(0, 0, 1, 1);
+        UIGraphicsBeginImageContext(rect.size);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetFillColorWithColor(context, [color CGColor]);
+        CGContextFillRect(context, rect);
+        _calculateButtonBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+    return _calculateButtonBackgroundImage;
+}
+
 - (NSMutableString *)currentDisplayResult
 {
     if (!_currentDisplayResult) {
@@ -223,13 +227,13 @@
 
 #pragma mark - ButtonAction
 
-- (IBAction)cameraButtonIsPressed:(UIBarButtonItem *)sender {
-    
+- (IBAction)cameraButtonIsPressed:(UIBarButtonItem *)sender
+{
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        self.picker.sourceType = UIImagePickerControllerSourceTypeCamera; // use the camera of the device
         self.picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         self.picker.delegate = self;
-        [self presentViewController:self.picker animated:YES completion:NULL];
+        [self presentViewController:self.picker animated:YES completion:NULL]; // present the camera view
     } else {
         [self fatalAlert:@"Your device doesn't support camera."];
         self.picker = nil;
@@ -258,14 +262,83 @@
         if (self.currentResult == 0) {
             [self.currentDisplayResult appendString:@"0"];
         }
-    [self.currentDisplayResult appendString:@"."];
-    self.displayLabel.text = [self.currentDisplayResult copy];
-    self.isDoted = YES;
+        [self.currentDisplayResult appendString:@"."];
+        self.displayLabel.text = [self.currentDisplayResult copy];
+        self.isDoted = YES;
     }
 }
 
-- (IBAction)addedRecord:(UIStoryboardSegue *)segue // unwind segue from TipsResultViewController and SharedResultViewController
+- (IBAction)recordButtonIsPressed:(id)sender {
+    RecordViewController *rvc = [self.storyboard instantiateViewControllerWithIdentifier:@"RecordViewController"];
+    [rvc setManagedObjectContext:self.managedObjectContext];
+    rvc.title = @"Slide Down to Close";
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:rvc];
+    [nav.navigationBar setHidden:YES];
+    [self presentViewController:nav animated:YES completion:NULL];
+}
+
+#pragma mark - Alert
+
+- (void)successAlert:(NSString *)message
 {
+    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Add Record" andText:message andCancelButton:NO forAlertType:AlertSuccess andColor:self.appThirdColor] show];
+}
+
+- (void)failAlert:(NSString *)message
+{
+    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Add Record" andText:message andCancelButton:NO forAlertType:AlertFailure andColor:self.appRedColor] show];
+}
+
+- (void)fatalAlert:(NSString *)message
+{
+    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Sorry" andText:message andCancelButton:NO forAlertType:AlertInfo andColor:self.appTintColor] show];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = info[UIImagePickerControllerEditedImage]; // the image that image picker controller returns back
+    Tesseract* tesseract = [[Tesseract alloc] initWithLanguage:@"eng"];
+    tesseract.delegate = self;
+    
+    [tesseract setVariableValue:@"0123456789." forKey:@"tessedit_char_whitelist"]; //limit search
+    [tesseract setImage:image]; //image to check
+    [tesseract recognize];
+    
+    self.detectedResult = [NSString stringWithFormat:@"%.2f", [[tesseract recognizedText] doubleValue]];
+    
+    NSLog(@"%@", self.detectedResult);
+    tesseract = nil;
+    image = nil;
+
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - Segue
+
+- (void)setTotalAmountTipsForViewController:(TipsResultViewController *)tvc withTotalAmount:(double)totalAmount andManagedObjectContext:(NSManagedObjectContext *)context
+{ // send the total amount and database context to tips result view controller
+    tvc.totalAmount = totalAmount;
+    tvc.managedObjectContext = context;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Calculate Tips"]) {
+        if ([segue.destinationViewController isKindOfClass:[TipsResultViewController class]]) {
+            [self setTotalAmountTipsForViewController:segue.destinationViewController withTotalAmount:self.currentResult andManagedObjectContext:self.managedObjectContext];
+        }
+    }
+}
+
+/* unwind segue from TipsResultViewController and SharedResultViewController */
+- (IBAction)addedRecord:(UIStoryboardSegue *)segue {
     if ([segue.sourceViewController isKindOfClass:[TipsResultViewController class]]) {
         TipsResultViewController *trvc = (TipsResultViewController *)segue.sourceViewController;
         Record *addedRecord = trvc.addedRecord;
@@ -290,74 +363,4 @@
         }
     }
 }
-
-#pragma mark - Alert
-
-- (void)successAlert:(NSString *)message
-{
-    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Add Record" andText:message andCancelButton:NO forAlertType:AlertSuccess andColor:self.appThirdColor] show];
-}
-
-- (void)failAlert:(NSString *)message
-{
-    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Add Record" andText:message andCancelButton:NO forAlertType:AlertFailure andColor:self.appRedColor] show];
-}
-
-- (void)fatalAlert:(NSString *)message
-{
-    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Sorry" andText:message andCancelButton:NO forAlertType:AlertInfo andColor:self.appTintColor] show];
-}
-
-
-#pragma mark - UIImagePickerControllerDelegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    UIImage *image = info[UIImagePickerControllerEditedImage]; // the image that image picker controller returns back
-    Tesseract* tesseract = [[Tesseract alloc] initWithLanguage:@"eng"];
-    tesseract.delegate = self;
-    
-    [tesseract setVariableValue:@"0123456789." forKey:@"tessedit_char_whitelist"]; //limit search
-    [tesseract setImage:image]; //image to check
-    [tesseract recognize];
-    
-    self.detectedResult = [NSString stringWithFormat:@"%.2f", [[tesseract recognizedText] doubleValue]];
-    
-    NSLog(@"%@", self.detectedResult);
-    tesseract = nil; //deallocate and free all memory
-    image = nil;
-    
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
-
-#pragma mark - Navigation
-
-- (void)setTotalAmountTipsForViewController:(TipsResultViewController *)tvc withTotalAmount:(double)totalAmount andManagedObjectContext:(NSManagedObjectContext *)context
-{ // send the total amount and database context to tips result view controller
-    tvc.totalAmount = totalAmount;
-    tvc.managedObjectContext = context;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"Calculate Tips"]) {
-        if ([segue.destinationViewController isKindOfClass:[TipsResultViewController class]]) {
-            [self setTotalAmountTipsForViewController:segue.destinationViewController withTotalAmount:self.currentResult andManagedObjectContext:self.managedObjectContext];
-        }
-    }
-}
-- (IBAction)recordPressed:(id)sender {
-    RecordViewController *rvc = [self.storyboard instantiateViewControllerWithIdentifier:@"RecordViewController"];
-    [rvc setManagedObjectContext:self.managedObjectContext];
-    rvc.title = @"Slide Down to Close";
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:rvc];
-    [nav.navigationBar setHidden:YES];
-    [self presentViewController:nav animated:YES completion:NULL];
-}
-
 @end

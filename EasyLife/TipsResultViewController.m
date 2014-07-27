@@ -17,13 +17,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (weak, nonatomic) IBOutlet UIButton *goDutchButton;
 @property (nonatomic, strong) NSMutableArray *tipsResults;
-@property NSInteger currentSelectedSection;
 @property (strong, nonatomic) UIImage *goDutchButtonBackgroundImage, *doneButtonBackgroundImage;
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @property (strong, readwrite) Record *addedRecord;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong,nonatomic) CLLocation *location;
-@property (nonatomic) NSInteger locationErrorCode;
+@property (nonatomic) NSInteger locationErrorCode, currentSelectedSection;
 @end
 
 @implementation TipsResultViewController

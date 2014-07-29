@@ -24,6 +24,8 @@
 		5091AB851963C8E400B626B3 /* JVFloatLabeledTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5091AB841963C8E400B626B3 /* JVFloatLabeledTextField.m */; };
 		50A761C8197611B400D73ED4 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A761C7197611B400D73ED4 /* Record.m */; };
 		50A761CB1976660700D73ED4 /* UINavigationController+MHDismissModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A761CA1976660700D73ED4 /* UINavigationController+MHDismissModalView.m */; };
+		50B0A95619876C8500EA6996 /* ZFModalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B0A95519876C8500EA6996 /* ZFModalTransitionAnimator.m */; };
+		50B0A95919876DB600EA6996 /* DividerResultDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B0A95819876DB600EA6996 /* DividerResultDetailViewController.m */; };
 		50C1A6A019267C3400525552 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */; };
 		50C403E319250FA00099FAFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E219250FA00099FAFD /* Foundation.framework */; };
 		50C403E519250FA00099FAFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C403E419250FA00099FAFD /* CoreGraphics.framework */; };
@@ -436,6 +438,10 @@
 		50A761C7197611B400D73ED4 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		50A761C91976660700D73ED4 /* UINavigationController+MHDismissModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MHDismissModalView.h"; sourceTree = "<group>"; };
 		50A761CA1976660700D73ED4 /* UINavigationController+MHDismissModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MHDismissModalView.m"; sourceTree = "<group>"; };
+		50B0A95419876C8500EA6996 /* ZFModalTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFModalTransitionAnimator.h; sourceTree = "<group>"; };
+		50B0A95519876C8500EA6996 /* ZFModalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFModalTransitionAnimator.m; sourceTree = "<group>"; };
+		50B0A95719876DB600EA6996 /* DividerResultDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DividerResultDetailViewController.h; sourceTree = "<group>"; };
+		50B0A95819876DB600EA6996 /* DividerResultDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DividerResultDetailViewController.m; sourceTree = "<group>"; };
 		50C1A69E19267C3400525552 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
 		50C1A69F19267C3400525552 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		50C403DF19250FA00099FAFD /* EasyLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -953,6 +959,15 @@
 			name = UIScrollViewTouchEvent;
 			sourceTree = "<group>";
 		};
+		50B0A95319876C6E00EA6996 /* ZFModalTransition */ = {
+			isa = PBXGroup;
+			children = (
+				50B0A95419876C8500EA6996 /* ZFModalTransitionAnimator.h */,
+				50B0A95519876C8500EA6996 /* ZFModalTransitionAnimator.m */,
+			);
+			name = ZFModalTransition;
+			sourceTree = "<group>";
+		};
 		50C403D619250FA00099FAFD = {
 			isa = PBXGroup;
 			children = (
@@ -1038,6 +1053,7 @@
 		50C40411192510790099FAFD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				50B0A95319876C6E00EA6996 /* ZFModalTransition */,
 				50DD836C197F540A00D78143 /* ChinaCoordinateConverter */,
 				50DD8347197F537300D78143 /* PNChart */,
 				50A761D61977B4A600D73ED4 /* UIScrollViewTouchEvent */,
@@ -1087,6 +1103,8 @@
 				50EB007E1952EEA7009C346D /* DividerViewController.m */,
 				505D88FD1966D64600AE335D /* DividerCalculateResultViewController.h */,
 				505D88FE1966D64600AE335D /* DividerCalculateResultViewController.m */,
+				50B0A95719876DB600EA6996 /* DividerResultDetailViewController.h */,
+				50B0A95819876DB600EA6996 /* DividerResultDetailViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1642,6 +1660,7 @@
 				50D60AD9195A983200A9F628 /* GPUImageColorPackingFilter.m in Sources */,
 				50D60B71195A983200A9F628 /* GPUImagePerlinNoiseFilter.m in Sources */,
 				50D60B2D195A983200A9F628 /* GPUImageJFAVoronoiFilter.m in Sources */,
+				50B0A95919876DB600EA6996 /* DividerResultDetailViewController.m in Sources */,
 				50D6044E195A8ADA00A9F628 /* AMSmoothAlertView.m in Sources */,
 				50D60BAB195A983200A9F628 /* GPUImageSourceOverBlendFilter.m in Sources */,
 				50D60ADD195A983200A9F628 /* GPUImageCropFilter.m in Sources */,
@@ -1793,6 +1812,7 @@
 				50C1A6A019267C3400525552 /* UIImage+OpenCV.mm in Sources */,
 				50D60B63195A983200A9F628 /* GPUImageNonMaximumSuppressionFilter.m in Sources */,
 				50D60AD5195A983200A9F628 /* GPUImageColorInvertFilter.m in Sources */,
+				50B0A95619876C8500EA6996 /* ZFModalTransitionAnimator.m in Sources */,
 				50D60B55195A983200A9F628 /* GPUImageMosaicFilter.m in Sources */,
 				50DD8363197F53E900D78143 /* PNPieChartDataItem.m in Sources */,
 				50D60AF3195A983200A9F628 /* GPUImageErosionFilter.m in Sources */,

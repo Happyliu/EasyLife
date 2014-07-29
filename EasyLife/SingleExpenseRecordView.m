@@ -20,9 +20,55 @@ const static CGFloat marginBetweenTextField = 2.5f;
 @property (nonatomic, readwrite) JVFloatLabeledTextField *expensePayerTextField, *expenseAmountTextField;
 @property (nonatomic, readwrite) JVFloatLabeledTextField *expenseDescriptionTextField;
 @property (nonatomic, strong) UIView *horizontalLine, *verticalLine;
+@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appRedColor, *appBlackColor;
 @end
 
 @implementation SingleExpenseRecordView
+
+- (UIColor *)appTintColor
+{
+    if (!_appTintColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appTintColor = appDelegate.appTintColor;
+    }
+    return _appTintColor;
+}
+
+- (UIColor *)appSecondColor
+{
+    if (!_appSecondColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appSecondColor = appDelegate.appSecondColor;
+    }
+    return _appSecondColor;
+}
+
+- (UIColor *)appThirdColor
+{
+    if (!_appThirdColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appThirdColor = appDelegate.appThirdColor;
+    }
+    return _appThirdColor;
+}
+
+- (UIColor *)appRedColor
+{
+    if (!_appRedColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appRedColor = appDelegate.appRedColor;
+    }
+    return _appRedColor;
+}
+
+- (UIColor *)appBlackColor
+{
+    if (!_appBlackColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appBlackColor = appDelegate.appBlackColor;
+    }
+    return _appBlackColor;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {

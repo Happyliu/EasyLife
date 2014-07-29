@@ -94,14 +94,47 @@
                             <constraint firstAttribute="trailing" secondItem="nT1-4i-dKl" secondAttribute="trailing" constant="61" id="zka-as-Wkw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Divider Result" id="KHM-uO-ngr"/>
+                    <navigationItem key="navigationItem" title="Divider Result" id="KHM-uO-ngr">
+                        <barButtonItem key="rightBarButtonItem" title="Detail" id="6aP-9v-yOG">
+                            <connections>
+                                <segue destination="iSC-FW-3V5" kind="modal" id="a5y-Ym-SQH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="indicator" destination="LYv-dB-eRd" id="UfZ-9d-7Dr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uJJ-lH-qLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2309" y="-1020"/>
+            <point key="canvasLocation" x="2357" y="-1020"/>
+        </scene>
+        <!--Divider Result Detail View Controller-->
+        <scene sceneID="79u-Qk-Cc3">
+            <objects>
+                <viewController id="iSC-FW-3V5" customClass="DividerResultDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2VV-vS-NI4"/>
+                        <viewControllerLayoutGuide type="bottom" id="qXn-0o-Wh3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hh2-HJ-FOH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wr4-pO-WnO">
+                                <rect key="frame" x="137" y="269" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gyp-h5-aWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2911" y="-1020"/>
         </scene>
         <!--Tips Cal View Controller - Calculate Tips-->
         <scene sceneID="T6y-rH-0hN">

@@ -11,6 +11,8 @@
 #import "ExpenseRecord.h"
 #import "EasyLifeAppDelegate.h"
 #import "PNChart.h"
+#import "DividerResultDetailViewController.h"
+#import "ZFModalTransitionAnimator.h"
 
 @interface DividerCalculateResultViewController ()
 @property (strong, nonatomic) RQShineLabel *resultLabel;
@@ -19,6 +21,7 @@
 @property (strong, nonatomic) UIScrollView *resultScrollView, *chartScrollView;
 @property (strong, nonatomic) NSMutableDictionary *payerAmountDict, *payerInformationDict;
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
+@property (strong, nonatomic) ZFModalTransitionAnimator *animator;
 @end
 
 @implementation DividerCalculateResultViewController
@@ -232,6 +235,17 @@
         [_barChart setLabelTextColor:[UIColor whiteColor]];
     }
     return _barChart;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    DividerResultDetailViewController *detailVC = segue.destinationViewController;
+    
+    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailVC];
+    self.animator.dragable = YES;
+    
+    detailVC.transitioningDelegate = self.animator;
+    detailVC.modalPresentationStyle = UIModalPresentationCustom;
 }
 
 

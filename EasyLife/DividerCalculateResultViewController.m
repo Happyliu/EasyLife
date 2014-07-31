@@ -105,12 +105,19 @@
             if (![[self.payerAmountDict allKeys] containsObject:record.expensePayerName]) {
                 [self.payerAmountDict setValue:record.expenseAmount forKey:record.expensePayerName];
                 totalAmount += [record.expenseAmount doubleValue];
+                
+                NSMutableArray *payerInformationArray = [[NSMutableArray alloc] init];
+                [payerInformationArray addObject:record];
+                [self.payerInformationDict setValue:payerInformationArray forKey:record.expensePayerName];
             } else {
                 double currentAmount = [[self.payerAmountDict valueForKey:record.expensePayerName] doubleValue];
                 double newAmount = [record.expenseAmount doubleValue];
                 totalAmount += newAmount;
                 newAmount += currentAmount;
                 [self.payerAmountDict setValue:[NSNumber numberWithDouble:newAmount] forKey:record.expensePayerName];
+                
+                NSMutableArray *payerInformationArray = [self.payerInformationDict valueForKey:record.expensePayerName];
+                [payerInformationArray addObject:record];
             }
         }
         
@@ -159,7 +166,7 @@
             }
         }
         if ([resultText isEqualToString:@""]) {
-            [resultText appendString:@"None should pay ^_^.\n"];
+            [resultText appendString:@"No one should pay ^_^\n"];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -240,10 +247,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     DividerResultDetailViewController *detailVC = segue.destinationViewController;
-    
+    detailVC.resultDetailDict = self.payerInformationDict;
     self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailVC];
     self.animator.dragable = YES;
-    
+    self.animator.behindViewScale = 0.90f;
+    self.animator.behindViewAlpha = 0.75f;
+    [self.animator setContentScrollView:detailVC.resultTextView];
     detailVC.transitioningDelegate = self.animator;
     detailVC.modalPresentationStyle = UIModalPresentationCustom;
 }

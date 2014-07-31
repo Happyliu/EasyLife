@@ -50,7 +50,7 @@
 {
     [super viewDidLoad];
     
-    //[NSThread sleepForTimeInterval:1.0]; // time interval for demonstration launch image
+    [NSThread sleepForTimeInterval:1.0]; // time interval for demonstration launch image
 
     /* initialize the UIImagePickerController */
     self.navigationItem.rightBarButtonItem.enabled = false; // disable the button before initialized

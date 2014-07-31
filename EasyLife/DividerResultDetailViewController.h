@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DividerResultDetailViewController : UIViewController
-
+@property (strong, nonatomic) NSDictionary *resultDetailDict;
+@property (strong, nonatomic) UITextView *resultTextView;
 @end

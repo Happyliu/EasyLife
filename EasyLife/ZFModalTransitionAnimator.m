@@ -115,7 +115,7 @@
         [UIView animateWithDuration:[self transitionDuration:transitionContext]
                               delay:0
              usingSpringWithDamping:5
-              initialSpringVelocity:15
+              initialSpringVelocity:10
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
                              
@@ -205,7 +205,9 @@
         CGFloat animationRatio = 0;
         
         if (self.direction == ZFModalTransitonDirectionBottom) {
-            animationRatio = (location.y - self.panLocationStart) / (CGRectGetHeight([self.modalController view].bounds));
+            if (location.y >= self.panLocationStart) {
+                animationRatio = (location.y - self.panLocationStart) / (CGRectGetHeight([self.modalController view].bounds));
+            }
         } else if (self.direction == ZFModalTransitonDirectionLeft) {
             animationRatio = (self.panLocationStart - location.x) / (CGRectGetWidth([self.modalController view].bounds));
         } else if (self.direction == ZFModalTransitonDirectionRight) {

@@ -7,9 +7,9 @@
 //
 
 #import "TipsResultViewController.h"
+#import <CoreLocation/CoreLocation.h>
 #import "SharedResultViewController.h"
 #import "EasyLifeAppDelegate.h"
-#import <CoreLocation/CoreLocation.h>
 #import "WGS84ToGCJ02.h"
 
 @interface TipsResultViewController () <UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate>
@@ -35,9 +35,9 @@
     
     [self calculateTips];
     
+    /* setup the table view for the tips result */
     self.tableView.delegate = self; // set the delegate of the table view to be self controller
     self.tableView.dataSource = self; // set the data source of the table view to be self controller
-    
     [self.tableView setSeparatorColor:self.appTintColor];
     
     /* set the style of buttons */
@@ -75,47 +75,13 @@
     double tips15 = self.totalAmount * 1.15;
     double tips18 = self.totalAmount * 1.18;
     double tips20 = self.totalAmount * 1.2;
+    
     if (!_tipsResults) {
         _tipsResults = [[NSMutableArray alloc]  initWithObjects:[NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", self.totalAmount].doubleValue], [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", tips10].doubleValue], [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", tips12].doubleValue], [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", tips15].doubleValue], [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", tips18].doubleValue], [NSNumber numberWithDouble:[NSString stringWithFormat:@"%.2f", tips20].doubleValue], nil];
     }
 }
 
-#pragma mark - LocationManager
-
-- (CLLocationManager *)locationManager // lazy initialize the location manager
-{
-    if (!_locationManager) {
-        CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        locationManager.distanceFilter = 10.0;
-        _locationManager = locationManager;
-    }
-    return _locationManager;
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    CLLocation *loc = [locations lastObject];
-    if (![WGS84ToGCJ02 isLocationOutOfChina:[loc coordinate]])
-        loc = [WGS84ToGCJ02 transformFromWGSToGCJ:loc];
-    self.location = loc;
-}
-
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
-    self.locationErrorCode = error.code;
-}
-
-- (BOOL)hasGPS
-{
-    if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusRestricted)
-        return YES;
-    else
-        return NO;
-}
-
-#pragma mark - InitializeAppColors
+#pragma mark - AppColor
 
 - (UIColor *)appTintColor
 {
@@ -185,6 +151,44 @@
     return _doneButtonBackgroundImage;
 }
 
+#pragma mark - LocationManager
+
+- (CLLocationManager *)locationManager // lazy initialize the location manager
+{
+    if (!_locationManager) {
+        CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        locationManager.distanceFilter = 1.0f;
+        _locationManager = locationManager;
+    }
+    return _locationManager;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *loc = [locations lastObject];
+    
+    /* re-calculate the coordinate in China */
+    if (![WGS84ToGCJ02 isLocationOutOfChina:[loc coordinate]])
+        loc = [WGS84ToGCJ02 transformFromWGSToGCJ:loc];
+    
+    self.location = loc;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    self.locationErrorCode = error.code;
+}
+
+- (BOOL)hasGPS
+{
+    if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusRestricted)
+        return YES;
+    else
+        return NO;
+}
+
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -228,7 +232,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 6;
+    return [self.tipsResults count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -252,7 +256,7 @@
         return @"20% Tips";
 }
 
-#pragma mark - Navigation
+#pragma mark - Segue
 
 - (void)setSharedTotalAmountForTableViewController:(SharedResultViewController *)srvc withTotalSharedAmount:(double)totalSharedAmount andManagedContext:(NSManagedObjectContext *)context
 {
@@ -267,9 +271,10 @@
             [self setSharedTotalAmountForTableViewController:segue.destinationViewController withTotalSharedAmount:[self.tipsResults[self.currentSelectedSection] doubleValue] andManagedContext:self.managedObjectContext];
         }
     } else if ([segue.identifier isEqualToString:@"Do Added Record"]) {
-        
         NSManagedObjectContext *context = self.managedObjectContext;
         if (context) {
+            
+            /* setup the result record and send it back to the TipsCalViewController */
             Record *record = [NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:context];
 #warning should set the currency type in next version
             record.currency = @"USD";
@@ -277,15 +282,16 @@
             record.latitude = @(self.location.coordinate.latitude);
             record.longitude = @(self.location.coordinate.longitude);
             
+            /* set the date of the record */
             NSDate *date = [NSDate date];
             NSTimeZone *zone = [NSTimeZone systemTimeZone];
             NSInteger interval = [zone secondsFromGMT];
             NSDate *currentTime = [date dateByAddingTimeInterval:interval];
-            record.date = currentTime;
-            
+            record.date = currentTime; // the time is local time since we don't have to convert the time while we in another time zone
+
             self.addedRecord = record;
             
-            [self.tipsResults removeAllObjects];
+            [self.tipsResults removeAllObjects]; //clear up the mutable array to release space
         }
     }
 }

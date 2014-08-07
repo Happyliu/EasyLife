@@ -15,12 +15,10 @@
 
 @interface RecordViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *mapButton;
-@property (strong, nonatomic) NSMutableArray *records;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSDateFormatter *dateFormatter;
+@property (strong, nonatomic) NSMutableArray *records;
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @property (strong, nonatomic) UIImage *mapButtonBackgroundImage;
-//@property (nonatomic, strong) UIView *downArrow;
 @end
 
 @implementation RecordViewController
@@ -31,12 +29,14 @@
 {
     [super viewDidLoad];
     
+    /* setup the table view */
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorColor:self.appTintColor];
     [self.tableView flashScrollIndicators];
     self.tableView.backgroundColor = [UIColor clearColor];
     
+    /* setup the map button */
     [self.mapButton setBackgroundImage:self.mapButtonBackgroundImage forState:UIControlStateNormal];
     [self.mapButton setBackgroundColor:[UIColor whiteColor]];
     [self.mapButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
@@ -48,45 +48,6 @@
 {
     [super viewWillDisappear:animated];
     [self.records removeAllObjects];
-}
-
-#pragma mark - ButtonBackgroundImage
-
-- (UIImage *)mapButtonBackgroundImage
-{
-    if (!_mapButtonBackgroundImage) {
-        UIColor *color = self.appSecondColor;
-        CGRect rect = CGRectMake(0, 0, 1, 1);
-        UIGraphicsBeginImageContext(rect.size);
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [color CGColor]);
-        CGContextFillRect(context, rect);
-        _mapButtonBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    }
-    return _mapButtonBackgroundImage;
-}
-
-#pragma mark - VariableInit
-
-- (void)setManagedObjectContextForViewController:(RecordMapViewController *)rmvc withManagedObjectContext:(NSManagedObjectContext *)context
-{
-    rmvc.managedObjectContext = context;
-}
-
-- (NSArray *)records
-{
-    if (!_records) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Record"];
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
-        request.sortDescriptors = @[sortDescriptor];
-        NSError *error;
-        NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
-        if (!error) {
-            _records = [matches mutableCopy];
-        }
-    }
-    return _records;
 }
 
 #pragma mark - AppColor
@@ -127,6 +88,45 @@
     return _appBlackColor;
 }
 
+#pragma mark - ButtonBackgroundImage
+
+- (UIImage *)mapButtonBackgroundImage
+{
+    if (!_mapButtonBackgroundImage) {
+        UIColor *color = self.appSecondColor;
+        CGRect rect = CGRectMake(0, 0, 1, 1);
+        UIGraphicsBeginImageContext(rect.size);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetFillColorWithColor(context, [color CGColor]);
+        CGContextFillRect(context, rect);
+        _mapButtonBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+    return _mapButtonBackgroundImage;
+}
+
+#pragma mark - LazyInit
+
+- (void)setManagedObjectContextForViewController:(RecordMapViewController *)rmvc withManagedObjectContext:(NSManagedObjectContext *)context
+{
+    rmvc.managedObjectContext = context;
+}
+
+- (NSArray *)records
+{
+    if (!_records) {
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Record"];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
+        request.sortDescriptors = @[sortDescriptor];
+        NSError *error;
+        NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
+        if (!error) {
+            _records = [matches mutableCopy];
+        }
+    }
+    return _records;
+}
+
 #pragma mark - UITableViewDelegate
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -149,23 +149,16 @@
     }
 }
 
-- (NSDateFormatter *)dateFormatter
-{
-    if (!_dateFormatter) {
-        _dateFormatter = [[NSDateFormatter alloc] init];
-    }
-    return _dateFormatter;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"Record";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     NSInteger position = [indexPath row];
     
-    [self.dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-    [self.dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-    NSString *subTitle = [self.dateFormatter stringFromDate:((Record *)self.records[position]).date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]]; // convert the time to the time in the core data
+    NSString *subTitle = [dateFormatter stringFromDate:((Record *)self.records[position]).date];
     
     cell.textLabel.text = [NSString stringWithFormat:@"$%@", [((Record *)self.records[position]).amount stringValue]];
     cell.detailTextLabel.text = subTitle;
@@ -206,15 +199,14 @@
     if ([segue.identifier isEqualToString:@"Check History On Map"]) {
         if ([segue.destinationViewController isKindOfClass:[RecordMapViewController class]]) {
             [self setManagedObjectContextForViewController:segue.destinationViewController withManagedObjectContext:self.managedObjectContext];
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES]; // change the status bar color
         }
     }
     if ([segue.identifier isEqualToString:@"Check Single History On Map"]) {
         if ([segue.destinationViewController isKindOfClass:[SingleRecordMapViewController class]]) {
             NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
             ((SingleRecordMapViewController *)segue.destinationViewController).displayRecord = [self.records objectAtIndex:indexPath.row];
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES]; // change the status bar color
         }
     }
 }

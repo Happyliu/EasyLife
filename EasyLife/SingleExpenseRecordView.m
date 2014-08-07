@@ -25,6 +25,8 @@ const static CGFloat marginBetweenTextField = 2.5f;
 
 @implementation SingleExpenseRecordView
 
+#pragma mark - AppColor
+
 - (UIColor *)appTintColor
 {
     if (!_appTintColor) {
@@ -70,6 +72,8 @@ const static CGFloat marginBetweenTextField = 2.5f;
     return _appBlackColor;
 }
 
+#pragma mark - ViewFrameInit
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -93,6 +97,8 @@ const static CGFloat marginBetweenTextField = 2.5f;
     [self.horizontalLine removeFromSuperview];
     [self.verticalLine removeFromSuperview];
 }
+
+#pragma mark - LazyInit
 
 - (DIDatepicker *)datePicker
 {
@@ -172,6 +178,8 @@ const static CGFloat marginBetweenTextField = 2.5f;
     }
     return _verticalLine;
 }
+
+#pragma mark - ValidCheck
 
 - (BOOL)isEmpty
 {

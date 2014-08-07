@@ -328,20 +328,31 @@
     CGPoint transformedPoint = CGPointApplyAffineTransform(endRect.origin, fromViewController.view.transform);
     endRect = CGRectMake(transformedPoint.x, transformedPoint.y, endRect.size.width, endRect.size.height);
     
-    [UIView animateWithDuration:[self transitionDuration:transitionContext]
-                          delay:0
-         usingSpringWithDamping:5
-          initialSpringVelocity:5
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         CGFloat scaleBack = (1 / self.behindViewScale);
-                         toViewController.view.layer.transform = CATransform3DScale(self.tempTransform, scaleBack, scaleBack, 1);
-                         toViewController.view.alpha = 1.0f;
-                         fromViewController.view.frame = endRect;
-                     } completion:^(BOOL finished) {
-                         [transitionContext completeTransition:YES];
-                         self.modalController = nil;
-                     }];
+    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        CGFloat scaleBack = (1 / self.behindViewScale);
+        toViewController.view.layer.transform = CATransform3DScale(self.tempTransform, scaleBack, scaleBack, 1);
+        toViewController.view.alpha = 1.0f;
+        fromViewController.view.frame = endRect;
+    } completion:^(BOOL finished) {
+        [transitionContext completeTransition:YES];
+        self.modalController = nil;
+    }];
+    
+//    [UIView animateWithDuration:[self transitionDuration:transitionContext]
+//                          delay:0
+//         usingSpringWithDamping:5
+//          initialSpringVelocity:5
+//                        options:UIViewAnimationOptionCurveEaseOut
+//                     animations:^{
+//                         CGFloat scaleBack = (1 / self.behindViewScale);
+//                         toViewController.view.layer.transform = CATransform3DScale(self.tempTransform, scaleBack, scaleBack, 1);
+//                         toViewController.view.alpha = 1.0f;
+//                         [toViewController.view setNeedsDisplay];
+//                         fromViewController.view.frame = endRect;
+//                     } completion:^(BOOL finished) {
+//                         [transitionContext completeTransition:YES];
+//                         self.modalController = nil;
+//                     }];
     
 }
 

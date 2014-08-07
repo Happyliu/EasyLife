@@ -15,17 +15,18 @@
 #import "ZFModalTransitionAnimator.h"
 
 @interface DividerCalculateResultViewController ()
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
+@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @property (strong, nonatomic) RQShineLabel *resultLabel;
 @property (strong, nonatomic) PNBarChart *barChart;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 @property (strong, nonatomic) UIScrollView *resultScrollView, *chartScrollView;
 @property (strong, nonatomic) NSMutableDictionary *payerAmountDict, *payerInformationDict;
-@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
 @property (strong, nonatomic) ZFModalTransitionAnimator *animator;
 @end
 
 @implementation DividerCalculateResultViewController
 
+#pragma mark - ViewLifeCycle
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -46,11 +47,9 @@
     [self.barChart removeFromSuperview];
     [self.chartScrollView removeFromSuperview];
     [self.resultScrollView removeFromSuperview];
-    [self.payerInformationDict removeAllObjects];
-    [self.payerAmountDict removeAllObjects];
 }
 
-#pragma mark - Initialize app colors
+#pragma mark - AppColor
 
 - (UIColor *)appTintColor
 {
@@ -88,6 +87,7 @@
     return _appBlackColor;
 }
 
+#pragma mark - Setter
 
 - (void)setExpenseRecords:(NSArray *)expenseRecords
 {
@@ -96,11 +96,12 @@
         _expenseRecords = expenseRecords;
     }
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{ // multithread to calculate
         double totalAmount = 0;
         NSMutableString *resultText = [[NSMutableString alloc] init];
         NSMutableArray *chartKeys, *chartValues;
         
+        /* merge the expense of same people using a dictionary, O(n) time, O(n) space */
         for (ExpenseRecord *record in self.expenseRecords) {
             if (![[self.payerAmountDict allKeys] containsObject:record.expensePayerName]) {
                 [self.payerAmountDict setValue:record.expenseAmount forKey:record.expensePayerName];
@@ -121,7 +122,7 @@
             }
         }
         
-        double averageAmount = [[NSString stringWithFormat:@"%.2f", totalAmount / [self.payerAmountDict count]] doubleValue];
+        double averageAmount = [[NSString stringWithFormat:@"%.2f", totalAmount / [self.payerAmountDict count]] doubleValue]; // calculate the average expense amount
         
         NSMutableArray *sortedKeys = [[self.payerAmountDict keysSortedByValueUsingSelector:@selector(compare:)] mutableCopy]; // sort the dictionary
         
@@ -130,11 +131,15 @@
         for (NSString *sortedKey in sortedKeys) {
             [chartKeys addObject:sortedKey];
             [chartValues addObject:[self.payerAmountDict valueForKey:sortedKey]];
+            
             /* calculate the amount with the average value */
             [self.payerAmountDict setValue:[NSNumber numberWithDouble:averageAmount - [[self.payerAmountDict valueForKey:sortedKey] doubleValue]] forKey:sortedKey];
         }
-
+        
+        /* core algorithm to calculate */
         while ([sortedKeys count]) {
+            
+            /* get the first and the last amount and compare the absolute value */
             double positiveValue = [[self.payerAmountDict valueForKey:[sortedKeys firstObject]] doubleValue];
             double negativeValue = [[self.payerAmountDict valueForKey:[sortedKeys lastObject]] doubleValue];
             
@@ -149,27 +154,29 @@
                 continue;
             }
             
+            /* compare the amount and decide who should pay for whom */
             if (negativeValue + positiveValue > 0) {
-                [resultText appendString:[NSString stringWithFormat:@"%@ please give $%.2f to %@.\n", [sortedKeys firstObject], -negativeValue, [sortedKeys lastObject]]];
+                [resultText appendString:[NSString stringWithFormat:@"•  %@ please pay %@:\n   $%.2f\n\n", [sortedKeys firstObject], [sortedKeys lastObject], -negativeValue]];
                 positiveValue += negativeValue;
                 [self.payerAmountDict setValue:[NSNumber numberWithDouble:positiveValue] forKey:[sortedKeys firstObject]];
                 [sortedKeys removeObject:[sortedKeys lastObject]];
             } else if (negativeValue + positiveValue < 0) {
-                [resultText appendString:[NSString stringWithFormat:@"%@ please give $%.2f to %@.\n", [sortedKeys firstObject], positiveValue, [sortedKeys lastObject]]];
+                [resultText appendString:[NSString stringWithFormat:@"•  %@ please pay %@:\n   $%.2f\n\n", [sortedKeys firstObject], [sortedKeys lastObject], positiveValue]];
                 negativeValue += positiveValue;
                 [self.payerAmountDict setValue:[NSNumber numberWithDouble:negativeValue] forKey:[sortedKeys lastObject]];
                 [sortedKeys removeObject:[sortedKeys firstObject]];
             } else {
-                [resultText appendString:[NSString stringWithFormat:@"%@ please give $%.2f to %@.\n", [sortedKeys firstObject], positiveValue, [sortedKeys lastObject]]];
+                [resultText appendString:[NSString stringWithFormat:@"•  %@ please pay %@:\n   $%.2f\n\n", [sortedKeys firstObject], [sortedKeys lastObject], positiveValue]];
                 [sortedKeys removeObject:[sortedKeys firstObject]];
                 [sortedKeys removeObject:[sortedKeys lastObject]];
             }
         }
-        if ([resultText isEqualToString:@""]) {
+        
+        if ([resultText isEqualToString:@""]) { // all people spent the same amount or only one people in the records
             [resultText appendString:@"No one should pay ^_^\n"];
         }
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{ // get back to the main queue and set the UI
             self.isComplete = YES;
             self.resultLabel.text = [resultText copy];
             [self.indicator stopAnimating];
@@ -189,6 +196,8 @@
         });
     });
 }
+
+#pragma mark - LazyInit
 
 - (UIScrollView *)resultScrollView
 {
@@ -212,8 +221,9 @@
 {
     if (!_resultLabel) {
         _resultLabel = [[RQShineLabel alloc] initWithFrame:CGRectMake(self.resultScrollView.frame.origin.x + 10, self.barChart.frame.size.height + 10, self.resultScrollView.frame.size.width - 20, self.resultScrollView.frame.size.height - 20)];
-        _resultLabel.textColor = [UIColor blackColor];
+        _resultLabel.textColor = self.appBlackColor;
         _resultLabel.numberOfLines = 0;
+        [_resultLabel setFont:[UIFont systemFontOfSize:18]];
     }
     return _resultLabel;
 }
@@ -244,18 +254,21 @@
     return _barChart;
 }
 
+#pragma mark - Segue
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    DividerResultDetailViewController *detailVC = segue.destinationViewController;
-    detailVC.resultDetailDict = self.payerInformationDict;
-    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailVC];
-    self.animator.dragable = YES;
-    self.animator.behindViewScale = 0.90f;
-    self.animator.behindViewAlpha = 0.75f;
-    [self.animator setContentScrollView:detailVC.resultTextView];
-    detailVC.transitioningDelegate = self.animator;
-    detailVC.modalPresentationStyle = UIModalPresentationCustom;
+    if ([segue.identifier isEqualToString:@"Show Expense Detail"]) {
+        DividerResultDetailViewController *detailVC = segue.destinationViewController;
+        detailVC.resultDetailDict = [self.payerInformationDict copy];
+        self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailVC];
+        self.animator.dragable = YES;
+        self.animator.behindViewScale = 1.0f;
+        self.animator.behindViewAlpha = 0.6f;
+        [self.animator setContentScrollView:detailVC.resultTextView];
+        detailVC.transitioningDelegate = self.animator;
+        detailVC.modalPresentationStyle = UIModalPresentationCustom;
+    }
 }
-
 
 @end

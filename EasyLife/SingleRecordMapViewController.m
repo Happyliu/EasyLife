@@ -20,6 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // set the style of map view
     self.mapView.showsPointsOfInterest = YES;
     self.mapView.showsBuildings = YES;
@@ -28,8 +29,10 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES]; // set the status bar color to white
 }
+
+#pragma mark - Setter
 
 - (void)setDisplayRecord:(Record *)displayRecord
 {
@@ -43,6 +46,8 @@
     self.mapView.delegate = self;
     [self updateMapViewAnnotation];
 }
+
+#pragma mark - UpdateMap
 
 - (void)updateMapViewAnnotation
 {

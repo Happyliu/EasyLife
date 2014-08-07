@@ -15,18 +15,80 @@
 #import "ExpenseRecord.h"
 
 @interface DividerViewController () <UITextFieldDelegate>
-@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appRedColor, *appBlackColor;
-@property (strong, nonatomic) NSMutableArray *singleExpenseRecordViews;
 @property (weak, nonatomic) IBOutlet UIScrollView *dividerScrollView;
-@property CGPoint currentPoint;
 @property (weak, nonatomic) IBOutlet UIButton *calculateButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteButton;
+@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appRedColor, *appBlackColor;
 @property (strong, nonatomic) UIImage *calculateButtonBackgroundImage;
+@property (strong, nonatomic) NSMutableArray *singleExpenseRecordViews;
+@property CGPoint currentPoint;
 @property NSInteger currentViewTag;
 @property BOOL isSameTag;
 @end
 
 @implementation DividerViewController
+
+#pragma mark - ViewLifeCycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    /* setup the naviagtion bar */
+    self.navigationController.navigationBar.barTintColor = self.appTintColor;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor]; // color of the back button
+    self.navigationController.navigationBar.translucent = NO;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    /* setup the tab bar */
+    self.tabBarController.tabBar.barTintColor = self.appBlackColor;
+    self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
+    self.tabBarController.tabBar.translucent = NO;
+    
+    /* setup the calculate button */
+    [self.calculateButton setBackgroundImage:self.calculateButtonBackgroundImage forState:UIControlStateNormal];
+    [self.calculateButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.isSameTag = NO;
+    
+    /* init first expense view */
+    SingleExpenseRecordView *firstExpenseView = [[SingleExpenseRecordView alloc] initWithFrame:CGRectMake(0, 0, self.dividerScrollView.frame.size.width, 165)];
+    firstExpenseView.layer.borderWidth = 1.0;
+    firstExpenseView.layer.borderColor = self.appBlackColor.CGColor;
+    firstExpenseView.expensePayerTextField.delegate = self;
+    firstExpenseView.expenseAmountTextField.delegate = self;
+    firstExpenseView.expenseDescriptionTextField.delegate = self;
+    
+    [self.singleExpenseRecordViews addObject:firstExpenseView]; // add the first record to the array
+    firstExpenseView.tag = [self.singleExpenseRecordViews count]; // set the tag number for the record view
+    
+    [self.dividerScrollView addSubview:firstExpenseView];
+    [self.dividerScrollView setContentSize:CGSizeMake(self.dividerScrollView.frame.size.width, [self.singleExpenseRecordViews count] * 164 + 1)];
+    
+    /* reset the current focus point and view */
+    self.currentViewTag = 0;
+    self.currentPoint = CGPointMake(0, 0);
+    self.currentViewTag = 0;
+    
+    [self setContentOffsetAnimation:self.currentPoint.y];
+    
+    [self.deleteButton setEnabled:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    for (SingleExpenseRecordView *view in self.singleExpenseRecordViews) {
+        [view removeFromSuperview];
+    }
+    [self.singleExpenseRecordViews removeAllObjects];
+}
 
 #pragma mark - AppColor
 
@@ -75,62 +137,24 @@
     return _appRedColor;
 }
 
-#pragma mark - ViewLifeCycle
+#pragma mark - ButtonBackgroundImage
 
-- (void)viewDidLoad
+- (UIImage *)calculateButtonBackgroundImage
 {
-    [super viewDidLoad];
-    
-    self.navigationController.navigationBar.barTintColor = self.appTintColor;
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor]; // color of the back button
-    self.navigationController.navigationBar.translucent = NO;
-    
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    
-    self.tabBarController.tabBar.barTintColor = self.appBlackColor;
-    self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
-    self.tabBarController.tabBar.translucent = NO;
-    
-    [self.calculateButton setBackgroundImage:self.calculateButtonBackgroundImage forState:UIControlStateNormal];
-    [self.calculateButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    self.isSameTag = NO;
-    
-    SingleExpenseRecordView *firstExpenseView = [[SingleExpenseRecordView alloc] initWithFrame:CGRectMake(0, 0, self.dividerScrollView.frame.size.width, 165)];
-    firstExpenseView.layer.borderWidth = 1.0;
-    firstExpenseView.layer.borderColor = self.appBlackColor.CGColor;
-    firstExpenseView.expensePayerTextField.delegate = self;
-    firstExpenseView.expenseAmountTextField.delegate = self;
-    firstExpenseView.expenseDescriptionTextField.delegate = self;
-    
-    [self.singleExpenseRecordViews addObject:firstExpenseView];
-    firstExpenseView.tag = [self.singleExpenseRecordViews count];
-
-    [self.dividerScrollView addSubview:firstExpenseView];
-    [self.dividerScrollView setContentSize:CGSizeMake(self.dividerScrollView.frame.size.width, [self.singleExpenseRecordViews count] * 164 + 1)];
-    
-    self.currentViewTag = 0;
-    self.currentPoint = CGPointMake(0, 0);self.currentViewTag = 0;
-    [self setContentOffsetAnimation:self.currentPoint.y];
-    
-    [self.deleteButton setEnabled:NO];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    for (SingleExpenseRecordView *view in self.singleExpenseRecordViews) {
-        [view removeFromSuperview];
+    if (!_calculateButtonBackgroundImage) {
+        UIColor *color = self.appSecondColor;
+        CGRect rect = CGRectMake(0, 0, 1, 1);
+        UIGraphicsBeginImageContext(rect.size);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetFillColorWithColor(context, [color CGColor]);
+        CGContextFillRect(context, rect);
+        _calculateButtonBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
     }
-    [self.singleExpenseRecordViews removeAllObjects];
+    return _calculateButtonBackgroundImage;
 }
 
-#pragma mark - SingleExpenseRecordViewsInit
+#pragma mark - LazyInit
 
 - (NSMutableArray *)singleExpenseRecordViews
 {
@@ -138,19 +162,6 @@
         _singleExpenseRecordViews = [[NSMutableArray alloc] init];
     }
     return _singleExpenseRecordViews;
-}
-
-#pragma mark - TouchGestureForScrollView
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    for (SingleExpenseRecordView *serv in self.singleExpenseRecordViews) {
-        [serv.expensePayerTextField resignFirstResponder];
-        [serv.expenseAmountTextField resignFirstResponder];
-        [serv.expenseDescriptionTextField resignFirstResponder];
-    }
-    self.currentViewTag = 0;
-    [self setContentOffsetAnimation:self.currentPoint.y];
 }
 
 #pragma mark - TextFieldDelegate
@@ -174,6 +185,17 @@
 }
 
 #pragma mark - ScrollViewTouchEvent
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (SingleExpenseRecordView *serv in self.singleExpenseRecordViews) {
+        [serv.expensePayerTextField resignFirstResponder];
+        [serv.expenseAmountTextField resignFirstResponder];
+        [serv.expenseDescriptionTextField resignFirstResponder];
+    }
+    self.currentViewTag = 0;
+    [self setContentOffsetAnimation:self.currentPoint.y];
+}
 
 - (void)setContentOffsetAnimation:(CGFloat)offsetY
 {
@@ -200,6 +222,7 @@
 
 - (IBAction)addNewSingleRecordView:(id)sender
 {
+    /* add new record view */
     SingleExpenseRecordView *lastView = [self.singleExpenseRecordViews lastObject];
     SingleExpenseRecordView *serv = [[SingleExpenseRecordView alloc] initWithFrame:CGRectMake(self.dividerScrollView.frame.size.width, lastView.frame.origin.y + lastView.frame.size.height - 1, self.dividerScrollView.frame.size.width, lastView.frame.size.height)];
     serv.layer.borderWidth = 1.0;
@@ -207,9 +230,7 @@
     serv.expensePayerTextField.delegate = self;
     serv.expenseAmountTextField.delegate = self;
     serv.expenseDescriptionTextField.delegate = self;
-    
     [self.singleExpenseRecordViews addObject:serv];
-
     serv.tag = [self.singleExpenseRecordViews count];
     
     [self.dividerScrollView addSubview:[self.singleExpenseRecordViews lastObject]];
@@ -218,25 +239,35 @@
     if (self.dividerScrollView.contentSize.height > self.dividerScrollView.frame.size.height) {
         [self setContentOffsetAnimationToTheBottom];
     }
+    
+    /* animation for adding new record view */
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     [UIView setAnimationDuration:0.3];
     [serv setFrame:CGRectMake(0, lastView.frame.origin.y + lastView.frame.size.height - 1, self.dividerScrollView.frame.size.width, lastView.frame.size.height)];
     [UIView commitAnimations];
     
-    if ([self.singleExpenseRecordViews count] > 1) {
+    /* set the status of '+' and '-' button */
+    if ([self.singleExpenseRecordViews count] > 1)
         [self.deleteButton setEnabled:YES];
-    }
+    if ([self.singleExpenseRecordViews count] > 30)
+        [sender setEnabled:NO];
 }
+
 - (IBAction)deleteLastSingleRecordView:(id)sender {
+    /* delete last record view */
     SingleExpenseRecordView *lastView = [self.singleExpenseRecordViews lastObject];
     [self.singleExpenseRecordViews removeLastObject];
-    if ([self.singleExpenseRecordViews count] <= 1) {
+    
+    /* set the status of '+' and '-' button */
+    if ([self.singleExpenseRecordViews count] <= 1)
         [sender setEnabled:NO];
-    }
+    if ([self.singleExpenseRecordViews count] <= 30)
+        [self.addButton setEnabled:YES];
     
-    NSInteger newContentSize = [self.singleExpenseRecordViews count] * 164 + 1;
+    NSInteger newContentSize = [self.singleExpenseRecordViews count] * 164 + 1; // calculate the new content size of the scroll view
     
+    /* animation for deleting record view */
     [UIView animateWithDuration:0.3 animations:^{
         [lastView setFrame:CGRectMake(lastView.frame.origin.x - lastView.frame.size.width, lastView.frame.origin.y, lastView.frame.size.width, lastView.frame.size.height)];
     } completion:^(BOOL finished) {
@@ -248,23 +279,6 @@
         }
         [self.dividerScrollView setContentSize:CGSizeMake(self.dividerScrollView.frame.size.width, [self.singleExpenseRecordViews count] * 164 + 1)];
     }];
-}
-
-#pragma mark - ButtonBackgroundImage
-
-- (UIImage *)calculateButtonBackgroundImage
-{
-    if (!_calculateButtonBackgroundImage) {
-        UIColor *color = self.appSecondColor;
-        CGRect rect = CGRectMake(0, 0, 1, 1);
-        UIGraphicsBeginImageContext(rect.size);
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [color CGColor]);
-        CGContextFillRect(context, rect);
-        _calculateButtonBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    }
-    return _calculateButtonBackgroundImage;
 }
 
 #pragma mark - Segue

@@ -56,6 +56,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="4LE-4h-AVt" id="VYa-R2-B8p"/>
                         <outlet property="calculateButton" destination="WEK-8L-Mb5" id="tKf-br-CwI"/>
                         <outlet property="deleteButton" destination="ONO-PS-bL1" id="jjN-kS-d1m"/>
                         <outlet property="dividerScrollView" destination="Qxs-nk-IyG" id="KzU-sh-Bk3"/>
@@ -95,9 +96,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Divider Result" id="KHM-uO-ngr">
-                        <barButtonItem key="rightBarButtonItem" title="Detail" id="6aP-9v-yOG">
+                        <barButtonItem key="rightBarButtonItem" image="tipRecord" id="6aP-9v-yOG">
                             <connections>
-                                <segue destination="iSC-FW-3V5" kind="modal" id="a5y-Ym-SQH"/>
+                                <segue destination="iSC-FW-3V5" kind="modal" identifier="Show Expense Detail" id="a5y-Ym-SQH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -251,7 +252,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="94" id="9AP-mR-CWO"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -319,14 +320,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Calculate Tips" id="XM0-RE-3vb">
-                        <barButtonItem key="leftBarButtonItem" image="tipRecord" id="cJZ-AA-yv2">
+                        <barButtonItem key="rightBarButtonItem" image="tipRecord" id="ilU-46-DJ0">
                             <connections>
-                                <action selector="recordButtonIsPressed:" destination="I5L-QQ-gdF" id="jA9-2N-1Tx"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="PLT-py-AHl">
-                            <connections>
-                                <action selector="cameraButtonIsPressed:" destination="I5L-QQ-gdF" id="KNK-3M-tQW"/>
+                                <action selector="recordButtonIsPressed:" destination="I5L-QQ-gdF" id="eEy-ET-ali"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -24,6 +24,34 @@
 
 @implementation RecordMapViewController
 
+#pragma mark - ViewLifeCycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // set the style of map view
+    self.mapView.showsPointsOfInterest = YES;
+    self.mapView.showsBuildings = YES;
+    self.segements.selectedSegmentIndex = 0;
+    self.totalLabel.backgroundColor = self.appTintColor;
+    self.totalLabel.textColor = [UIColor whiteColor];
+    self.totalAmountLabel.backgroundColor = self.appTintColor;
+    self.totalAmountLabel.textColor = [UIColor whiteColor];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.totalAmountLabel jumpNumberWithDuration:2 fromNumber:0.0 toNumber:self.totalAmount];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+}
+
 #pragma mark - Initialize app colors
 
 - (UIColor *)appTintColor
@@ -62,33 +90,7 @@
     return _appBlackColor;
 }
 
-#pragma mark - ViewLifeCycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // set the style of map view
-    self.mapView.showsPointsOfInterest = YES;
-    self.mapView.showsBuildings = YES;
-    self.segements.selectedSegmentIndex = 0;
-    self.totalLabel.backgroundColor = self.appTintColor;
-    self.totalLabel.textColor = [UIColor whiteColor];
-    self.totalAmountLabel.backgroundColor = self.appTintColor;
-    self.totalAmountLabel.textColor = [UIColor whiteColor];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.totalAmountLabel jumpNumberWithDuration:2 fromNumber:0.0 toNumber:self.totalAmount];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    
-}
+#pragma mark - Setter
 
 - (void)setMapView:(MKMapView *)mapView
 {
@@ -104,6 +106,8 @@
     [self updateMapViewAnnotations];
 }
 
+#pragma mark - UpdateMap
+
 - (void)updateMapViewAnnotations
 {
     [self.mapView removeAnnotations:self.mapView.annotations];
@@ -116,6 +120,8 @@
     [self.totalAmountLabel jumpNumberWithDuration:1.5 fromNumber:0 toNumber:self.totalAmount];
     self.records = nil;
 }
+
+#pragma mark - LazyInit
 
 - (NSArray *)records
 {
@@ -146,6 +152,8 @@
     return _records;
 }
 
+#pragma mark - MapViewDelegate
+
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
     static NSString *reuseId = @"RecordMapViewController"; // annotation reuse id
@@ -159,16 +167,11 @@
     return view;
 }
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
-{
-#warning should show record detail here
-    NSLog(@"Should show detail here");
-}
+#pragma mark - SegementAction
 
 - (IBAction)segmentIsPressed:(UISegmentedControl *)sender {
     self.segements.selectedSegmentIndex = sender.selectedSegmentIndex;
     [self updateMapViewAnnotations];
 }
-
 
 @end

@@ -7,22 +7,22 @@
 //
 
 #import "SharedResultViewController.h"
-#import "EasyLifeAppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
+#import "EasyLifeAppDelegate.h"
+#import "WGS84ToGCJ02.h"
 
 @interface SharedResultViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *sharedResultDisplayTableView;
 @property (weak, nonatomic) IBOutlet UIPickerView *peopleAmountPickerView;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
-@property float numberOfPeopleToShare;
-@property (strong, nonatomic) UIImage *doneButtonBackgroundImage;
+@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
+@property (strong, nonatomic) UIImage *doneButtonBackgroundImage;
 @property (strong, readwrite) Record *addedRecord;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong,nonatomic) CLLocation *location;
 @property (nonatomic) NSInteger locationErrorCode;
-@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
-
+@property float numberOfPeopleToShare;
 @end
 
 @implementation SharedResultViewController
@@ -33,21 +33,26 @@
 {
     [super viewDidLoad];
     
+    /* setup the result table view */
     self.sharedResultDisplayTableView.delegate = self;
     self.sharedResultDisplayTableView.dataSource = self;
     [self.sharedResultDisplayTableView setSeparatorColor:self.appTintColor];
-    self.peopleAmountPickerView.delegate = self;
-    self.peopleAmountPickerView.dataSource = self;
-    self.numberOfPeopleToShare = 2;
-
-    [self.doneButton setBackgroundImage:self.doneButtonBackgroundImage forState:UIControlStateNormal];
-
-    [self.doneButton setBackgroundColor:[UIColor whiteColor]];
-    [self.doneButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
+    
+    /* setup the people number label */
     self.numberLabel.backgroundColor = self.sharedResultDisplayTableView.backgroundColor;
     self.numberLabel.textColor = [UIColor grayColor];
+    self.numberOfPeopleToShare = 2; // initialize with 2 people
+    
+    /* setup the number of people picker view */
+    self.peopleAmountPickerView.delegate = self;
+    self.peopleAmountPickerView.dataSource = self;
     [self.peopleAmountPickerView.layer setBorderWidth:0.5];
     [self.peopleAmountPickerView.layer setBorderColor:[self.appTintColor CGColor]];
+    
+    /* setup the done button */
+    [self.doneButton setBackgroundImage:self.doneButtonBackgroundImage forState:UIControlStateNormal];
+    [self.doneButton setBackgroundColor:[UIColor whiteColor]];
+    [self.doneButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -81,7 +86,10 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    self.location = [locations lastObject];
+    CLLocation *loc = [locations lastObject];
+    if (![WGS84ToGCJ02 isLocationOutOfChina:[loc coordinate]])
+        loc = [WGS84ToGCJ02 transformFromWGSToGCJ:loc];
+    self.location = loc;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -216,12 +224,16 @@
     [self.sharedResultDisplayTableView reloadData];
 }
 
+#pragma mark - Segue
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"Do Added Record"]) {
         
         NSManagedObjectContext *context = self.managedObjectContext;
         if (context) {
+            
+            /* setup the result record and send it back to the TipsCalViewController */
             Record *record = [NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:context];
 #warning should set the currency type in next version
             record.currency = @"USD";
@@ -229,26 +241,16 @@
             record.latitude = @(self.location.coordinate.latitude);
             record.longitude = @(self.location.coordinate.longitude);
             
+            /* set the date of the record */
             NSDate *date = [NSDate date];
             NSTimeZone *zone = [NSTimeZone systemTimeZone];
             NSInteger interval = [zone secondsFromGMT];
             NSDate *currentTime = [date dateByAddingTimeInterval:interval];
-            record.date = currentTime;
+            record.date = currentTime; // the time is local time since we don't have to convert the time while we in another time zone
             
             self.addedRecord = record;
         }
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

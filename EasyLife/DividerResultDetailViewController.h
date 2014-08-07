@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DALinedTextView.h"
 
 @interface DividerResultDetailViewController : UIViewController
+//in
 @property (strong, nonatomic) NSDictionary *resultDetailDict;
-@property (strong, nonatomic) UITextView *resultTextView;
+@property (strong, nonatomic) DALinedTextView *resultTextView;
 @end

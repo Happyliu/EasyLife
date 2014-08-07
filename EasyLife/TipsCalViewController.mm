@@ -22,14 +22,14 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *numberButtons;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
 @property (weak, nonatomic) IBOutlet UIButton *calculateButton;
+@property (strong, nonatomic) UIImage *resetButtonBackgroundImage, *normalButtonBackgroundImage, *calculateButtonBackgroundImage;
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appRedColor, *appBlackColor;
 @property (strong, nonatomic) NSMutableString *currentDisplayResult;
-@property BOOL isDoted, isAddedRecord, isSuccessAddedRecord;
-@property double currentResult;
-@property (strong, nonatomic) UIImage *resetButtonBackgroundImage, *normalButtonBackgroundImage, *calculateButtonBackgroundImage;
 @property (strong, nonatomic) UIImagePickerController *picker;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSString *detectedResult;
+@property BOOL isDoted, isAddedRecord, isSuccessAddedRecord;
+@property double currentResult;
 @end
 
 @implementation TipsCalViewController
@@ -53,9 +53,9 @@
     [NSThread sleepForTimeInterval:1.0]; // time interval for demonstration launch image
 
     /* initialize the UIImagePickerController */
-    self.navigationItem.rightBarButtonItem.enabled = false; // disable the button before initialized
+    self.navigationItem.leftBarButtonItem.enabled = false; // disable the button before initialized
     self.picker = [[UIImagePickerController alloc] init];
-    self.navigationItem.rightBarButtonItem.enabled = true;
+    self.navigationItem.leftBarButtonItem.enabled = true;
     
     /* setup the naviagtion bar */
     self.navigationController.navigationBar.barTintColor = self.appTintColor;
@@ -87,6 +87,27 @@
         [numberButton.layer setBorderColor:[[UIColor grayColor] CGColor]];
         [numberButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
     }
+    
+    /* setup the result label */
+    [self.displayLabel setTextColor:self.appBlackColor];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    /* gurantee the background of the alert is the main window and the speed of appearance */
+    if (self.isAddedRecord) {
+        if (self.isSuccessAddedRecord) {
+            [self successAlert:@"Success"];
+        } else {
+            [self failAlert:@"Fail"];
+        }
+    }
+    
+    /* reset the flags for the alert view */
+    self.isAddedRecord = NO;
+    self.isSuccessAddedRecord = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -105,22 +126,6 @@
         self.currentResult = 0;
         self.isDoted = NO;
     }
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    
-    /* gurantee the background of the alert is the main window and the speed of appearance */
-    if (self.isAddedRecord) {
-        if (self.isSuccessAddedRecord) {
-            [self successAlert:@"Success"];
-        } else {
-            [self failAlert:@"Fail"];
-        }
-    }
-    self.isAddedRecord = NO;
-    self.isSuccessAddedRecord = NO;
 }
 
 #pragma mark - AppColor
@@ -217,6 +222,8 @@
     return _calculateButtonBackgroundImage;
 }
 
+#pragma mark - LazyInit
+
 - (NSMutableString *)currentDisplayResult
 {
     if (!_currentDisplayResult) {
@@ -271,7 +278,6 @@
 - (IBAction)recordButtonIsPressed:(id)sender {
     RecordViewController *rvc = [self.storyboard instantiateViewControllerWithIdentifier:@"RecordViewController"];
     [rvc setManagedObjectContext:self.managedObjectContext];
-    rvc.title = @"Slide Down to Close";
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:rvc];
     [nav.navigationBar setHidden:YES];
     [self presentViewController:nav animated:YES completion:NULL];
@@ -338,6 +344,7 @@
 }
 
 /* unwind segue from TipsResultViewController and SharedResultViewController */
+
 - (IBAction)addedRecord:(UIStoryboardSegue *)segue {
     if ([segue.sourceViewController isKindOfClass:[TipsResultViewController class]]) {
         TipsResultViewController *trvc = (TipsResultViewController *)segue.sourceViewController;
@@ -353,14 +360,13 @@
         SharedResultViewController *srvc = (SharedResultViewController *)segue.sourceViewController;
         Record *addedRecord = srvc.addedRecord;
         if (addedRecord) {
-            //[self alert:@"Success"];
             self.isAddedRecord = YES;
             self.isSuccessAddedRecord = YES;
         } else {
-            //[self alert:@"Fail"];
             self.isAddedRecord = YES;
             self.isSuccessAddedRecord = NO;
         }
     }
 }
+
 @end

@@ -12,6 +12,7 @@
 		50183B1A19559FA50012E0B2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50183B1919559FA50012E0B2 /* CoreData.framework */; };
 		50183B251955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
 		50183B261955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
+		5018FB98198B2274003CF685 /* DALinedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5018FB97198B2274003CF685 /* DALinedTextView.m */; };
 		50278A021974FDD100D0A6BB /* ExpenseRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 50278A011974FDD100D0A6BB /* ExpenseRecord.m */; };
 		505D88FF1966D64600AE335D /* DividerCalculateResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505D88FE1966D64600AE335D /* DividerCalculateResultViewController.m */; };
 		5081FD7B197B8B0F00B7CA32 /* WGS84ToGCJ02.m in Sources */ = {isa = PBXBuildFile; fileRef = 5081FD7A197B8B0F00B7CA32 /* WGS84ToGCJ02.m */; };
@@ -418,6 +419,8 @@
 		50183B1919559FA50012E0B2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		50183B1F1955B24B0012E0B2 /* NSString+TextDirectionality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TextDirectionality.h"; sourceTree = "<group>"; };
 		50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TextDirectionality.m"; sourceTree = "<group>"; };
+		5018FB96198B2274003CF685 /* DALinedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALinedTextView.h; sourceTree = "<group>"; };
+		5018FB97198B2274003CF685 /* DALinedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DALinedTextView.m; sourceTree = "<group>"; };
 		50278A001974FDD100D0A6BB /* ExpenseRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseRecord.h; sourceTree = "<group>"; };
 		50278A011974FDD100D0A6BB /* ExpenseRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseRecord.m; sourceTree = "<group>"; };
 		505D88FD1966D64600AE335D /* DividerCalculateResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DividerCalculateResultViewController.h; sourceTree = "<group>"; };
@@ -919,6 +922,15 @@
 			name = JVFloatLabeledTextField;
 			sourceTree = "<group>";
 		};
+		5018FB99198B227A003CF685 /* DALinedTextView */ = {
+			isa = PBXGroup;
+			children = (
+				5018FB96198B2274003CF685 /* DALinedTextView.h */,
+				5018FB97198B2274003CF685 /* DALinedTextView.m */,
+			);
+			name = DALinedTextView;
+			sourceTree = "<group>";
+		};
 		508B84C5195DA22A0056ABE1 /* DatePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -1073,6 +1085,7 @@
 		50C40412192510820099FAFD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5018FB99198B227A003CF685 /* DALinedTextView */,
 				508B84C5195DA22A0056ABE1 /* DatePicker */,
 				50D60450195A8AE600A9F628 /* AMSmoothAlert */,
 				50C40414192510B00099FAFD /* iPhone.storyboard */,
@@ -1705,6 +1718,7 @@
 				50D60BD5195A983200A9F628 /* GPUImageUnsharpMaskFilter.m in Sources */,
 				50D60AC9195A983200A9F628 /* GPUImageChromaKeyBlendFilter.m in Sources */,
 				50D60B89195A983200A9F628 /* GPUImageRGBDilationFilter.m in Sources */,
+				5018FB98198B2274003CF685 /* DALinedTextView.m in Sources */,
 				50D60B5B195A983200A9F628 /* GPUImageMovie.m in Sources */,
 				50D60BF2195A984A00A9F628 /* GPUImagePicture.m in Sources */,
 				50D60BB7195A983200A9F628 /* GPUImageTextureInput.m in Sources */,

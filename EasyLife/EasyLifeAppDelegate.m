@@ -19,7 +19,6 @@
 
 - (UIColor *)appTintColor {
     if (!_appTintColor) {
-        //_appTintColor = [UIColor colorWithRed:222/255.0 green:74/255.0 blue:44/255.0 alpha:1.0];
         _appTintColor = [UIColor flatBlueColor];
     }
     return _appTintColor;
@@ -27,7 +26,6 @@
 
 - (UIColor *)appSecondColor {
     if (!_appSecondColor) {
-        //_appSecondColor = [UIColor colorWithRed:95/255.0 green:180/255.0 blue:180/255.0 alpha:1.0];
         _appSecondColor = [UIColor flatYellowColor];
     }
     return _appSecondColor;
@@ -35,7 +33,6 @@
 
 - (UIColor *)appThirdColor {
     if (!_appThirdColor) {
-        //_appThirdColor = [UIColor colorWithRed:247/255.0 green:193/255.0 blue:62/255.0 alpha:1.0];
         _appThirdColor = [UIColor flatTealColor];
     }
     return _appThirdColor;
@@ -67,7 +64,6 @@
         NSURL *url = [documentsDirectory URLByAppendingPathComponent:documentName];
         UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
         self.document = document;
-        
         
         if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) { // file exists
             [document openWithCompletionHandler:^(BOOL success) {

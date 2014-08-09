@@ -42,6 +42,10 @@
     [self.mapButton.layer setBorderColor:[[UIColor darkGrayColor] CGColor]];
     [self.mapButton setTitleColor:self.appBlackColor forState:UIControlStateNormal];
     [self.navigationController installMHDismissModalViewWithOptions:[[MHDismissModalViewOptions alloc] initWithTableView:self.tableView theme:MHModalThemeWhite]];
+    if ([self.records count] == 0) {
+        [self.mapButton setEnabled:NO];
+        [self.mapButton setTitle:@"No Record" forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -147,6 +151,10 @@
         [self.tableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
     }
+    if ([self.records count] == 0) {
+        [self.mapButton setEnabled:NO];
+        [self.mapButton setTitle:@"No Record" forState:UIControlStateNormal];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -160,7 +168,7 @@
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]]; // convert the time to the time in the core data
     NSString *subTitle = [dateFormatter stringFromDate:((Record *)self.records[position]).date];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"$%@", [((Record *)self.records[position]).amount stringValue]];
+    cell.textLabel.text = [NSString stringWithFormat:@"$%.2f", [((Record *)self.records[position]).amount doubleValue]];
     cell.detailTextLabel.text = subTitle;
     cell.backgroundColor = [UIColor clearColor];
 

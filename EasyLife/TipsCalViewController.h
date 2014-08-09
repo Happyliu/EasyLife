@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TesseractOCR/TesseractOCR.h>
+//#import <TesseractOCR/TesseractOCR.h>
 
-@interface TipsCalViewController : UIViewController <TesseractDelegate>
-
+//@interface TipsCalViewController : UIViewController <TesseractDelegate>
+@interface TipsCalViewController : UIViewController
 @end

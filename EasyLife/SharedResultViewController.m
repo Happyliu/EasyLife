@@ -22,7 +22,7 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong,nonatomic) CLLocation *location;
 @property (nonatomic) NSInteger locationErrorCode;
-@property float numberOfPeopleToShare;
+@property double numberOfPeopleToShare;
 @end
 
 @implementation SharedResultViewController

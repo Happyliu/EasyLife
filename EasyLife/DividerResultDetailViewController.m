@@ -34,7 +34,7 @@
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"MMMM-dd"];
             [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-            [self.resultString appendString:[NSString stringWithFormat:@"  •  %@                $%.2f\n", [formatter stringFromDate:record.expenseDate], [record.expenseAmount doubleValue]]];
+            [self.resultString appendString:[NSString stringWithFormat:@"  •  %@             $%.2f\n", [formatter stringFromDate:record.expenseDate], [record.expenseAmount doubleValue]]];
             [self.resultString appendString:[NSString stringWithFormat:@"     %@\n", record.expenseDescription]];
             [self.resultString appendString:@"\n"];
         }

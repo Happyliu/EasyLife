@@ -50,7 +50,7 @@
 {
     [super viewDidLoad];
     
-    [NSThread sleepForTimeInterval:1.0]; // time interval for demonstration launch image
+    //[NSThread sleepForTimeInterval:1.0]; // time interval for demonstration launch image
 
     /* initialize the UIImagePickerController */
     self.navigationItem.leftBarButtonItem.enabled = false; // disable the button before initialized
@@ -300,31 +300,31 @@
     [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Sorry" andText:message andCancelButton:NO forAlertType:AlertInfo andColor:self.appTintColor] show];
 }
 
-#pragma mark - UIImagePickerControllerDelegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    UIImage *image = info[UIImagePickerControllerEditedImage]; // the image that image picker controller returns back
-    Tesseract* tesseract = [[Tesseract alloc] initWithLanguage:@"eng"];
-    tesseract.delegate = self;
-    
-    [tesseract setVariableValue:@"0123456789." forKey:@"tessedit_char_whitelist"]; //limit search
-    [tesseract setImage:image]; //image to check
-    [tesseract recognize];
-    
-    self.detectedResult = [NSString stringWithFormat:@"%.2f", [[tesseract recognizedText] doubleValue]];
-    
-    NSLog(@"%@", self.detectedResult);
-    tesseract = nil;
-    image = nil;
-
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
+//#pragma mark - UIImagePickerControllerDelegate
+//
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+//{
+//    UIImage *image = info[UIImagePickerControllerEditedImage]; // the image that image picker controller returns back
+//    Tesseract* tesseract = [[Tesseract alloc] initWithLanguage:@"eng"];
+//    tesseract.delegate = self;
+//    
+//    [tesseract setVariableValue:@"0123456789." forKey:@"tessedit_char_whitelist"]; //limit search
+//    [tesseract setImage:image]; //image to check
+//    [tesseract recognize];
+//    
+//    self.detectedResult = [NSString stringWithFormat:@"%.2f", [[tesseract recognizedText] doubleValue]];
+//    
+//    NSLog(@"%@", self.detectedResult);
+//    tesseract = nil;
+//    image = nil;
+//
+//    [self dismissViewControllerAnimated:YES completion:NULL];
+//}
+//
+//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+//{
+//    [self dismissViewControllerAnimated:YES completion:NULL];
+//}
 
 #pragma mark - Segue
 

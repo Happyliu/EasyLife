@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		50148628196D6D620000203B /* UILabel+NumberJump.m in Sources */ = {isa = PBXBuildFile; fileRef = 50148627196D6D620000203B /* UILabel+NumberJump.m */; };
+		5018352C1994A1EE0031F40F /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C40434192511AC0099FAFD /* opencv2.framework */; };
 		50183B12195587190012E0B2 /* RecognitionCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B11195587190012E0B2 /* RecognitionCameraOverlayView.m */; };
 		50183B1A19559FA50012E0B2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50183B1919559FA50012E0B2 /* CoreData.framework */; };
 		50183B251955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
@@ -44,8 +45,6 @@
 		50C4042F192511540099FAFD /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C40427192511540099FAFD /* RecordViewController.m */; };
 		50C40430192511540099FAFD /* SingleRecordMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C40429192511540099FAFD /* SingleRecordMapViewController.m */; };
 		50C40431192511540099FAFD /* RecordMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C4042B192511540099FAFD /* RecordMapViewController.m */; };
-		50C40433192511A40099FAFD /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C40432192511A40099FAFD /* TesseractOCR.framework */; };
-		50C40435192511AC0099FAFD /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C40434192511AC0099FAFD /* opencv2.framework */; };
 		50C4043A192514C40099FAFD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C40439192514C40099FAFD /* CoreLocation.framework */; };
 		50C4043C192514E40099FAFD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C4043B192514E40099FAFD /* MapKit.framework */; };
 		50C4043E192514EA0099FAFD /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C4043D192514EA0099FAFD /* libstdc++.6.0.9.dylib */; };
@@ -855,15 +854,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5018352C1994A1EE0031F40F /* opencv2.framework in Frameworks */,
 				50DD836E197F57B900D78143 /* QuartzCore.framework in Frameworks */,
 				50183B1A19559FA50012E0B2 /* CoreData.framework in Frameworks */,
 				50C403E519250FA00099FAFD /* CoreGraphics.framework in Frameworks */,
 				50C4043E192514EA0099FAFD /* libstdc++.6.0.9.dylib in Frameworks */,
 				50C4043C192514E40099FAFD /* MapKit.framework in Frameworks */,
 				50C4043A192514C40099FAFD /* CoreLocation.framework in Frameworks */,
-				50C40433192511A40099FAFD /* TesseractOCR.framework in Frameworks */,
 				50C403E719250FA00099FAFD /* UIKit.framework in Frameworks */,
-				50C40435192511AC0099FAFD /* opencv2.framework in Frameworks */,
 				50C403E319250FA00099FAFD /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2078,7 +2076,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Zihao Zhang (5ZW86EQHQ2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Zihao Zhang (5ZW86EQHQ2)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2118,7 +2117,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Zihao Zhang (5ZW86EQHQ2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Zihao Zhang (5ZW86EQHQ2)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2183,6 +2183,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EasyLife.app/EasyLife";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -2206,6 +2207,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/EasyLife.app/EasyLife";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

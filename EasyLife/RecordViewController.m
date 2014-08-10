@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *mapButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *records;
-@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
+@property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor, *appRedColor;
 @property (strong, nonatomic) UIImage *mapButtonBackgroundImage;
 @end
 
@@ -81,6 +81,15 @@
         _appThirdColor = appDelegate.appThirdColor;
     }
     return _appThirdColor;
+}
+
+- (UIColor *)appRedColor
+{
+    if (!_appRedColor) {
+        EasyLifeAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        _appRedColor = appDelegate.appRedColor;
+    }
+    return _appRedColor;
 }
 
 - (UIColor *)appBlackColor

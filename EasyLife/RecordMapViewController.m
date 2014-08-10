@@ -18,8 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
 @property (strong, nonatomic) NSArray *records;
-@property double totalAmount;
 @property (weak, nonatomic) UIColor *appTintColor, *appSecondColor, *appThirdColor, *appBlackColor;
+@property double totalAmount;
 @end
 
 @implementation RecordMapViewController
@@ -33,9 +33,14 @@
     // set the style of map view
     self.mapView.showsPointsOfInterest = YES;
     self.mapView.showsBuildings = YES;
+    [self.mapView.layer setBorderWidth:0.5];
+    [self.mapView.layer setBorderColor:self.appTintColor.CGColor];
+    
     self.segements.selectedSegmentIndex = 0;
+    
     self.totalLabel.backgroundColor = self.appTintColor;
     self.totalLabel.textColor = [UIColor whiteColor];
+    
     self.totalAmountLabel.backgroundColor = self.appTintColor;
     self.totalAmountLabel.textColor = [UIColor whiteColor];
 }
@@ -43,7 +48,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.totalAmountLabel jumpNumberWithDuration:2 fromNumber:0.0 toNumber:self.totalAmount];
+    [self.totalAmountLabel jumpNumberWithDuration:2 fromNumber:0.00f toNumber:self.totalAmount];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

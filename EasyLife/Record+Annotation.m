@@ -31,7 +31,7 @@
 
 - (NSString *)subtitle
 {
-    NSString *subtitle = [NSString stringWithFormat:@"$%@", self.amount];
+    NSString *subtitle = [NSString stringWithFormat:@"$%.2f", [self.amount doubleValue]];
     return subtitle;
 }
 @end

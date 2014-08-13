@@ -17,7 +17,7 @@
 #import "AMSmoothAlertView.h"
 #import "UIColor+MLPFlatColors.h"
 
-@interface TipsCalViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface TipsCalViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, PFLogInViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *numberButtons;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;

@@ -81,6 +81,8 @@
             }];
         }
     });
+    [Parse setApplicationId:@"uXPx5g1etDKDgxtLAD1WlwN8LJybPpJPNJSmJoQo" clientKey:@"1UMQhKHWcU1mWfhb4ypT6zhJoCxEhCYqs8ToOuby"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     return YES;
 }
 

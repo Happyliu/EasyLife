@@ -16,8 +16,9 @@
 #import "RecognitionCameraOverlayView.h"
 #import "AMSmoothAlertView.h"
 #import "UIColor+MLPFlatColors.h"
+#import "LogInViewController.h"
 
-@interface TipsCalViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, PFLogInViewControllerDelegate>
+@interface TipsCalViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *numberButtons;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
@@ -287,7 +288,9 @@
 
 - (void)successAlert:(NSString *)message
 {
-    [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Add Record" andText:message andCancelButton:NO forAlertType:AlertSuccess andColor:self.appThirdColor] show];
+    AMSmoothAlertView *successAlertView = [[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Add Record" andText:message andCancelButton:NO forAlertType:AlertSuccess andColor:self.appThirdColor];
+    [successAlertView show];
+    [self performSelector:@selector(dismissAlertView:) withObject:successAlertView afterDelay:2.0]; // automatically dismiss the alert view after 2.0 seconds
 }
 
 - (void)failAlert:(NSString *)message
@@ -298,6 +301,34 @@
 - (void)fatalAlert:(NSString *)message
 {
     [[[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Sorry" andText:message andCancelButton:NO forAlertType:AlertInfo andColor:self.appTintColor] show];
+}
+
+- (void)dismissAlertView:(AMSmoothAlertView *)alertView
+{
+    [alertView dismissAlertView];
+}
+
+#pragma mark - PFSignUpViewControllerDelegate
+
+// Sent to the delegate to determine whether the sign up request should be submitted to the server.
+- (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
+    BOOL informationComplete = YES;
+    
+    // loop through all of the submitted data
+    for (id key in info) {
+        NSString *field = [info objectForKey:key];
+        if (!field || !field.length) { // check completion
+            informationComplete = NO;
+            break;
+        }
+    }
+    
+    // Display an alert if a field wasn't completed
+    if (!informationComplete) {
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Make sure you fill out all of the information!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+    }
+    
+    return informationComplete;
 }
 
 //#pragma mark - UIImagePickerControllerDelegate

@@ -18,7 +18,8 @@ typedef enum {
     PFLogInFieldsSignUpButton = 1 << 5,
     PFLogInFieldsDismissButton = 1 << 6,
     
-    PFLogInFieldsDefault = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsDismissButton
+    PFLogInFieldsDefault = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsDismissButton,
+    pfLogInFieldsCustom = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsPasswordForgotten
 } PFLogInFields;
 
 /*!

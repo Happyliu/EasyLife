@@ -123,6 +123,7 @@ const static CGFloat marginBetweenTextField = 2.5f;
         _expensePayerTextField.clearButtonMode = YES;
         _expensePayerTextField.returnKeyType = UIReturnKeyDone;
         _expensePayerTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
+        [_expensePayerTextField setAutocapitalizationType:UITextAutocapitalizationTypeWords];
     }
     return _expensePayerTextField;
 }
@@ -154,6 +155,7 @@ const static CGFloat marginBetweenTextField = 2.5f;
         _expenseDescriptionTextField.clearButtonMode = YES;
         _expenseDescriptionTextField.returnKeyType = UIReturnKeyDone;
         _expenseDescriptionTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
+        [_expenseDescriptionTextField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     }
     return _expenseDescriptionTextField;
 }
@@ -191,7 +193,7 @@ const static CGFloat marginBetweenTextField = 2.5f;
 
 - (BOOL)isValid
 {
-    if ([self.expensePayerTextField.text isEqualToString:@""] || [self.expenseAmountTextField.text doubleValue] <= 0) {
+    if ([self.expensePayerTextField.text isEqualToString:@""] || [self.expenseAmountTextField.text doubleValue] < 0) {
         return NO;
     }
     return YES;

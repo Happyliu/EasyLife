@@ -15,7 +15,7 @@
 		50183B261955B24B0012E0B2 /* NSString+TextDirectionality.m in Sources */ = {isa = PBXBuildFile; fileRef = 50183B201955B24B0012E0B2 /* NSString+TextDirectionality.m */; };
 		5018FB98198B2274003CF685 /* DALinedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5018FB97198B2274003CF685 /* DALinedTextView.m */; };
 		50278A021974FDD100D0A6BB /* ExpenseRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 50278A011974FDD100D0A6BB /* ExpenseRecord.m */; };
-		503631B0199A5465007C2717 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503631AF199A5465007C2717 /* Parse.framework */; };
+		503631B0199A5465007C2717 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503631AF199A5465007C2717 /* Parse.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		503631B2199A5498007C2717 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503631B1199A5498007C2717 /* AudioToolbox.framework */; };
 		503631B4199A54A5007C2717 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503631B3199A54A5007C2717 /* CFNetwork.framework */; };
 		503631B6199A54CF007C2717 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 503631B5199A54CF007C2717 /* libz.dylib */; };
@@ -62,6 +62,7 @@
 		50C40441192518810099FAFD /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 50C4041E192511400099FAFD /* tessdata */; };
 		50C40442192518890099FAFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C403F419250FA00099FAFD /* Images.xcassets */; };
 		50C404431925188F0099FAFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50C403EB19250FA00099FAFD /* InfoPlist.strings */; };
+		50CD71F419A930C900605FAA /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CD71F319A930C900605FAA /* LogInViewController.m */; };
 		50D6044C195A8ADA00A9F628 /* AMBouncingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D60448195A8ADA00A9F628 /* AMBouncingView.m */; };
 		50D6044D195A8ADA00A9F628 /* AMBouncingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D60448195A8ADA00A9F628 /* AMBouncingView.m */; };
 		50D6044E195A8ADA00A9F628 /* AMSmoothAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D6044A195A8ADA00A9F628 /* AMSmoothAlertView.m */; };
@@ -504,6 +505,8 @@
 		50C40439192514C40099FAFD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		50C4043B192514E40099FAFD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		50C4043D192514EA0099FAFD /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		50CD71F219A930C900605FAA /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
+		50CD71F319A930C900605FAA /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		50D60447195A8ADA00A9F628 /* AMBouncingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMBouncingView.h; sourceTree = "<group>"; };
 		50D60448195A8ADA00A9F628 /* AMBouncingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBouncingView.m; sourceTree = "<group>"; };
 		50D60449195A8ADA00A9F628 /* AMSmoothAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSmoothAlertView.h; sourceTree = "<group>"; };
@@ -1156,6 +1159,8 @@
 				505D88FE1966D64600AE335D /* DividerCalculateResultViewController.m */,
 				50B0A95719876DB600EA6996 /* DividerResultDetailViewController.h */,
 				50B0A95819876DB600EA6996 /* DividerResultDetailViewController.m */,
+				50CD71F219A930C900605FAA /* LogInViewController.h */,
+				50CD71F319A930C900605FAA /* LogInViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1715,6 +1720,7 @@
 				50D6044E195A8ADA00A9F628 /* AMSmoothAlertView.m in Sources */,
 				50D60BAB195A983200A9F628 /* GPUImageSourceOverBlendFilter.m in Sources */,
 				50D60ADD195A983200A9F628 /* GPUImageCropFilter.m in Sources */,
+				50CD71F419A930C900605FAA /* LogInViewController.m in Sources */,
 				50DD8362197F53E900D78143 /* PNPieChart.m in Sources */,
 				50C4042C192511540099FAFD /* TipsCalViewController.mm in Sources */,
 				50DD835B197F53D000D78143 /* PNLineChartData.m in Sources */,
